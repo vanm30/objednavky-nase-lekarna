@@ -1,0 +1,7 @@
+Button{
+-fx-cursor: hand;
+}
+
+Button:pressed{
+-fx-opacity: 0.5;
+}
