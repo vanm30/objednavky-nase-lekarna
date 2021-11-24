@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -25,6 +26,7 @@ public class MainController implements Initializable {
     @FXML public Button menuButton;
     @FXML public GridPane gridPane;
     @FXML public StackPane mainStackPane;
+    @FXML public Label mainLabel;
 
     public MainController(){
         mainController = this;

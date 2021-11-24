@@ -13,8 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox stylesheets="@../stylesheet.css" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="350.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="350.0" stylesheets="@../stylesheet.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.naseLekarna.gui.CustomerInfoController">
    <children>
       <Region VBox.vgrow="ALWAYS" />
       <Label text="Osobní údaje" textFill="#5ead87">
@@ -97,8 +96,8 @@
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Label text="Přidat do databáze" />
-                  <Region prefHeight="18.0" prefWidth="29.0" />
-                  <CheckBox graphicTextGap="10.0" mnemonicParsing="false" style="-fx-background-color: white;" />
+                  <Region prefHeight="18.0" prefWidth="39.0" />
+                  <CheckBox alignment="CENTER" graphicTextGap="10.0" mnemonicParsing="false" HBox.hgrow="NEVER" />
                </children>
                <VBox.margin>
                   <Insets top="5.0" />
@@ -133,7 +132,7 @@
                <children>
                   <Label text="Způsob vyzvednutí" />
                   <Region HBox.hgrow="ALWAYS" />
-                  <ChoiceBox prefHeight="26.0" prefWidth="155.0" />
+                  <ChoiceBox fx:id="pickUpOption" prefHeight="26.0" prefWidth="155.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
@@ -176,8 +175,16 @@
       </VBox>
       <HBox prefHeight="28.0" prefWidth="350.0">
          <children>
+            <Button onAction="#back" mnemonicParsing="false" style="-fx-background-color: #5ead87#5ead87 #5ead87#5ead87; -fx-background-radius: 10;" text="ZPĚT">
+               <font>
+                  <Font name="Avenir Next Bold" size="13.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Button>
             <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-            <Button mnemonicParsing="false" style="-fx-background-color: #5ead87#5ead87 #5ead87#5ead87; -fx-background-radius: 10;" text="DALŠÍ">
+            <Button onAction="#addItems" mnemonicParsing="false" style="-fx-background-color: #5ead87#5ead87 #5ead87#5ead87; -fx-background-radius: 10;" text="DALŠÍ">
                <HBox.margin>
                   <Insets right="20.0" />
                </HBox.margin>

@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="gridPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="350.0" style="-fx-background-color: white;" stylesheets="@../stylesheet.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.naseLekarna.gui.MainController">
+<GridPane fx:id="gridPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="350.0" style="-fx-background-color: white;" stylesheets="@../stylesheet.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.naseLekarna.gui.MainController">
   <columnConstraints>
     <ColumnConstraints />
       <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -34,7 +34,7 @@
                    </ImageView>
                </graphic>
             </Button>
-            <Label text="Aktivní objednávky" textFill="WHITE">
+            <Label fx:id="mainLabel" text="Aktivní objednávky" textFill="WHITE">
                <font>
                   <Font name="Avenir Book" size="18.0" />
                </font>
