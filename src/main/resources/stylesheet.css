@@ -1,7 +1,14 @@
+/*All buttons now have pointer cursor when hovering.*/
 Button{
 -fx-cursor: hand;
 }
 
+/*All buttons flash when pressing*/
 Button:pressed{
 -fx-opacity: 0.5;
+}
+
+/*All scrollpanes are transparent*/
+.scroll-pane .viewport {
+       -fx-background-color: transparent;
 }

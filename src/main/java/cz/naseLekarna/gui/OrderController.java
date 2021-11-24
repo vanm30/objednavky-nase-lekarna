@@ -1,22 +1,27 @@
 package cz.naseLekarna.gui;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * @author Matěj Vaník
  * @created 18.11.2021
  */
-public class OrderController {
+public class OrderController implements Initializable {
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
 
     @FXML public VBox itemsField;
     @FXML public Button deleteButton;
@@ -24,7 +29,7 @@ public class OrderController {
 
     public void back(ActionEvent actionEvent) throws Exception {
         MainController.getMainController().mainStackPane.getChildren().clear();
-        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/orderList.fxml"));
+        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/homeView.fxml"));
         MainController.getMainController().mainStackPane.getChildren().add(vBox);
     }
 

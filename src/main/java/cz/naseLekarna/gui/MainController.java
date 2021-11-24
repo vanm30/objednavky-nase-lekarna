@@ -22,41 +22,51 @@ import java.util.ResourceBundle;
 public class MainController implements Initializable {
 
     private static MainController mainController;
-
     @FXML public Button menuButton;
     @FXML public GridPane gridPane;
     @FXML public StackPane mainStackPane;
     @FXML public Label mainLabel;
 
+    /*CONSTRUCTOR, GETTERS, SETTERS*/
     public MainController(){
         mainController = this;
     }
 
+    public static MainController getMainController() {
+        return mainController;
+    }
+
+    /**
+     * This method is called when inilializing this Controller. It puts homeView.fxml to main stack pane.
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         VBox vBox = null;
         try {
-            vBox = FXMLLoader.load(getClass().getResource("/fxml/orderList.fxml"));
+            vBox = FXMLLoader.load(getClass().getResource("/fxml/homeView.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
         mainStackPane.getChildren().add(vBox);
     }
 
-
-    public static MainController getMainController() {
-        return mainController;
-    }
-
+    /**
+     * This method opens popup menu when pressing button.
+     * @param actionEvent
+     * @throws Exception
+     */
     public void openMenu(ActionEvent actionEvent) throws Exception {
         VBox vbox = FXMLLoader.load(getClass().getResource("/fxml/menu.fxml"));
         gridPane.add(vbox,0,1);
     }
 
+    /**
+     * This method closes popup menu.
+     */
     public void closeMenu(){
         gridPane.getChildren().removeIf(node -> GridPane.getColumnIndex(node) == 0);
     }
-
-
 
 }

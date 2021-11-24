@@ -14,17 +14,17 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane style="-fx-background-color: transparent;" stylesheets="@../stylesheet.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.naseLekarna.gui.OrderController">
+<GridPane style="-fx-background-color: transparent;" stylesheets="@../stylesheet.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.naseLekarna.gui.OrderController">
    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" />
-      <ColumnConstraints hgrow="SOMETIMES" />
+      <ColumnConstraints hgrow="ALWAYS" />
+      <ColumnConstraints hgrow="ALWAYS" />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints vgrow="NEVER" />
       <RowConstraints vgrow="NEVER" />
    </rowConstraints>
    <children>
-      <Label text="Přípravek" textFill="#5ead87" GridPane.valignment="BOTTOM">
+      <Label text="Přípravek" textFill="#5ead87" GridPane.valignment="BOTTOM" GridPane.vgrow="NEVER">
          <font>
             <Font name="Avenir Next Bold" size="13.0" />
          </font>

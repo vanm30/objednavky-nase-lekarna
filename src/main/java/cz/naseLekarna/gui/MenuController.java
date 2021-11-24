@@ -1,6 +1,7 @@
 package cz.naseLekarna.gui;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.VBox;
 
@@ -10,8 +11,11 @@ import javafx.scene.layout.VBox;
  */
 public class MenuController {
 
-    private static MenuController menuController;
 
+    private static MenuController menuController;
+    @FXML public VBox menuBox;
+
+    /*CONSTRUCTOR, GETTERS, SETTERS*/
     public MenuController(){
         menuController = this;
     }
@@ -20,14 +24,22 @@ public class MenuController {
         return menuController;
     }
 
-    public VBox menuBox;
+
 
     public void switchToHome(ActionEvent actionEvent) {
+        /*TODO*/
     }
+
 
     public void switchToHistory(ActionEvent actionEvent) {
+        /*TODO*/
     }
 
+    /**
+     * This method closes popup menu by calling method closeMenu().
+     * @param actionEvent
+     * @throws Exception
+     */
     public void goBack(ActionEvent actionEvent) throws Exception{
         MainController.getMainController().closeMenu();
     }

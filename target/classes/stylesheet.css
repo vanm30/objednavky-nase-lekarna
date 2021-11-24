@@ -5,3 +5,7 @@ Button{
 Button:pressed{
 -fx-opacity: 0.5;
 }
+
+.scroll-pane .viewport {
+       -fx-background-color: transparent;
+}

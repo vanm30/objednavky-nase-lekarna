@@ -19,6 +19,11 @@ public class CustomerInfoController implements Initializable {
 
     @FXML public ChoiceBox<String> pickUpOption;
 
+    /**
+     * This method is run when initialing this Controller. It fills ChoiceBox with following options.
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         pickUpOption.getItems().add("Osobní");
@@ -26,12 +31,22 @@ public class CustomerInfoController implements Initializable {
 
     }
 
+    /**
+     * Method is called when back button is pressed. This method moves user to homeView.
+     * @param actionEvent
+     * @throws Exception
+     */
     public void back(ActionEvent actionEvent) throws Exception {
         MainController.getMainController().mainStackPane.getChildren().clear();
-        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/orderList.fxml"));
+        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/homeView.fxml"));
         MainController.getMainController().mainStackPane.getChildren().add(vBox);
     }
 
+    /**
+     * This method switches view to newItemsInfo view.
+     * @param actionEvent
+     * @throws Exception
+     */
     public void addItems(ActionEvent actionEvent) throws Exception {
         MainController.getMainController().mainStackPane.getChildren().clear();
         StackPane stackPane = FXMLLoader.load(getClass().getResource("/fxml/newItemsInfo.fxml"));
