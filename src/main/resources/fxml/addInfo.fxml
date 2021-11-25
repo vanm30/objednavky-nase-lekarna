@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER_LEFT" stylesheets="@../stylesheet.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.naseLekarna.gui.CustomerInfoController">
+<VBox alignment="CENTER_LEFT" stylesheets="@../stylesheet.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.naseLekarna.gui.CustomerInfoController">
    <children>
       <Label text="Osobní údaje" textFill="#5ead87">
          <font>
@@ -179,29 +179,28 @@
             </TextArea>
          </children>
       </VBox>
-      <HBox>
+      <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="46.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#back" style="-fx-background-color: #5ead87#5ead87 #5ead87#5ead87; -fx-background-radius: 10;" text="ZPĚT" textFill="WHITE">
+            <Region HBox.hgrow="ALWAYS" />
+            <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToAddOrder" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #5ead87#5ead87 #5ead87#5ead87; -fx-background-radius: 5;" text="ZPĚT" textFill="WHITE">
                <font>
-                  <Font name="Avenir Next Bold" size="13.0" />
+                  <Font name="Avenir Next Bold" size="12.0" />
                </font>
-               <HBox.margin>
-                  <Insets left="20.0" />
-               </HBox.margin>
+               <padding>
+                  <Insets left="5.0" right="5.0" />
+               </padding>
             </Button>
             <Region HBox.hgrow="ALWAYS" />
-            <Button mnemonicParsing="false" onAction="#addItems" style="-fx-background-color: #5ead87#5ead87 #5ead87#5ead87; -fx-background-radius: 10;" text="DALŠÍ" textFill="WHITE">
-               <HBox.margin>
-                  <Insets right="20.0" />
-               </HBox.margin>
+            <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addItems" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #5ead87#5ead87 #5ead87#5ead87; -fx-background-radius: 5;" text="DALŠÍ" textFill="WHITE">
                <font>
-                  <Font name="Avenir Next Bold" size="13.0" />
+                  <Font name="Avenir Next Bold" size="12.0" />
                </font>
+               <padding>
+                  <Insets left="5.0" right="5.0" />
+               </padding>
             </Button>
+            <Region HBox.hgrow="ALWAYS" />
          </children>
-         <VBox.margin>
-            <Insets bottom="20.0" top="10.0" />
-         </VBox.margin>
       </HBox>
    </children>
 </VBox>

@@ -36,10 +36,11 @@ public class CustomerInfoController implements Initializable {
      * @param actionEvent
      * @throws Exception
      */
-    public void back(ActionEvent actionEvent) throws Exception {
+    public void backToAddOrder(ActionEvent actionEvent) throws Exception {
         MainController.getMainController().mainStackPane.getChildren().clear();
-        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/homeView.fxml"));
-        MainController.getMainController().mainStackPane.getChildren().add(vBox);
+        StackPane stackPane = FXMLLoader.load(getClass().getResource("/fxml/addOrder.fxml"));
+        MainController.getMainController().mainStackPane.getChildren().add(stackPane);
+        MainController.getMainController().mainLabel.setText("Nová Objednávka");
     }
 
     /**

@@ -5,10 +5,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -18,64 +20,34 @@ import java.util.ResourceBundle;
  */
 public class OrderController implements Initializable {
 
+    @FXML public VBox orderBackground;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        VBox vBox = null;
+        try {
+            vBox = FXMLLoader.load(getClass().getResource("/fxml/orderList.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        orderBackground.getChildren().add(vBox);
     }
 
-    @FXML public VBox itemsField;
-    @FXML public Button deleteButton;
+    /*CONSTRUCTOR, GETTERS, SETTERS*/
+    private static OrderController orderController;
 
-
-    public void back(ActionEvent actionEvent) throws Exception {
-        MainController.getMainController().mainStackPane.getChildren().clear();
-        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/homeView.fxml"));
-        MainController.getMainController().mainStackPane.getChildren().add(vBox);
+    public OrderController(){
+        orderController = this;
     }
 
+    public static OrderController getOrderController() {
+        return orderController;
+    }
 
-    public void newOrder() throws Exception{
+    public void newOrder(ActionEvent actionEvent) throws Exception {
         StackPane stackPane = FXMLLoader.load(getClass().getResource("/fxml/addOrder.fxml"));
         MainController.getMainController().mainStackPane.getChildren().clear();
         MainController.getMainController().mainStackPane.getChildren().add(stackPane);
         MainController.getMainController().mainLabel.setText("Nová Objednávka");
     }
-
-
-
-    public void createOrder(ActionEvent actionEvent) throws Exception {
-        MainController.getMainController().mainStackPane.getChildren().clear();
-        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/addInfo.fxml"));
-        MainController.getMainController().mainStackPane.getChildren().add(vBox);
-        MainController.getMainController().mainLabel.setText("Nový Pacient");
-
-
-    }
-
-    public void fromDatabase(ActionEvent actionEvent) {
-        System.out.println("a");
-    }
-
-
-    public void addPripravek(ActionEvent actionEvent) throws Exception {
-        GridPane gridPane = FXMLLoader.load(getClass().getResource("/fxml/itemPripravek.fxml"));
-        itemsField.getChildren().add(gridPane);
-    }
-
-    public void addRecept(ActionEvent actionEvent) throws Exception {
-        GridPane gridPane = FXMLLoader.load(getClass().getResource("/fxml/itemRecept.fxml"));
-        itemsField.getChildren().add(gridPane);
-    }
-
-
-    public void deleteItem(ActionEvent actionEvent) {
-        GridPane gridPane = (GridPane) deleteButton.getParent();
-        VBox vBox = (VBox) deleteButton.getParent().getParent();
-        vBox.getChildren().remove(gridPane);
-
-    }
-
-    public void finishOrder(ActionEvent actionEvent) {
-    }
-
 }
