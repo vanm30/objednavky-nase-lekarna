@@ -48,8 +48,11 @@ public class NewOrderController {
 
 
 
-    public void finishOrder(ActionEvent actionEvent) {
-
+    public void finishOrder(ActionEvent actionEvent) throws Exception {
+        MainController.getMainController().mainStackPane.getChildren().clear();
+        VBox vBox1 = FXMLLoader.load(getClass().getResource("/fxml/homeView.fxml"));
+        MainController.getMainController().mainStackPane.getChildren().add(vBox1);
+        MainController.getMainController().mainLabel.setText("Aktivní Objednávky");
     }
 
     public void addRecept(ActionEvent actionEvent) throws Exception {
