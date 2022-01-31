@@ -29,7 +29,7 @@
                <children>
                   <Label text="Jméno Příjmení" />
                   <Region HBox.hgrow="ALWAYS" />
-                  <TextField prefWidth="150.0" promptText="Jméno a Příjmení" style="-fx-background-radius: 10;">
+                  <TextField fx:id="name" prefWidth="150.0" promptText="Jméno a Příjmení" style="-fx-background-radius: 10;">
                      <font>
                         <Font name="Avenir Book" size="12.0" />
                      </font>
@@ -40,7 +40,7 @@
                <children>
                   <Label text="Telefon" />
                   <Region HBox.hgrow="ALWAYS" />
-                  <TextField prefWidth="150.0" promptText="+420 " style="-fx-background-radius: 10;">
+                  <TextField fx:id="phoneNumber" prefWidth="150.0" promptText="+420 " style="-fx-background-radius: 10;">
                      <font>
                         <Font name="Avenir Book" size="12.0" />
                      </font>
@@ -54,7 +54,7 @@
                <children>
                   <Label text="Ulice" />
                   <Region HBox.hgrow="ALWAYS" />
-                  <TextField prefWidth="150.0" promptText="Ulice" style="-fx-background-radius: 10;">
+                  <TextField fx:id="street" prefWidth="150.0" promptText="Ulice" style="-fx-background-radius: 10;">
                      <font>
                         <Font name="Avenir Book" size="12.0" />
                      </font>
@@ -68,7 +68,7 @@
                <children>
                   <Label text="Obec" />
                   <Region HBox.hgrow="ALWAYS" />
-                  <TextField prefWidth="150.0" promptText="Obec" style="-fx-background-radius: 10;">
+                  <TextField fx:id="city" prefWidth="150.0" promptText="Obec" style="-fx-background-radius: 10;">
                      <font>
                         <Font name="Avenir Book" size="12.0" />
                      </font>
@@ -82,7 +82,7 @@
                <children>
                   <Label text="PSČ" />
                   <Region HBox.hgrow="ALWAYS" />
-                  <TextField prefWidth="150.0" promptText="PSČ" style="-fx-background-radius: 10;">
+                  <TextField fx:id="zip" prefWidth="150.0" promptText="PSČ" style="-fx-background-radius: 10;">
                      <font>
                         <Font name="Avenir Book" size="12.0" />
                      </font>
@@ -96,7 +96,7 @@
                <children>
                   <Label text="Přidat do databáze" />
                   <Region HBox.hgrow="ALWAYS" />
-                  <CheckBox alignment="CENTER" graphicTextGap="10.0" mnemonicParsing="false" HBox.hgrow="NEVER" />
+                  <CheckBox fx:id="addToDatabase" alignment="CENTER" graphicTextGap="10.0" mnemonicParsing="false" HBox.hgrow="NEVER" />
                   <Region HBox.hgrow="ALWAYS" />
                </children>
                <VBox.margin>
@@ -125,7 +125,7 @@
                <children>
                   <Label text="Datum přimu" />
                   <Region HBox.hgrow="ALWAYS" />
-                  <DatePicker prefWidth="150.0" promptText="Datum přijmu" />
+                  <DatePicker fx:id="dateBegin" prefWidth="150.0" promptText="Datum přijmu" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT">
@@ -142,7 +142,7 @@
                <children>
                   <Label text="Datum výdeje" />
                   <Region HBox.hgrow="ALWAYS" />
-                  <DatePicker prefWidth="150.0" promptText="Datum ukončení" />
+                  <DatePicker fx:id="dateEnd" prefWidth="150.0" promptText="Datum ukončení" />
                </children>
                <VBox.margin>
                   <Insets top="5.0" />
@@ -172,7 +172,7 @@
             <Insets left="20.0" right="20.0" />
          </VBox.margin>
          <children>
-            <TextArea style="-fx-background-color: white;">
+            <TextArea fx:id="notes" style="-fx-background-color: white;">
                <font>
                   <Font name="Avenir Book" size="12.0" />
                </font>
