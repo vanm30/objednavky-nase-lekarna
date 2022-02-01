@@ -15,11 +15,12 @@ public class Customer {
 
     /**
      * This is a contructor for class Customer.
-     * @param name Customers name
+     *
+     * @param name        Customers name
      * @param phoneNumber Customers phone number
-     * @param street Customers address - street
-     * @param city Customers address - city
-     * @param zip Customres address zip code
+     * @param street      Customers address - street
+     * @param city        Customers address - city
+     * @param zip         Customres address zip code
      */
     public Customer(String name, int phoneNumber, String street, String city, int zip) {
         this.name = name;
@@ -28,6 +29,7 @@ public class Customer {
         this.city = city;
         this.zip = zip;
     }
+
     //GETTERS AND SETTERS
     public String getName() {
         return name;

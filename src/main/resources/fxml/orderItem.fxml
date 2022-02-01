@@ -6,24 +6,26 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" style="-fx-background-radius: 10; -fx-background-color: lightgrey;" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Label text="Jméno">
-         <font>
-            <Font name="Avenir Next Bold" size="12.0" />
-         </font>
-         <HBox.margin>
-            <Insets left="35.0" />
-         </HBox.margin>
-      </Label>
-      <Region HBox.hgrow="ALWAYS" />
-      <Label text="Datum">
-         <font>
-            <Font name="Avenir Next Bold" size="12.0" />
-         </font>
-         <HBox.margin>
-            <Insets right="35.0" />
-         </HBox.margin>
-      </Label>
-   </children>
+<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      prefHeight="50.0" style="-fx-background-radius: 10; -fx-background-color: lightgrey;"
+      xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label text="Jméno">
+            <font>
+                <Font name="Avenir Next Bold" size="12.0"/>
+            </font>
+            <HBox.margin>
+                <Insets left="35.0"/>
+            </HBox.margin>
+        </Label>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label text="Datum">
+            <font>
+                <Font name="Avenir Next Bold" size="12.0"/>
+            </font>
+            <HBox.margin>
+                <Insets right="35.0"/>
+            </HBox.margin>
+        </Label>
+    </children>
 </HBox>

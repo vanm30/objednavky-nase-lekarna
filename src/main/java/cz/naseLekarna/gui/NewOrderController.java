@@ -1,32 +1,39 @@
 package cz.naseLekarna.gui;
 
-import cz.naseLekarna.system.FirebaseService;
+
+import cz.naseLekarna.system.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
+import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ResourceBundle;
 
 /**
  * @author Matěj Vaník
  * @created 25.11.2021
  */
-public class NewOrderController {
-
-    @FXML public VBox itemsField;
-    @FXML public Button deleteButton;
-
-    FirebaseService firebaseService = new FirebaseService();
-    CustomerInfoController customerInfoController = CustomerInfoController.getCustomerInfoController();
+public class NewOrderController implements Initializable {
 
     private static NewOrderController newOrderController;
 
+    @FXML
+    public VBox itemsField;
+
+    Storage storage = Storage.getStorage();
+    FirebaseService firebaseService = new FirebaseService();
+
     public NewOrderController() {
-         newOrderController = this;
+        newOrderController = this;
     }
 
     public static NewOrderController getNewOrderController() {
@@ -54,17 +61,14 @@ public class NewOrderController {
     }
 
 
-
     public void finishOrder(ActionEvent actionEvent) throws Exception {
+        saveItems();
         //Save customer
-        if (customerInfoController.customer.getSave()){
+        if (storage.customer.getSave()) {
             firebaseService.addUser();
         }
-
         //Save order
         firebaseService.addOrder();
-
-
 
         MainController.getMainController().mainStackPane.getChildren().clear();
         VBox vBox1 = FXMLLoader.load(getClass().getResource("/fxml/homeView.fxml"));
@@ -82,40 +86,58 @@ public class NewOrderController {
         itemsField.getChildren().add(gridPane);
     }
 
-    public void deleteItem(ActionEvent actionEvent) {
-            GridPane gridPane = (GridPane) deleteButton.getParent();
-            VBox vBox = (VBox) deleteButton.getParent().getParent();
-            vBox.getChildren().remove(gridPane);
-
-
-    }
-
-    public void backToAddInfo(ActionEvent actionEvent) throws Exception{
+    public void backToAddInfo(ActionEvent actionEvent) throws Exception {
+        saveItems();
+        //New Scene
         MainController.getMainController().mainStackPane.getChildren().clear();
         VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/addInfo.fxml"));
         MainController.getMainController().mainStackPane.getChildren().add(vBox);
         MainController.getMainController().mainLabel.setText("Nový Pacient");
 
         //Fills customer info
-        CustomerInfoController.getCustomerInfoController().name.setText(customerInfoController.customer.getName());
-        CustomerInfoController.getCustomerInfoController().phoneNumber.setText(String.valueOf(customerInfoController.customer.getPhoneNumber()));
-        CustomerInfoController.getCustomerInfoController().street.setText(customerInfoController.customer.getStreet());
-        CustomerInfoController.getCustomerInfoController().city.setText(customerInfoController.customer.getCity());
-        CustomerInfoController.getCustomerInfoController().zip.setText(String.valueOf(customerInfoController.customer.getZip()));
-        if(customerInfoController.customer.getSave()){
+        CustomerInfoController.getCustomerInfoController().name.setText(storage.customer.getName());
+        CustomerInfoController.getCustomerInfoController().phoneNumber.setText(String.valueOf(storage.customer.getPhoneNumber()));
+        CustomerInfoController.getCustomerInfoController().street.setText(storage.customer.getStreet());
+        CustomerInfoController.getCustomerInfoController().city.setText(storage.customer.getCity());
+        CustomerInfoController.getCustomerInfoController().zip.setText(String.valueOf(storage.customer.getZip()));
+        if (storage.customer.getSave()) {
             CustomerInfoController.getCustomerInfoController().addToDatabase.setSelected(true);
         }
 
         //Fills order info
-        CustomerInfoController.getCustomerInfoController().dateBegin.setValue(LOCAL_DATE(customerInfoController.order.getDateBegin()));
-        CustomerInfoController.getCustomerInfoController().pickUpOption.setValue(customerInfoController.order.getOrderPickupInfo());
-        CustomerInfoController.getCustomerInfoController().dateEnd.setValue(LOCAL_DATE(customerInfoController.order.getDateEnd()));
-        CustomerInfoController.getCustomerInfoController().notes.setText(customerInfoController.order.getNotes());
+        CustomerInfoController.getCustomerInfoController().dateBegin.setValue(LOCAL_DATE(storage.order.getDateBegin()));
+        CustomerInfoController.getCustomerInfoController().pickUpOption.setValue(storage.order.getOrderPickupInfo());
+        CustomerInfoController.getCustomerInfoController().dateEnd.setValue(LOCAL_DATE(storage.order.getDateEnd()));
+        CustomerInfoController.getCustomerInfoController().notes.setText(storage.order.getNotes());
     }
 
-    public static final LocalDate LOCAL_DATE (String dateString){
+    public static LocalDate LOCAL_DATE(String dateString) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate localDate = LocalDate.parse(dateString, formatter);
         return localDate;
+    }
+
+    public void saveItems() {
+        storage.itemReceptList.clear();
+        storage.itemPripravekList.clear();
+
+        for (int i = 0; i < itemsField.getChildren().size(); i++) {
+            final TextField x = (TextField) itemsField.getChildren().get(i).lookup("#itemRecept");
+            if (x != null) {
+                storage.itemReceptList.add(new ItemRecept(x.getText()));
+            } else {
+                final TextField y = (TextField) itemsField.getChildren().get(i).lookup("#itemPripravek");
+                final TextField z = (TextField) itemsField.getChildren().get(i).lookup("#itemPripravekAmount");
+                if (y != null) {
+                    storage.itemPripravekList.add(new ItemPripravek(y.getText(), Integer.parseInt(z.getText())));
+                }
+            }
+        }
+
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
 }

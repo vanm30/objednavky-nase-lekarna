@@ -16,11 +16,12 @@ public class Order {
 
     /**
      * This is a contructor for class Order
-     * @param customer Customer info
-     * @param dateBegin Date of order confirmation
+     *
+     * @param customer        Customer info
+     * @param dateBegin       Date of order confirmation
      * @param orderPickupInfo How customer picks up his order
-     * @param dateEnd Date of shipping or pick-up
-     * @param notes Addition notes for employees
+     * @param dateEnd         Date of shipping or pick-up
+     * @param notes           Addition notes for employees
      */
     public Order(Customer customer, String dateBegin, String orderPickupInfo, String dateEnd, String notes) {
         this.customer = customer;

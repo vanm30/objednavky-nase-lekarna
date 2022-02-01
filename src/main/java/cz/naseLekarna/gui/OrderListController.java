@@ -30,7 +30,7 @@ public class OrderListController implements Initializable {
 
     }
 
-    public void loadList (){
+    public void loadList() {
         VBox vBox = null;
         try {
             vBox = FXMLLoader.load(getClass().getResource("/fxml/orderList.fxml"));

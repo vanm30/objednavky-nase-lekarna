@@ -22,32 +22,34 @@ import java.util.concurrent.ExecutionException;
 public class FirebaseService {
 
     Firestore db = FirestoreClient.getFirestore();
-    CustomerInfoController customerInfoController = CustomerInfoController.getCustomerInfoController();
+    Storage storage = Storage.getStorage();
 
     public void addUser() throws ExecutionException, InterruptedException {
         Map<String, Object> docData = new HashMap<>();
-        docData.put("name", customerInfoController.customer.getName());
-        docData.put("phoneNumber",customerInfoController.customer.getPhoneNumber());
-        docData.put("street", customerInfoController.customer.getStreet());
-        docData.put("city", customerInfoController.customer.getCity());
-        docData.put("zip", customerInfoController.customer.getZip());
-        db.collection("customers").document(customerInfoController.phoneNumber.getText()).set(docData);
+        docData.put("name", storage.customer.getName());
+        docData.put("phoneNumber", storage.customer.getPhoneNumber());
+        docData.put("street", storage.customer.getStreet());
+        docData.put("city", storage.customer.getCity());
+        docData.put("zip", storage.customer.getZip());
+        db.collection("customers").document(String.valueOf(storage.customer.getPhoneNumber())).set(docData);
 
     }
 
     public void addOrder() throws ExecutionException, InterruptedException {
         Map<String, Object> docData = new HashMap<>();
         docData.put("customer", Arrays.asList(
-                customerInfoController.order.getCustomer().getPhoneNumber(),
-                customerInfoController.order.getCustomer().getName(),
-                customerInfoController.order.getCustomer().getStreet(),
-                customerInfoController.order.getCustomer().getCity(),
-                customerInfoController.order.getCustomer().getZip()
-                ));
-        docData.put("dateBegin", customerInfoController.order.getDateBegin());
-        docData.put("orderPickUpInfo", customerInfoController.order.getOrderPickupInfo());
-        docData.put("dateEnd", customerInfoController.order.getDateEnd());
-        docData.put("notes", customerInfoController.order.getNotes());
+                storage.order.getCustomer().getPhoneNumber(),
+                storage.order.getCustomer().getName(),
+                storage.order.getCustomer().getStreet(),
+                storage.order.getCustomer().getCity(),
+                storage.order.getCustomer().getZip()
+        ));
+        docData.put("itemReceptList", storage.itemReceptList);
+        docData.put("itemPripravekList", storage.itemPripravekList);
+        docData.put("dateBegin", storage.order.getDateBegin());
+        docData.put("orderPickUpInfo", storage.order.getOrderPickupInfo());
+        docData.put("dateEnd", storage.order.getDateEnd());
+        docData.put("notes", storage.order.getNotes());
         db.collection("orders").add(docData);
 
 

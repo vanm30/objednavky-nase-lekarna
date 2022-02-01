@@ -1,15 +1,16 @@
 package cz.naseLekarna.gui;
 
 
-import cz.naseLekarna.system.Customer;
-import cz.naseLekarna.system.FirebaseService;
-import cz.naseLekarna.system.Order;
+import cz.naseLekarna.system.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -43,10 +44,7 @@ public class CustomerInfoController implements Initializable {
     @FXML
     public TextArea notes;
 
-    public Customer customer;
-    public Order order;
-
-    FirebaseService firebaseService = new FirebaseService();
+    Storage storage = Storage.getStorage();
 
     public CustomerInfoController() {
         customerInfoController = this;
@@ -90,20 +88,21 @@ public class CustomerInfoController implements Initializable {
      */
     public void addItems(ActionEvent actionEvent) throws Exception {
         //Save user
-        customer = new Customer(
+        storage.customer = new Customer(
                 name.getText(),
                 Integer.parseInt(phoneNumber.getText()),
                 street.getText(),
                 city.getText(),
-                Integer.parseInt(zip.getText()));
+                Integer.parseInt(zip.getText())
+        );
         if (addToDatabase.isSelected()) {
-            customer.setSave(true);
+            storage.customer.setSave(true);
         }
 
         //Save Order
-        order = new Order(
-                customer, dateBegin.getValue().toString(), pickUpOption.getValue(), dateEnd.getValue().toString(), notes.getText()
-                );
+        storage.order = new Order(
+                storage.customer, dateBegin.getValue().toString(), pickUpOption.getValue(), dateEnd.getValue().toString(), notes.getText()
+        );
 
 
         // New Scene
@@ -111,6 +110,26 @@ public class CustomerInfoController implements Initializable {
         StackPane stackPane = FXMLLoader.load(getClass().getResource("/fxml/newItemsInfo.fxml"));
         MainController.getMainController().mainStackPane.getChildren().add(stackPane);
         MainController.getMainController().mainLabel.setText("Obsah Objednávky");
+
+        if (storage.itemPripravekList.size() > 0) {
+            for (int i = 0; i < storage.itemPripravekList.size(); i++) {
+                GridPane gridPane = FXMLLoader.load(getClass().getResource("/fxml/itemPripravek.fxml"));
+                NewOrderController.getNewOrderController().itemsField.getChildren().add(gridPane);
+                final TextField y = (TextField) gridPane.lookup("#itemPripravek");
+                final TextField z = (TextField) gridPane.lookup("#itemPripravekAmount");
+                y.setText(storage.itemPripravekList.get(i).getName());
+                z.setText(String.valueOf(storage.itemPripravekList.get(i).getAmount()));
+            }
+        }
+
+        if (storage.itemReceptList.size() > 0) {
+            for (int i = 0; i < storage.itemPripravekList.size(); i++) {
+                GridPane gridPane = FXMLLoader.load(getClass().getResource("/fxml/itemRecept.fxml"));
+                NewOrderController.getNewOrderController().itemsField.getChildren().add(gridPane);
+                final TextField y = (TextField) gridPane.lookup("#itemRecept");
+                y.setText(storage.itemReceptList.get(i).getCode());
+            }
+        }
     }
 
 }

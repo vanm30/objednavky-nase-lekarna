@@ -20,7 +20,8 @@ import java.util.ResourceBundle;
  */
 public class OrderController implements Initializable {
 
-    @FXML public VBox orderBackground;
+    @FXML
+    public VBox orderBackground;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -36,7 +37,7 @@ public class OrderController implements Initializable {
     /*CONSTRUCTOR, GETTERS, SETTERS*/
     private static OrderController orderController;
 
-    public OrderController(){
+    public OrderController() {
         orderController = this;
     }
 

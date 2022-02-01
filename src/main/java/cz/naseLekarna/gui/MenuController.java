@@ -13,17 +13,17 @@ public class MenuController {
 
 
     private static MenuController menuController;
-    @FXML public VBox menuBox;
+    @FXML
+    public VBox menuBox;
 
     /*CONSTRUCTOR, GETTERS, SETTERS*/
-    public MenuController(){
+    public MenuController() {
         menuController = this;
     }
 
     public static MenuController getMenuController() {
         return menuController;
     }
-
 
 
     public void switchToHome(ActionEvent actionEvent) {
@@ -37,10 +37,11 @@ public class MenuController {
 
     /**
      * This method closes popup menu by calling method closeMenu().
+     *
      * @param actionEvent
      * @throws Exception
      */
-    public void goBack(ActionEvent actionEvent) throws Exception{
+    public void goBack(ActionEvent actionEvent) throws Exception {
         MainController.getMainController().closeMenu();
     }
 }
