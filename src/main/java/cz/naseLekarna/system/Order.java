@@ -1,7 +1,9 @@
 package cz.naseLekarna.system;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Matěj Vaník
@@ -13,6 +15,8 @@ public class Order {
     private String orderPickupInfo;
     private String dateEnd;
     private String notes;
+    public List<ItemPripravek> orderedPripravekList = new ArrayList<ItemPripravek>();
+    public List<ItemRecept> orderedReceptList = new ArrayList<ItemRecept>();
 
     /**
      * This is a contructor for class Order
@@ -29,6 +33,14 @@ public class Order {
         this.orderPickupInfo = orderPickupInfo;
         this.dateEnd = dateEnd;
         this.notes = notes;
+    }
+
+    public Order(Customer customer, Object dateBegin, Object orderPickupInfo, Object dateEnd, Object notes) {
+        this.customer = customer;
+        this.dateBegin = (String) dateBegin;
+        this.orderPickupInfo = (String) orderPickupInfo;
+        this.dateEnd = (String) dateEnd;
+        this.notes = (String) notes;
     }
 
     //GETTERS AND SETTERS

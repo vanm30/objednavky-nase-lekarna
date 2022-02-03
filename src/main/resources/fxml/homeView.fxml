@@ -6,24 +6,19 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="BOTTOM_RIGHT" style="-fx-background-color: white;" stylesheets="@../stylesheet.css"
-      xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="cz.naseLekarna.gui.OrderController">
+<VBox alignment="BOTTOM_RIGHT" style="-fx-background-color: white;" stylesheets="@../stylesheet.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.naseLekarna.gui.OrderController">
     <children>
-        <VBox fx:id="orderBackground" VBox.vgrow="ALWAYS"/>
-        <Button onAction="#newOrder" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0"
-                style="-fx-background-radius: 100; -fx-background-color: #5ead87#5ead87 #5ead87#5ead87;"
-                VBox.vgrow="NEVER">
+        <VBox fx:id="orderBackground" VBox.vgrow="ALWAYS" />
+        <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#newOrder" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 100; -fx-background-color: #5ead87#5ead87 #5ead87#5ead87;" VBox.vgrow="NEVER">
             <graphic>
                 <ImageView fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../images/plus.png"/>
+                        <Image url="@../images/plus.png" />
                     </image>
                 </ImageView>
             </graphic>
             <VBox.margin>
-                <Insets bottom="30.0" right="30.0"/>
+                <Insets bottom="30.0" right="30.0" />
             </VBox.margin>
         </Button>
     </children>

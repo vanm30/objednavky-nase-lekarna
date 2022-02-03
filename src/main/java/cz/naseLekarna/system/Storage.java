@@ -26,6 +26,7 @@ public class Storage {
 
     public List<ItemPripravek> itemPripravekList = new ArrayList<ItemPripravek>();
     public List<ItemRecept> itemReceptList = new ArrayList<ItemRecept>();
+    List<Order> activeOrders = new ArrayList<Order>();
 
 
     public Customer getCustomer() {
@@ -44,4 +45,27 @@ public class Storage {
         this.order = order;
     }
 
+    public List<ItemPripravek> getItemPripravekList() {
+        return itemPripravekList;
+    }
+
+    public void setItemPripravekList(List<ItemPripravek> itemPripravekList) {
+        this.itemPripravekList = itemPripravekList;
+    }
+
+    public List<ItemRecept> getItemReceptList() {
+        return itemReceptList;
+    }
+
+    public void setItemReceptList(List<ItemRecept> itemReceptList) {
+        this.itemReceptList = itemReceptList;
+    }
+
+    public List<Order> getActiveOrders() {
+        return activeOrders;
+    }
+
+    public void setActiveOrders(List<Order> activeOrders) {
+        this.activeOrders = activeOrders;
+    }
 }

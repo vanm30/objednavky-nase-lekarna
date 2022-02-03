@@ -22,16 +22,17 @@ public class OrderController implements Initializable {
 
     @FXML
     public VBox orderBackground;
+    public ScrollPane orderList;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        VBox vBox = null;
+        StackPane stackPane = null;
         try {
-            vBox = FXMLLoader.load(getClass().getResource("/fxml/orderList.fxml"));
+            stackPane = FXMLLoader.load(getClass().getResource("/fxml/orderList.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        orderBackground.getChildren().add(vBox);
+        orderBackground.getChildren().add(stackPane);
     }
 
     /*CONSTRUCTOR, GETTERS, SETTERS*/

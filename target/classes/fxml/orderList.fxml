@@ -2,36 +2,46 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.naseLekarna.gui.OrderListController">
+<StackPane alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.naseLekarna.gui.OrderListController">
    <children>
-      <HBox alignment="CENTER" stylesheets="@../stylesheet.css">
+      <VBox alignment="TOP_CENTER">
          <children>
-            <Label text="Jméno Příjmení" textFill="#5ead87">
-               <font>
-                  <Font name="Avenir Next Bold" size="12.0" />
-               </font>
-               <HBox.margin>
-                  <Insets left="20.0" />
-               </HBox.margin>
-            </Label>
-            <Region HBox.hgrow="ALWAYS" />
-            <Label text="Datum výdeje" textFill="#5ead87">
-               <font>
-                  <Font name="Avenir Next Bold" size="12.0" />
-               </font>
-               <HBox.margin>
-                  <Insets right="20.0" />
-               </HBox.margin>
-            </Label>
+            <HBox alignment="CENTER" stylesheets="@../stylesheet.css" VBox.vgrow="NEVER">
+               <children>
+                  <Label text="Jméno Příjmení" textFill="#5ead87">
+                     <font>
+                        <Font name="Avenir Next Bold" size="12.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Label text="Datum výdeje" textFill="#5ead87">
+                     <font>
+                        <Font name="Avenir Next Bold" size="12.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: white;" VBox.vgrow="ALWAYS">
+               <content>
+                  <VBox fx:id="activeOrders" />
+               </content></ScrollPane>
          </children>
-         <VBox.margin>
-            <Insets top="10.0" />
-         </VBox.margin>
-      </HBox>
+      </VBox>
    </children>
-</VBox>
+</StackPane>

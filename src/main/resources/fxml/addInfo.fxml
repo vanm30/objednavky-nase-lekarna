@@ -31,7 +31,7 @@
                         <Label text="Jméno Příjmení"/>
                         <Region HBox.hgrow="ALWAYS"/>
                         <TextField fx:id="name" prefWidth="150.0" promptText="Jméno a Příjmení"
-                                   style="-fx-background-radius: 10;">
+                                   style="-fx-border-color: transparent; -fx-border-radius: 10;-fx-background-radius: 10">
                             <font>
                                 <Font name="Avenir Book" size="12.0"/>
                             </font>
@@ -43,7 +43,7 @@
                         <Label text="Telefon"/>
                         <Region HBox.hgrow="ALWAYS"/>
                         <TextField fx:id="phoneNumber" prefWidth="150.0" promptText="+420 "
-                                   style="-fx-background-radius: 10;">
+                                   style="-fx-border-color: transparent; -fx-border-radius: 10;-fx-background-radius: 10">
                             <font>
                                 <Font name="Avenir Book" size="12.0"/>
                             </font>
@@ -58,7 +58,7 @@
                         <Label text="Ulice"/>
                         <Region HBox.hgrow="ALWAYS"/>
                         <TextField fx:id="street" prefWidth="150.0" promptText="Ulice"
-                                   style="-fx-background-radius: 10;">
+                                   style="-fx-border-color: transparent; -fx-border-radius: 10;-fx-background-radius: 10">
                             <font>
                                 <Font name="Avenir Book" size="12.0"/>
                             </font>
@@ -72,21 +72,7 @@
                     <children>
                         <Label text="Obec"/>
                         <Region HBox.hgrow="ALWAYS"/>
-                        <TextField fx:id="city" prefWidth="150.0" promptText="Obec" style="-fx-background-radius: 10;">
-                            <font>
-                                <Font name="Avenir Book" size="12.0"/>
-                            </font>
-                        </TextField>
-                    </children>
-                    <VBox.margin>
-                        <Insets top="5.0"/>
-                    </VBox.margin>
-                </HBox>
-                <HBox alignment="CENTER_LEFT">
-                    <children>
-                        <Label text="PSČ"/>
-                        <Region HBox.hgrow="ALWAYS"/>
-                        <TextField fx:id="zip" prefWidth="150.0" promptText="PSČ" style="-fx-background-radius: 10;">
+                        <TextField fx:id="city" prefWidth="150.0" promptText="Obec" style="-fx-border-color: transparent; -fx-border-radius: 10;-fx-background-radius: 10">
                             <font>
                                 <Font name="Avenir Book" size="12.0"/>
                             </font>
@@ -130,14 +116,14 @@
                     <children>
                         <Label text="Datum přimu"/>
                         <Region HBox.hgrow="ALWAYS"/>
-                        <DatePicker fx:id="dateBegin" prefWidth="150.0" promptText="Datum přijmu"/>
+                        <DatePicker fx:id="dateBegin" prefWidth="150.0" promptText="Datum přijmu" style="-fx-border-color: transparent"/>
                     </children>
                 </HBox>
                 <HBox alignment="CENTER_LEFT">
                     <children>
                         <Label text="Způsob vyzvednutí"/>
                         <Region HBox.hgrow="ALWAYS"/>
-                        <ChoiceBox fx:id="pickUpOption" prefWidth="150.0"/>
+                        <ChoiceBox fx:id="pickUpOption" prefWidth="150.0" style="-fx-border-color: transparent"/>
                     </children>
                     <VBox.margin>
                         <Insets top="5.0"/>
@@ -147,7 +133,7 @@
                     <children>
                         <Label text="Datum výdeje"/>
                         <Region HBox.hgrow="ALWAYS"/>
-                        <DatePicker fx:id="dateEnd" prefWidth="150.0" promptText="Datum ukončení"/>
+                        <DatePicker fx:id="dateEnd" prefWidth="150.0" promptText="Datum ukončení" style="-fx-border-color: transparent"/>
                     </children>
                     <VBox.margin>
                         <Insets top="5.0"/>

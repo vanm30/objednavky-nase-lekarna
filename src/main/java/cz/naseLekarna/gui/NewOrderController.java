@@ -28,9 +28,14 @@ public class NewOrderController implements Initializable {
 
     @FXML
     public VBox itemsField;
+    @FXML
+    public Button addRecept;
+    @FXML
+    public Button addPripravek;
 
     Storage storage = Storage.getStorage();
     FirebaseService firebaseService = new FirebaseService();
+    boolean fail = false;
 
     public NewOrderController() {
         newOrderController = this;
@@ -46,6 +51,7 @@ public class NewOrderController implements Initializable {
         VBox vBox1 = FXMLLoader.load(getClass().getResource("/fxml/addInfo.fxml"));
         MainController.getMainController().mainStackPane.getChildren().add(vBox1);
         MainController.getMainController().mainLabel.setText("Nový Pacient");
+        CustomerInfoController.getCustomerInfoController().dateBegin.setValue(LocalDate.now());
     }
 
     public void fromDatabase(ActionEvent actionEvent) {
@@ -62,6 +68,56 @@ public class NewOrderController implements Initializable {
 
 
     public void finishOrder(ActionEvent actionEvent) throws Exception {
+
+        if (itemsField.getChildren().isEmpty()){
+            addRecept.setStyle("-fx-border-color: red;-fx-background-color: #5ead87#5ead87 #5ead87#5ead87; -fx-background-radius: 5;");
+            addPripravek.setStyle("-fx-border-color: red;-fx-background-color: #5ead87#5ead87 #5ead87#5ead87; -fx-background-radius: 5;");
+            return;
+        }
+
+        for (int i = 0; i < itemsField.getChildren().size(); i++) {
+            final TextField x = (TextField) itemsField.getChildren().get(i).lookup("#itemRecept");
+            if (x != null) {
+                if (x.getText().isEmpty()) {
+                    x.setStyle("-fx-border-color: red;-fx-border-radius: 10;-fx-background-color: white; -fx-background-radius: 10;");
+                    fail = true;
+                } else {
+                    x.setStyle("-fx-background-color: white; -fx-background-radius: 10;");
+                    fail = false;
+                }
+            } else {
+                final TextField y = (TextField) itemsField.getChildren().get(i).lookup("#itemPripravek");
+                final TextField z = (TextField) itemsField.getChildren().get(i).lookup("#itemPripravekAmount");
+                if (y != null) {
+                    if (y.getText().isEmpty()) {
+                        y.setStyle("-fx-border-color: red;-fx-border-radius: 10;-fx-background-color: white; -fx-background-radius: 10;");
+                        fail = true;
+                    } else {
+                        y.setStyle("-fx-background-color: white; -fx-background-radius: 10;");
+                        fail = false;
+                    }
+                    if (z.getText().isEmpty()) {
+                        z.setStyle("-fx-border-color: red;-fx-border-radius: 10;-fx-background-color: white; -fx-background-radius: 10;");
+                        fail = true;
+                    } else {
+                        z.setStyle("-fx-background-color: white; -fx-background-radius: 10;");
+                        fail = false;
+                    }
+                    if (!CustomerInfoController.isNumeric(z.getText())) {
+                        z.setStyle("-fx-border-color: red;-fx-border-radius: 10;-fx-background-color: white; -fx-background-radius: 10;");
+                        fail = true;
+                    } else {
+                        z.setStyle("-fx-background-color: white; -fx-background-radius: 10;");
+                        fail = false;
+                    }
+                }
+            }
+        }
+
+        if (fail){
+            return;
+        }
+
         saveItems();
         //Save customer
         if (storage.customer.getSave()) {
@@ -69,6 +125,9 @@ public class NewOrderController implements Initializable {
         }
         //Save order
         firebaseService.addOrder();
+
+        storage.itemReceptList.clear();
+        storage.itemPripravekList.clear();
 
         MainController.getMainController().mainStackPane.getChildren().clear();
         VBox vBox1 = FXMLLoader.load(getClass().getResource("/fxml/homeView.fxml"));
@@ -99,7 +158,6 @@ public class NewOrderController implements Initializable {
         CustomerInfoController.getCustomerInfoController().phoneNumber.setText(String.valueOf(storage.customer.getPhoneNumber()));
         CustomerInfoController.getCustomerInfoController().street.setText(storage.customer.getStreet());
         CustomerInfoController.getCustomerInfoController().city.setText(storage.customer.getCity());
-        CustomerInfoController.getCustomerInfoController().zip.setText(String.valueOf(storage.customer.getZip()));
         if (storage.customer.getSave()) {
             CustomerInfoController.getCustomerInfoController().addToDatabase.setSelected(true);
         }

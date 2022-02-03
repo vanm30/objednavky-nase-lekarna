@@ -19,7 +19,7 @@
                       VBox.vgrow="NEVER">
                     <children>
                         <Region HBox.hgrow="ALWAYS"/>
-                        <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                        <Button fx:id="addPripravek" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
                                 minWidth="-Infinity" mnemonicParsing="false" onAction="#addPripravek" prefHeight="25.0"
                                 prefWidth="80.0"
                                 style="-fx-background-color: #5ead87#5ead87 #5ead87#5ead87; -fx-background-radius: 5;"
@@ -32,7 +32,7 @@
                             </padding>
                         </Button>
                         <Region HBox.hgrow="ALWAYS"/>
-                        <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                        <Button fx:id="addRecept" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
                                 minWidth="-Infinity" mnemonicParsing="false" onAction="#addRecept" prefHeight="25.0"
                                 prefWidth="80.0"
                                 style="-fx-background-color: #5ead87#5ead87 #5ead87#5ead87; -fx-background-radius: 5;"

@@ -1,17 +1,10 @@
 package cz.naseLekarna.system;
 
 import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.Firestore;
-import com.google.cloud.firestore.WriteResult;
+import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
-import cz.naseLekarna.gui.CustomerInfoController;
-import javafx.fxml.FXMLLoader;
 
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -30,7 +23,6 @@ public class FirebaseService {
         docData.put("phoneNumber", storage.customer.getPhoneNumber());
         docData.put("street", storage.customer.getStreet());
         docData.put("city", storage.customer.getCity());
-        docData.put("zip", storage.customer.getZip());
         db.collection("customers").document(String.valueOf(storage.customer.getPhoneNumber())).set(docData);
 
     }
@@ -38,14 +30,17 @@ public class FirebaseService {
     public void addOrder() throws ExecutionException, InterruptedException {
         Map<String, Object> docData = new HashMap<>();
         docData.put("customer", Arrays.asList(
-                storage.order.getCustomer().getPhoneNumber(),
                 storage.order.getCustomer().getName(),
+                storage.order.getCustomer().getPhoneNumber(),
                 storage.order.getCustomer().getStreet(),
-                storage.order.getCustomer().getCity(),
-                storage.order.getCustomer().getZip()
+                storage.order.getCustomer().getCity()
         ));
-        docData.put("itemReceptList", storage.itemReceptList);
-        docData.put("itemPripravekList", storage.itemPripravekList);
+        if (!storage.itemPripravekList.isEmpty()){
+            docData.put("itemPripravekList", storage.itemPripravekList);
+        }
+        if (!storage.itemReceptList.isEmpty()){
+            docData.put("itemReceptList", storage.itemReceptList);
+        }
         docData.put("dateBegin", storage.order.getDateBegin());
         docData.put("orderPickUpInfo", storage.order.getOrderPickupInfo());
         docData.put("dateEnd", storage.order.getDateEnd());
@@ -54,4 +49,18 @@ public class FirebaseService {
 
 
     }
+    public void loadOrders() throws ExecutionException, InterruptedException {
+        storage.activeOrders.clear();
+        ApiFuture<QuerySnapshot> future = db.collection("orders").get();
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+        if (!documents.isEmpty()){
+            for (QueryDocumentSnapshot document : documents) {
+                List list = (List) document.get("customer");
+                Customer customer = new Customer(list.get(0).toString(),Integer.parseInt(String.valueOf(list.get(1))),list.get(2).toString(),list.get(3).toString());
+                Order order = new Order(customer,document.get("dateBegin"),document.get("orderPickupInfo"),document.get("dateEnd"),document.get("notes"));
+                storage.activeOrders.add(order);
+            }
+        }
+    }
+
 }

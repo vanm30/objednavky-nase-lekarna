@@ -9,7 +9,6 @@ public class Customer {
     private int phoneNumber;
     private String street;
     private String city;
-    private int zip;
     private Boolean save = false;
 
 
@@ -20,14 +19,12 @@ public class Customer {
      * @param phoneNumber Customers phone number
      * @param street      Customers address - street
      * @param city        Customers address - city
-     * @param zip         Customres address zip code
      */
-    public Customer(String name, int phoneNumber, String street, String city, int zip) {
+    public Customer(String name, int phoneNumber, String street, String city) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.street = street;
         this.city = city;
-        this.zip = zip;
     }
 
     //GETTERS AND SETTERS
@@ -61,14 +58,6 @@ public class Customer {
 
     public void setCity(String city) {
         this.city = city;
-    }
-
-    public int getZip() {
-        return zip;
-    }
-
-    public void setZip(int zip) {
-        this.zip = zip;
     }
 
     public Boolean getSave() {
