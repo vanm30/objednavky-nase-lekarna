@@ -1,28 +1,30 @@
 package cz.naseLekarna.gui;
 
 
-import cz.naseLekarna.system.*;
+import cz.naseLekarna.system.FirebaseService;
+import cz.naseLekarna.system.ItemPripravek;
+import cz.naseLekarna.system.ItemRecept;
+import cz.naseLekarna.system.Storage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 /**
  * @author Matěj Vaník
  * @created 25.11.2021
  */
-public class NewOrderController implements Initializable {
+public class NewOrderController {
 
     private static NewOrderController newOrderController;
 
@@ -46,6 +48,11 @@ public class NewOrderController implements Initializable {
     }
 
 
+    /**
+     * Button takes user to new customer order creation
+     * @param actionEvent
+     * @throws Exception
+     */
     public void createOrder(ActionEvent actionEvent) throws Exception {
         MainController.getMainController().mainStackPane.getChildren().clear();
         VBox vBox1 = FXMLLoader.load(getClass().getResource("/fxml/addInfo.fxml"));
@@ -54,11 +61,23 @@ public class NewOrderController implements Initializable {
         CustomerInfoController.getCustomerInfoController().dateBegin.setValue(LocalDate.now());
     }
 
-    public void fromDatabase(ActionEvent actionEvent) {
-        System.out.println("a");
-        /*TODO*/
+    /**
+     * Button takes user to Saved Users list and lets them choose.
+     * @param actionEvent
+     * @throws IOException
+     */
+    public void fromDatabase(ActionEvent actionEvent) throws IOException {
+        MainController.getMainController().mainStackPane.getChildren().clear();
+        StackPane stackPane = FXMLLoader.load(getClass().getResource("/fxml/customerList.fxml"));
+        MainController.getMainController().mainStackPane.getChildren().add(stackPane);
+        MainController.getMainController().mainLabel.setText("Seznam Pacientů");
     }
 
+    /**
+     * Button takes user back to Order List
+     * @param actionEvent
+     * @throws Exception
+     */
     public void backToOrderList(ActionEvent actionEvent) throws Exception {
         MainController.getMainController().mainStackPane.getChildren().clear();
         VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/homeView.fxml"));
@@ -67,9 +86,14 @@ public class NewOrderController implements Initializable {
     }
 
 
+    /**
+     * Button finished order and uploads data to Firebase
+     * @param actionEvent
+     * @throws Exception
+     */
     public void finishOrder(ActionEvent actionEvent) throws Exception {
 
-        if (itemsField.getChildren().isEmpty()){
+        if (itemsField.getChildren().isEmpty()) {
             addRecept.setStyle("-fx-border-color: red;-fx-background-color: #5ead87#5ead87 #5ead87#5ead87; -fx-background-radius: 5;");
             addPripravek.setStyle("-fx-border-color: red;-fx-background-color: #5ead87#5ead87 #5ead87#5ead87; -fx-background-radius: 5;");
             return;
@@ -114,7 +138,7 @@ public class NewOrderController implements Initializable {
             }
         }
 
-        if (fail){
+        if (fail) {
             return;
         }
 
@@ -126,8 +150,8 @@ public class NewOrderController implements Initializable {
         //Save order
         firebaseService.addOrder();
 
-        storage.itemReceptList.clear();
-        storage.itemPripravekList.clear();
+        storage.order.orderedPripravekList.clear();
+        storage.order.orderedReceptList.clear();
 
         MainController.getMainController().mainStackPane.getChildren().clear();
         VBox vBox1 = FXMLLoader.load(getClass().getResource("/fxml/homeView.fxml"));
@@ -135,16 +159,31 @@ public class NewOrderController implements Initializable {
         MainController.getMainController().mainLabel.setText("Aktivní Objednávky");
     }
 
+    /**
+     * Button adds item to order
+     * @param actionEvent
+     * @throws Exception
+     */
     public void addRecept(ActionEvent actionEvent) throws Exception {
         GridPane gridPane = FXMLLoader.load(getClass().getResource("/fxml/itemRecept.fxml"));
         itemsField.getChildren().add(gridPane);
     }
 
+    /**
+     * Button adds item to order
+     * @param actionEvent
+     * @throws Exception
+     */
     public void addPripravek(ActionEvent actionEvent) throws Exception {
         GridPane gridPane = FXMLLoader.load(getClass().getResource("/fxml/itemPripravek.fxml"));
         itemsField.getChildren().add(gridPane);
     }
 
+    /**
+     * Button takes user back to customer info in new order. Info is loaded if saved.
+     * @param actionEvent
+     * @throws Exception
+     */
     public void backToAddInfo(ActionEvent actionEvent) throws Exception {
         saveItems();
         //New Scene
@@ -169,33 +208,35 @@ public class NewOrderController implements Initializable {
         CustomerInfoController.getCustomerInfoController().notes.setText(storage.order.getNotes());
     }
 
+    /**
+     * Method converts String to LocalDate
+     * @param dateString
+     * @return date in LocalDate type
+     */
     public static LocalDate LOCAL_DATE(String dateString) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate localDate = LocalDate.parse(dateString, formatter);
-        return localDate;
+        LocalDate local_date = LocalDate.parse(dateString);
+        return local_date;
     }
 
+    /**
+     * Method saves items locally
+     */
     public void saveItems() {
-        storage.itemReceptList.clear();
-        storage.itemPripravekList.clear();
+        storage.order.orderedReceptList.clear();
+        storage.order.orderedPripravekList.clear();
 
         for (int i = 0; i < itemsField.getChildren().size(); i++) {
             final TextField x = (TextField) itemsField.getChildren().get(i).lookup("#itemRecept");
             if (x != null) {
-                storage.itemReceptList.add(new ItemRecept(x.getText()));
+                storage.order.orderedReceptList.add(new ItemRecept(x.getText()));
             } else {
                 final TextField y = (TextField) itemsField.getChildren().get(i).lookup("#itemPripravek");
                 final TextField z = (TextField) itemsField.getChildren().get(i).lookup("#itemPripravekAmount");
                 if (y != null) {
-                    storage.itemPripravekList.add(new ItemPripravek(y.getText(), Integer.parseInt(z.getText())));
+                    storage.order.orderedPripravekList.add(new ItemPripravek(Integer.parseInt(z.getText()), y.getText()));
                 }
             }
         }
-
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
 
     }
 }

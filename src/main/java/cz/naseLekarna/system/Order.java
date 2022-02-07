@@ -1,8 +1,6 @@
 package cz.naseLekarna.system;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,30 +16,6 @@ public class Order {
     public List<ItemPripravek> orderedPripravekList = new ArrayList<ItemPripravek>();
     public List<ItemRecept> orderedReceptList = new ArrayList<ItemRecept>();
 
-    /**
-     * This is a contructor for class Order
-     *
-     * @param customer        Customer info
-     * @param dateBegin       Date of order confirmation
-     * @param orderPickupInfo How customer picks up his order
-     * @param dateEnd         Date of shipping or pick-up
-     * @param notes           Addition notes for employees
-     */
-    public Order(Customer customer, String dateBegin, String orderPickupInfo, String dateEnd, String notes) {
-        this.customer = customer;
-        this.dateBegin = dateBegin;
-        this.orderPickupInfo = orderPickupInfo;
-        this.dateEnd = dateEnd;
-        this.notes = notes;
-    }
-
-    public Order(Customer customer, Object dateBegin, Object orderPickupInfo, Object dateEnd, Object notes) {
-        this.customer = customer;
-        this.dateBegin = (String) dateBegin;
-        this.orderPickupInfo = (String) orderPickupInfo;
-        this.dateEnd = (String) dateEnd;
-        this.notes = (String) notes;
-    }
 
     //GETTERS AND SETTERS
     public Customer getCustomer() {
@@ -82,5 +56,21 @@ public class Order {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public List<ItemPripravek> getOrderedPripravekList() {
+        return orderedPripravekList;
+    }
+
+    public void setOrderedPripravekList(List<ItemPripravek> orderedPripravekList) {
+        this.orderedPripravekList = orderedPripravekList;
+    }
+
+    public List<ItemRecept> getOrderedReceptList() {
+        return orderedReceptList;
+    }
+
+    public void setOrderedReceptList(List<ItemRecept> orderedReceptList) {
+        this.orderedReceptList = orderedReceptList;
     }
 }

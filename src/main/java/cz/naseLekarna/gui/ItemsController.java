@@ -24,14 +24,18 @@ public class ItemsController {
     @FXML
     public Button deleteButton;
 
-    public ItemsController(){
+    public ItemsController() {
         itemsController = this;
     }
 
-    public static ItemsController getItemsController(){
+    public static ItemsController getItemsController() {
         return itemsController;
     }
 
+    /**
+     * Button deletes Item in new order.
+     * @param actionEvent
+     */
     public void deleteItem(ActionEvent actionEvent) {
         GridPane gridPane = (GridPane) deleteButton.getParent();
         VBox vBox = (VBox) deleteButton.getParent().getParent();

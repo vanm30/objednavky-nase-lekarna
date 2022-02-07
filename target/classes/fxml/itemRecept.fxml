@@ -6,13 +6,8 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-
 <GridPane maxHeight="62.0" prefHeight="62.0" style="-fx-background-color: transparent;" stylesheets="@../stylesheet.css"
           xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1"
           fx:controller="cz.naseLekarna.gui.ItemsController">

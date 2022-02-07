@@ -31,11 +31,9 @@ public class MainController implements Initializable {
     @FXML
     public Label mainLabel;
 
-    /*CONSTRUCTOR, GETTERS, SETTERS*/
     public MainController() {
         mainController = this;
     }
-
     public static MainController getMainController() {
         return mainController;
     }

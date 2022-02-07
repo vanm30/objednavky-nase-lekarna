@@ -1,65 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
-
-<GridPane maxHeight="69.0" prefHeight="69.0" prefWidth="270.0" style="-fx-background-color: white;" stylesheets="@../stylesheet.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
-   <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" />
-      <ColumnConstraints hgrow="SOMETIMES" />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints fillHeight="false" percentHeight="0.0" valignment="BOTTOM" vgrow="NEVER" />
-      <RowConstraints vgrow="SOMETIMES" />
-   </rowConstraints>
-   <children>
-      <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" style="-fx-background-color: transparent; -fx-background-radius: 100;" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.valignment="BOTTOM" GridPane.vgrow="NEVER">
-         <font>
-            <Font name="Avenir Book" size="10.0" />
-         </font>
-         <GridPane.margin>
-            <Insets bottom="1.0" right="5.0" top="5.0" />
-         </GridPane.margin>
-         <graphic>
-            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/more.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <HBox alignment="CENTER" style="-fx-background-color: #d3d3d3; -fx-background-radius: 10;" GridPane.columnSpan="2147483647" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.rowSpan="2147483647">
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
-         <children>
-            <Label fx:id="name" alignment="CENTER" prefHeight="23.0" HBox.hgrow="NEVER">
-               <font>
-                  <Font name="Avenir Book" size="15.0" />
-               </font>
-               <padding>
-                  <Insets left="20.0" />
-               </padding>
-            </Label>
-            <Region HBox.hgrow="ALWAYS" />
-            <Label fx:id="date" alignment="CENTER" prefHeight="23.0">
-               <font>
-                  <Font name="Avenir Book" size="15.0" />
-               </font>
-               <HBox.margin>
-                  <Insets right="20.0" />
-               </HBox.margin>
-            </Label>
-         </children>
-      </HBox>
-   </children>
-</GridPane>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<HBox stylesheets="@../stylesheet.css" alignment="CENTER" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="cz.naseLekarna.gui.OrderOpener">
+    <children>
+        <VBox fx:id="infoBox" onMouseClicked="#openOrder" onTouchPressed="#openOrder"
+              style="-fx-background-color: #d3d3d3; -fx-background-radius: 10;" HBox.hgrow="ALWAYS">
+            <children>
+                <HBox alignment="CENTER">
+                    <children>
+                        <VBox alignment="CENTER_LEFT">
+                            <children>
+                                <Label text="Jméno Příjmení" textFill="#5ead87">
+                                    <font>
+                                        <Font name="Avenir Next Bold" size="13.0"/>
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets left="10.0"/>
+                                    </VBox.margin>
+                                </Label>
+                                <Label fx:id="name" alignment="CENTER">
+                                    <font>
+                                        <Font name="Avenir Book" size="15.0"/>
+                                    </font>
+                                    <padding>
+                                        <Insets left="10.0"/>
+                                    </padding>
+                                </Label>
+                            </children>
+                        </VBox>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <VBox alignment="CENTER_LEFT">
+                            <children>
+                                <Label text="Datum výdeje" textFill="#5ead87">
+                                    <font>
+                                        <Font name="Avenir Next Bold" size="13.0"/>
+                                    </font>
+                                </Label>
+                                <Label fx:id="date" alignment="CENTER">
+                                    <font>
+                                        <Font name="Avenir Book" size="15.0"/>
+                                    </font>
+                                </Label>
+                            </children>
+                            <HBox.margin>
+                                <Insets right="20.0"/>
+                            </HBox.margin>
+                        </VBox>
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                    </padding>
+                </HBox>
+                <Region prefHeight="2.0" style="-fx-background-color: grey;"/>
+                <VBox fx:id="listPripravek">
+                    <children>
+                        <Label alignment="CENTER" prefHeight="23.0" text="Přípravky" textFill="#5ead87">
+                            <font>
+                                <Font name="Avenir Next Bold" size="13.0"/>
+                            </font>
+                            <padding>
+                                <Insets left="20.0"/>
+                            </padding>
+                        </Label>
+                    </children>
+                </VBox>
+                <VBox fx:id="listRecept">
+                    <children>
+                        <Label alignment="CENTER" prefHeight="23.0" text="Recepty" textFill="#5ead87">
+                            <font>
+                                <Font name="Avenir Next Bold" size="13.0"/>
+                            </font>
+                            <padding>
+                                <Insets left="20.0"/>
+                            </padding>
+                        </Label>
+                    </children>
+                </VBox>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="10.0" right="10.0" top="10.0"/>
+            </padding>
+        </VBox>
+    </children>
+    <padding>
+        <Insets left="20.0" right="20.0" top="20.0"/>
+    </padding>
+</HBox>

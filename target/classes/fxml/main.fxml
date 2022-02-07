@@ -5,45 +5,47 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-
-<GridPane fx:id="gridPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="350.0" style="-fx-background-color: white;" stylesheets="@../stylesheet.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.naseLekarna.gui.MainController">
+<GridPane fx:id="gridPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+          minWidth="-Infinity" prefHeight="600.0" prefWidth="350.0" style="-fx-background-color: white;"
+          stylesheets="@../stylesheet.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="cz.naseLekarna.gui.MainController">
     <columnConstraints>
-        <ColumnConstraints />
-        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints/>
+        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints maxHeight="1.7976931348623157E308" vgrow="NEVER" />
-        <RowConstraints valignment="CENTER" vgrow="ALWAYS" />
+        <RowConstraints maxHeight="1.7976931348623157E308" vgrow="NEVER"/>
+        <RowConstraints valignment="CENTER" vgrow="ALWAYS"/>
     </rowConstraints>
     <children>
-        <HBox alignment="CENTER_LEFT" minHeight="70.0" prefHeight="70.0" prefWidth="350.0" style="-fx-background-color: #5ead87#5ead87;" GridPane.columnIndex="1" GridPane.vgrow="NEVER">
+        <HBox alignment="CENTER_LEFT" minHeight="70.0" prefHeight="70.0" prefWidth="350.0"
+              style="-fx-background-color: #5ead87#5ead87;" GridPane.columnIndex="1" GridPane.vgrow="NEVER">
             <children>
-                <Button fx:id="menuButton" mnemonicParsing="false" onAction="#openMenu" prefHeight="42.0" prefWidth="42.0" style="-fx-background-radius: 100; -fx-background-color: #5ead87#5ead87;">
+                <Button fx:id="menuButton" mnemonicParsing="false" onAction="#openMenu" prefHeight="42.0"
+                        prefWidth="42.0" style="-fx-background-radius: 100; -fx-background-color: #5ead87#5ead87;">
                     <HBox.margin>
-                        <Insets left="20.0" />
+                        <Insets left="20.0"/>
                     </HBox.margin>
                     <graphic>
                         <ImageView fitHeight="25.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                            <Image url="@../images/menu.png" />
+                            <Image url="@../images/menu.png"/>
                         </ImageView>
                     </graphic>
                 </Button>
                 <Label fx:id="mainLabel" text="Aktivní objednávky" textFill="WHITE">
                     <font>
-                        <Font name="Avenir Book" size="18.0" />
+                        <Font name="Avenir Book" size="18.0"/>
                     </font>
                     <HBox.margin>
-                        <Insets left="10.0" />
+                        <Insets left="10.0"/>
                     </HBox.margin>
                 </Label>
             </children>
         </HBox>
-        <StackPane fx:id="mainStackPane" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" GridPane.rowSpan="2147483647" />
+        <StackPane fx:id="mainStackPane" style="-fx-background-color: white;" GridPane.columnIndex="1"
+                   GridPane.columnSpan="2147483647" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1"
+                   GridPane.rowSpan="2147483647" GridPane.vgrow="ALWAYS"/>
     </children>
 </GridPane>

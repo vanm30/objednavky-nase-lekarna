@@ -4,9 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
@@ -22,7 +20,6 @@ public class OrderController implements Initializable {
 
     @FXML
     public VBox orderBackground;
-    public ScrollPane orderList;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -35,7 +32,7 @@ public class OrderController implements Initializable {
         orderBackground.getChildren().add(stackPane);
     }
 
-    /*CONSTRUCTOR, GETTERS, SETTERS*/
+
     private static OrderController orderController;
 
     public OrderController() {
@@ -46,6 +43,11 @@ public class OrderController implements Initializable {
         return orderController;
     }
 
+    /**
+     * Method takes user to new order creation
+     * @param actionEvent
+     * @throws Exception
+     */
     public void newOrder(ActionEvent actionEvent) throws Exception {
         StackPane stackPane = FXMLLoader.load(getClass().getResource("/fxml/addOrder.fxml"));
         MainController.getMainController().mainStackPane.getChildren().clear();

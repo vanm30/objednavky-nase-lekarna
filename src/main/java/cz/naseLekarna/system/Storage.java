@@ -1,9 +1,7 @@
 package cz.naseLekarna.system;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author Matěj Vaník
@@ -22,12 +20,18 @@ public class Storage {
     }
 
     public Customer customer;
-    public Order order;
+    public Order order = new Order();
 
-    public List<ItemPripravek> itemPripravekList = new ArrayList<ItemPripravek>();
-    public List<ItemRecept> itemReceptList = new ArrayList<ItemRecept>();
     List<Order> activeOrders = new ArrayList<Order>();
+    List<Customer> activeCustomers = new ArrayList<>();
 
+    public List<Customer> getActiveCustomers() {
+        return activeCustomers;
+    }
+
+    public void setActiveCustomers(List<Customer> activeCustomers) {
+        this.activeCustomers = activeCustomers;
+    }
 
     public Customer getCustomer() {
         return customer;
@@ -43,22 +47,6 @@ public class Storage {
 
     public void setOrder(Order order) {
         this.order = order;
-    }
-
-    public List<ItemPripravek> getItemPripravekList() {
-        return itemPripravekList;
-    }
-
-    public void setItemPripravekList(List<ItemPripravek> itemPripravekList) {
-        this.itemPripravekList = itemPripravekList;
-    }
-
-    public List<ItemRecept> getItemReceptList() {
-        return itemReceptList;
-    }
-
-    public void setItemReceptList(List<ItemRecept> itemReceptList) {
-        this.itemReceptList = itemReceptList;
     }
 
     public List<Order> getActiveOrders() {

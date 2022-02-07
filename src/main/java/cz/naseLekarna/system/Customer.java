@@ -27,6 +27,13 @@ public class Customer {
         this.city = city;
     }
 
+    public Customer(Object name, Object phoneNumber, Object street, Object city) {
+        this.name = (String) name;
+        this.phoneNumber = (int) phoneNumber;
+        this.street = (String) street;
+        this.city = (String) city;
+    }
+
     //GETTERS AND SETTERS
     public String getName() {
         return name;
