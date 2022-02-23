@@ -158,7 +158,6 @@ public class CustomerInfoController implements Initializable {
                 GridPane gridPane = FXMLLoader.load(getClass().getResource("/fxml/itemRecept.fxml"));
                 NewOrderController.getNewOrderController().itemsField.getChildren().add(gridPane);
                 final TextField y = (TextField) gridPane.lookup("#itemRecept");
-                System.out.println(storage.order.getOrderedPripravekList().get(i));
                 y.setText(storage.order.orderedReceptList.get(i).getCode());
             }
         }

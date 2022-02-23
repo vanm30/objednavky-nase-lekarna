@@ -21,6 +21,7 @@ public class Storage {
 
     public Customer customer;
     public Order order = new Order();
+    public Order editedOrder;
 
     List<Order> activeOrders = new ArrayList<Order>();
     List<Customer> activeCustomers = new ArrayList<>();
@@ -55,5 +56,13 @@ public class Storage {
 
     public void setActiveOrders(List<Order> activeOrders) {
         this.activeOrders = activeOrders;
+    }
+
+    public Order getEditedOrder() {
+        return editedOrder;
+    }
+
+    public void setEditedOrder(Order editedOrder) {
+        this.editedOrder = editedOrder;
     }
 }

@@ -8,6 +8,7 @@ import java.util.List;
  * @created 29.11.2021
  */
 public class Order {
+    private String orderID;
     private Customer customer;
     private String dateBegin;
     private String orderPickupInfo;
@@ -73,4 +74,14 @@ public class Order {
     public void setOrderedReceptList(List<ItemRecept> orderedReceptList) {
         this.orderedReceptList = orderedReceptList;
     }
+
+    public String getOrderID() {
+        return orderID;
+    }
+
+    public void setOrderID(String orderID) {
+        this.orderID = orderID;
+    }
 }
+
+

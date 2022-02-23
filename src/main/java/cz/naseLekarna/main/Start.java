@@ -36,7 +36,7 @@ public class Start extends Application {
 
     public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
         FileInputStream serviceAccount =
-                new FileInputStream("./objednavky-nase-lekarna-firebase-adminsdk-0xdci-29feeb01cd.json");
+                new FileInputStream("./objednavky-nase-lekarna-firebase-adminsdk-0xdci-ab4bce4c9d.json");
         FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                 .build();

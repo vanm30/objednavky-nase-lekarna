@@ -119,6 +119,68 @@ public class FirebaseService {
             storage.getActiveOrders().add(order);
         }
     }
+    public void getInfoForEdit(String name) throws ExecutionException, InterruptedException {
+        //Find ID of clicled document
+        ApiFuture<QuerySnapshot> future = db.collection("orders").get();
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+        String id = null;
+        for (QueryDocumentSnapshot document : documents) {
+            List list = (List) document.get("customer");
+            if (name.equals(list.get(0))){
+                id = document.getId();
+            }
+        }
+
+        //Save information to storage > editedOrder
+        DocumentReference docRef = db.collection("orders").document(id);
+        ApiFuture<DocumentSnapshot> future2 = docRef.get();
+        DocumentSnapshot document = future2.get();
+
+        List list = (List) document.get("customer");
+
+        Order order = new Order();
+        Customer customer = new Customer(list.get(0),Integer.parseInt(list.get(1).toString()),list.get(2).toString(),list.get(3).toString());
+
+        order.setCustomer(customer);
+        order.setDateBegin((String) document.get("dateBegin"));
+        order.setDateEnd((String) document.get("dateEnd"));
+        order.setOrderPickupInfo((String) document.get("orderPickUpInfo"));
+        order.setNotes((String) document.get("notes"));
+        order.setOrderID(id);
+
+        ArrayList itemReceptList = (ArrayList) document.get("itemReceptList");
+        ArrayList itemPripravekList = (ArrayList) document.get("itemPripravekList");
+        if (itemReceptList != null) {
+            for (int i = 0; i < itemReceptList.size(); i++) {
+                String code1 = itemReceptList.get(i).toString();
+                String code = code1.substring(code1.lastIndexOf("=") + 1);
+                order.orderedReceptList.add(new ItemRecept(code.substring(0, code.length() - 1)));
+            }
+        }
+        if (itemPripravekList != null) {
+            for (int i = 0; i < itemPripravekList.size(); i++) {
+                String string = itemPripravekList.get(i).toString();
+                String x = string.substring(string.lastIndexOf("=") + 1);
+                String name2 = x.substring(0, x.length() - 1);
+                String amount = string.substring(string.indexOf("=") + 1, string.indexOf(","));
+                order.orderedPripravekList.add(new ItemPripravek(Integer.parseInt(amount), name2));
+            }
+        }
+        storage.setEditedOrder(order);
+    }
+
+    public void updateOrder(Map<String, Object> docData){
+
+        DocumentReference docRef = db.collection("orders").document(storage.getEditedOrder().getOrderID());
+        docRef.update(docData);
+
+    }
+
+    public void deleteOrder() throws ExecutionException, InterruptedException {
+        ApiFuture<WriteResult> writeResult = db.collection("orders").document(storage.getEditedOrder().getOrderID()).delete();
+        writeResult.get();
+    }
+
 }
 
 
