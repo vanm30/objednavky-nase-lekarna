@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <StackPane stylesheets="@../stylesheet.css" alignment="TOP_CENTER" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/null"
-           xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.naseLekarna.gui.CustomerListController">
+           xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.naseLekarna.gui.lists.CustomerListController">
     <children>
         <VBox StackPane.alignment="CENTER">
             <children>

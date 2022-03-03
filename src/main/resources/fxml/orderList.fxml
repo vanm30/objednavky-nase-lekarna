@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <StackPane stylesheets="@../stylesheet.css" alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="cz.naseLekarna.gui.OrderListController">
+           fx:controller="cz.naseLekarna.gui.lists.OrderListController">
     <children>
         <VBox alignment="TOP_CENTER">
             <children>

@@ -12,3 +12,12 @@ Button:pressed{
 .scroll-pane .viewport {
        -fx-background-color: transparent;
 }
+
+#loginBackground{
+-fx-background-color: linear-gradient(#5EAD87,#61D8DE);
+}
+
+#errorBox .label{
+-fx-text-fill: #950925;
+
+}

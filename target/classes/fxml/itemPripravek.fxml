@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <GridPane style="-fx-background-color: transparent;" stylesheets="@../stylesheet.css"
           xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="cz.naseLekarna.gui.ItemsController">
+          fx:controller="cz.naseLekarna.gui.newOrder.ItemsController">
     <columnConstraints>
         <ColumnConstraints hgrow="ALWAYS"/>
         <ColumnConstraints hgrow="ALWAYS"/>

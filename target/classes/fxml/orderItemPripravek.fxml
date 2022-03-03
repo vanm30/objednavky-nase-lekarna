@@ -2,22 +2,24 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.text.Font?>
+
 <HBox stylesheets="@../stylesheet.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label fx:id="name" text="Ibalgin">
+        <Label fx:id="name">
             <HBox.margin>
-                <Insets left="40.0"/>
+                <Insets left="40.0" />
             </HBox.margin>
             <font>
-                <Font name="Avenir Book" size="13.0"/>
+                <Font name="Avenir Book" size="13.0" />
             </font>
         </Label>
-        <Region HBox.hgrow="ALWAYS"/>
-        <Label fx:id="amount" text="3ks">
+        <Region HBox.hgrow="ALWAYS" />
+        <Label fx:id="amount">
             <HBox.margin>
-                <Insets right="100.0"/>
+                <Insets right="40.0" />
             </HBox.margin>
         </Label>
     </children>

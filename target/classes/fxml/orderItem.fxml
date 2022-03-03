@@ -1,69 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<HBox fx:id="orderInfo" stylesheets="@../stylesheet.css" alignment="CENTER" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="cz.naseLekarna.gui.OrderOpener">
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox fx:id="orderInfo" alignment="CENTER" stylesheets="@../stylesheet.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.naseLekarna.gui.editOrder.OrderOpener">
     <children>
-        <VBox fx:id="infoBox" onMouseClicked="#openOrder" onTouchPressed="#openOrder"
-              style="-fx-background-color: #d3d3d3; -fx-background-radius: 10;" HBox.hgrow="ALWAYS">
+        <VBox fx:id="infoBox" alignment="TOP_CENTER" onMouseClicked="#openOrder" onTouchPressed="#openOrder" style="-fx-background-color: #d3d3d3; -fx-background-radius: 10;" HBox.hgrow="ALWAYS">
             <children>
+            <Label fx:id="orderPickUpInfo" textAlignment="CENTER">
+               <font>
+                  <Font name="Avenir Book" size="13.0" />
+               </font>
+            </Label>
                 <HBox alignment="CENTER">
                     <children>
                         <VBox alignment="CENTER_LEFT">
                             <children>
                                 <Label text="Jméno Příjmení" textFill="#5ead87">
                                     <font>
-                                        <Font name="Avenir Next Bold" size="13.0"/>
+                                        <Font name="Avenir Next Bold" size="13.0" />
                                     </font>
                                     <VBox.margin>
-                                        <Insets left="10.0"/>
+                                        <Insets />
                                     </VBox.margin>
                                 </Label>
                                 <Label fx:id="name" alignment="CENTER">
                                     <font>
-                                        <Font name="Avenir Book" size="15.0"/>
+                                        <Font name="Avenir Book" size="15.0" />
                                     </font>
-                                    <padding>
-                                        <Insets left="10.0"/>
-                                    </padding>
                                 </Label>
                             </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
                         </VBox>
-                        <Region HBox.hgrow="ALWAYS"/>
-                        <VBox alignment="CENTER_LEFT">
+                        <Region HBox.hgrow="ALWAYS" />
+                        <VBox alignment="CENTER_RIGHT">
                             <children>
                                 <Label text="Datum výdeje" textFill="#5ead87">
                                     <font>
-                                        <Font name="Avenir Next Bold" size="13.0"/>
+                                        <Font name="Avenir Next Bold" size="13.0" />
                                     </font>
                                 </Label>
                                 <Label fx:id="date" alignment="CENTER">
                                     <font>
-                                        <Font name="Avenir Book" size="15.0"/>
+                                        <Font name="Avenir Book" size="15.0" />
                                     </font>
                                 </Label>
                             </children>
                             <HBox.margin>
-                                <Insets right="20.0"/>
+                                <Insets />
                             </HBox.margin>
                         </VBox>
                     </children>
                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
                     </padding>
                 </HBox>
-                <Region prefHeight="2.0" style="-fx-background-color: grey;"/>
+                <Region prefHeight="2.0" style="-fx-background-color: grey;" />
                 <VBox fx:id="listPripravek">
                     <children>
                         <Label alignment="CENTER" prefHeight="23.0" text="Přípravky" textFill="#5ead87">
                             <font>
-                                <Font name="Avenir Next Bold" size="13.0"/>
+                                <Font name="Avenir Next Bold" size="13.0" />
                             </font>
                             <padding>
-                                <Insets left="20.0"/>
+                                <Insets left="20.0" />
                             </padding>
                         </Label>
                     </children>
@@ -72,21 +78,21 @@
                     <children>
                         <Label alignment="CENTER" prefHeight="23.0" text="Recepty" textFill="#5ead87">
                             <font>
-                                <Font name="Avenir Next Bold" size="13.0"/>
+                                <Font name="Avenir Next Bold" size="13.0" />
                             </font>
                             <padding>
-                                <Insets left="20.0"/>
+                                <Insets left="20.0" />
                             </padding>
                         </Label>
                     </children>
                 </VBox>
             </children>
             <padding>
-                <Insets bottom="20.0" left="10.0" right="10.0" top="10.0"/>
+                <Insets bottom="20.0" left="10.0" right="10.0" top="5.0" />
             </padding>
         </VBox>
     </children>
     <padding>
-        <Insets left="20.0" right="20.0" top="20.0"/>
+        <Insets left="20.0" right="20.0" top="20.0" />
     </padding>
 </HBox>
