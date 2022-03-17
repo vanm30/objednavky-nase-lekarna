@@ -1,7 +1,7 @@
 package cz.naseLekarna.gui.lists;
 
 import cz.naseLekarna.gui.mainMenu.MainController;
-import cz.naseLekarna.gui.newOrder.CustomerInfoController;
+import cz.naseLekarna.gui.newOrder.OrderInfoController;
 import cz.naseLekarna.system.Customer;
 import cz.naseLekarna.system.Storage;
 import javafx.fxml.FXML;
@@ -21,9 +21,6 @@ import java.util.List;
  */
 public class SavedCustomerController {
 
-    @FXML
-    public Label name;
-
     private SavedCustomerController savedCustomerController;
 
     public SavedCustomerController() {
@@ -34,28 +31,32 @@ public class SavedCustomerController {
         return savedCustomerController;
     }
 
+    @FXML
+    public Label name;
+
     Storage storage = Storage.getStorage();
 
 
     /**
      * Method loads new order creation and writes data of selected customer
+     *
      * @param mouseEvent
      * @throws IOException
      */
     public void writeData(MouseEvent mouseEvent) throws IOException {
         MainController.getMainController().mainStackPane.getChildren().clear();
-        VBox vBox1 = FXMLLoader.load(getClass().getResource("/fxml/addInfo.fxml"));
+        VBox vBox1 = FXMLLoader.load(getClass().getResource("/fxml/optionalInfo.fxml"));
         MainController.getMainController().mainStackPane.getChildren().add(vBox1);
         MainController.getMainController().mainLabel.setText("Nový Pacient");
-        CustomerInfoController.getCustomerInfoController().dateBegin.setValue(LocalDate.now());
+        OrderInfoController.getCustomerInfoController().dateBegin.setValue(LocalDate.now());
 
         List<Customer> list = storage.getActiveCustomers();
         for (Customer customer : list) {
             if (customer.getName() == name.getText()) {
-                CustomerInfoController.getCustomerInfoController().name.setText(customer.getName());
-                CustomerInfoController.getCustomerInfoController().phoneNumber.setText(String.valueOf(customer.getPhoneNumber()));
-                CustomerInfoController.getCustomerInfoController().street.setText(customer.getStreet());
-                CustomerInfoController.getCustomerInfoController().city.setText(customer.getCity());
+                OrderInfoController.getCustomerInfoController().name.setText(customer.getName());
+                OrderInfoController.getCustomerInfoController().phoneNumber.setText(String.valueOf(customer.getPhoneNumber()));
+                OrderInfoController.getCustomerInfoController().street.setText(customer.getStreet());
+                OrderInfoController.getCustomerInfoController().city.setText(customer.getCity());
             }
         }
 

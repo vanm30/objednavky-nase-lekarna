@@ -1,6 +1,5 @@
 package cz.naseLekarna.gui.editOrder;
 
-import cz.naseLekarna.gui.newOrder.NewOrderController;
 import cz.naseLekarna.gui.mainMenu.MainController;
 import cz.naseLekarna.system.ItemPripravek;
 import cz.naseLekarna.system.ItemRecept;
@@ -27,10 +26,11 @@ public class EditItemsController {
 
     Storage storage = Storage.getStorage();
 
-    public EditItemsController(){
+    public EditItemsController() {
         editItemsController = this;
     }
-    public static EditItemsController getEditItemsController(){
+
+    public static EditItemsController getEditItemsController() {
         return editItemsController;
     }
 
@@ -66,7 +66,7 @@ public class EditItemsController {
         MainController.getMainController().mainStackPane.getChildren().clear();
         MainController.getMainController().mainStackPane.getChildren().add(vBox);
 
-        EditInfoController.getEditController().pickUpOption.getItems().add("Osobní");
+        /*EditInfoController.getEditController().pickUpOption.getItems().add("Osobní");
         EditInfoController.getEditController().pickUpOption.getItems().add("Rozvoz");
         EditInfoController.getEditController().name.setText(storage.editedOrder.getCustomer().getName());
         EditInfoController.getEditController().phoneNumber.setText(String.valueOf(storage.editedOrder.getCustomer().getPhoneNumber()));
@@ -75,6 +75,6 @@ public class EditItemsController {
         EditInfoController.getEditController().dateBegin.setValue(NewOrderController.LOCAL_DATE(storage.editedOrder.getDateBegin()));
         EditInfoController.getEditController().pickUpOption.setValue(storage.editedOrder.getOrderPickupInfo());
         EditInfoController.getEditController().dateEnd.setValue(NewOrderController.LOCAL_DATE(storage.editedOrder.getDateEnd()));
-        EditInfoController.getEditController().notes.setText(storage.editedOrder.getNotes());
+        EditInfoController.getEditController().notes.setText(storage.editedOrder.getNotes());*/
     }
 }

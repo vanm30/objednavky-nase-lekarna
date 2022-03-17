@@ -1,5 +1,6 @@
 package cz.naseLekarna.system;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,33 +9,18 @@ import java.util.List;
  * @created 29.11.2021
  */
 public class Order {
-    private String orderID;
+    private String orderId;
+    private Integer orderNumber;
     private Customer customer;
-    private String dateBegin;
+    private LocalDate dateBegin;
     private String orderPickupInfo;
-    private String dateEnd;
+    private LocalDate dateEnd;
     private String notes;
     public List<ItemPripravek> orderedPripravekList = new ArrayList<ItemPripravek>();
     public List<ItemRecept> orderedReceptList = new ArrayList<ItemRecept>();
 
 
     //GETTERS AND SETTERS
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public String getDateBegin() {
-        return dateBegin;
-    }
-
-    public void setDateBegin(String dateBegin) {
-        this.dateBegin = dateBegin;
-    }
-
     public String getOrderPickupInfo() {
         return orderPickupInfo;
     }
@@ -43,13 +29,6 @@ public class Order {
         this.orderPickupInfo = orderPickupInfo;
     }
 
-    public String getDateEnd() {
-        return dateEnd;
-    }
-
-    public void setDateEnd(String dateEnd) {
-        this.dateEnd = dateEnd;
-    }
 
     public String getNotes() {
         return notes;
@@ -75,12 +54,44 @@ public class Order {
         this.orderedReceptList = orderedReceptList;
     }
 
-    public String getOrderID() {
-        return orderID;
+    public Integer getOrderNumber() {
+        return orderNumber;
     }
 
-    public void setOrderID(String orderID) {
-        this.orderID = orderID;
+    public void setOrderNumber(Integer orderNumber) {
+        this.orderNumber = orderNumber;
+    }
+
+    public LocalDate getDateBegin() {
+        return dateBegin;
+    }
+
+    public void setDateBegin(LocalDate dateBegin) {
+        this.dateBegin = dateBegin;
+    }
+
+    public LocalDate getDateEnd() {
+        return dateEnd;
+    }
+
+    public void setDateEnd(LocalDate dateEnd) {
+        this.dateEnd = dateEnd;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 }
 

@@ -6,33 +6,10 @@ package cz.naseLekarna.system;
  */
 public class Customer {
     private String name;
-    private int phoneNumber;
+    private Integer phoneNumber;
     private String street;
     private String city;
     private Boolean save = false;
-
-
-    /**
-     * This is a contructor for class Customer.
-     *
-     * @param name        Customers name
-     * @param phoneNumber Customers phone number
-     * @param street      Customers address - street
-     * @param city        Customers address - city
-     */
-    public Customer(String name, int phoneNumber, String street, String city) {
-        this.name = name;
-        this.phoneNumber = phoneNumber;
-        this.street = street;
-        this.city = city;
-    }
-
-    public Customer(Object name, Object phoneNumber, Object street, Object city) {
-        this.name = (String) name;
-        this.phoneNumber = (int) phoneNumber;
-        this.street = (String) street;
-        this.city = (String) city;
-    }
 
     //GETTERS AND SETTERS
     public String getName() {
@@ -43,11 +20,11 @@ public class Customer {
         this.name = name;
     }
 
-    public int getPhoneNumber() {
+    public Integer getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(Integer phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

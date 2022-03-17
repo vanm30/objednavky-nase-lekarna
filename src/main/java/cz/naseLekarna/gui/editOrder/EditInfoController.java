@@ -1,29 +1,43 @@
 package cz.naseLekarna.gui.editOrder;
 
-import cz.naseLekarna.gui.newOrder.CustomerInfoController;
 import cz.naseLekarna.gui.mainMenu.MainController;
 import cz.naseLekarna.system.FirebaseService;
 import cz.naseLekarna.system.Storage;
+import cz.naseLekarna.system.Validator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.*;
+import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
 
 /**
  * @author Matěj Vaník
  * @created 08.02.2022
  */
-public class EditInfoController {
-    
+public class EditInfoController implements Initializable {
+
     private static EditInfoController editController;
+
+    public EditInfoController() {
+        editController = this;
+    }
+
+    public static EditInfoController getEditController() {
+        return editController;
+    }
 
     @FXML
     public TextField name;
@@ -41,36 +55,30 @@ public class EditInfoController {
     public DatePicker dateEnd;
     @FXML
     public TextArea notes;
-
+    @FXML
+    public TextField orderNumber;
 
     Storage storage = Storage.getStorage();
     FirebaseService firebaseService = new FirebaseService();
 
-
-    public EditInfoController(){
-        editController = this;
-    }
-    public static EditInfoController getEditController(){
-        return editController;
-    }
-
-
+    /**
+     *
+     * @param actionEvent
+     * @throws IOException
+     * @throws ExecutionException
+     * @throws InterruptedException
+     */
     public void saveEdit(ActionEvent actionEvent) throws IOException, ExecutionException, InterruptedException {
 
-        if (name.getText().isEmpty() || phoneNumber.getText().isEmpty() || street.getText().isEmpty() || city.getText().isEmpty() || dateBegin.getValue() == null || dateEnd.getValue() == null || pickUpOption.getValue() == null) {
-            if (name.getText().isEmpty()) {
-                name.setStyle("-fx-border-color: red; -fx-border-radius: 10;-fx-background-radius: 10");
-            } else name.setStyle("-fx-border-color: transparent; -fx-border-radius: 10;-fx-background-radius: 10");
-            if (phoneNumber.getText().isEmpty()) {
-                phoneNumber.setStyle("-fx-border-color: red; -fx-border-radius: 10;-fx-background-radius: 10");
-            } else
-                phoneNumber.setStyle("-fx-border-color: transparent; -fx-border-radius: 10;-fx-background-radius: 10");
-            if (street.getText().isEmpty()) {
-                street.setStyle("-fx-border-color: red; -fx-border-radius: 10;-fx-background-radius: 10");
-            } else street.setStyle("-fx-border-color: transparent; -fx-border-radius: 10;-fx-background-radius: 10");
-            if (city.getText().isEmpty()) {
-                city.setStyle("-fx-border-color: red; -fx-border-radius: 10;-fx-background-radius: 10");
-            } else city.setStyle("-fx-border-color: transparent; -fx-border-radius: 10;-fx-background-radius: 10");
+        Integer checkedPhoneNumber;
+
+        if (name.getText().isEmpty() && orderNumber.getText().isEmpty()) {
+            name.setStyle("-fx-border-color: red");
+            orderNumber.setStyle("-fx-border-color: red");
+            return;
+        }
+
+        if (dateBegin.getValue() == null || dateEnd.getValue() == null || pickUpOption.getValue() == null) {
             if (dateBegin.getValue() == null) {
                 dateBegin.setStyle("-fx-border-color: red");
             } else dateBegin.setStyle("-fx-border-color: transparent");
@@ -82,16 +90,22 @@ public class EditInfoController {
             } else pickUpOption.setStyle("-fx-border-color: transparent");
             return;
         }
-
-        if (!CustomerInfoController.isNumeric(phoneNumber.getText())) {
-            phoneNumber.setStyle("-fx-border-color: red; -fx-border-radius: 10;-fx-background-radius: 10");
-            return;
+        if (!phoneNumber.getText().isEmpty()) {
+            if (!Validator.isNumeric(phoneNumber.getText()) || phoneNumber.getText().length() != 9) {
+                phoneNumber.setStyle("-fx-border-color: red; -fx-border-radius: 10;-fx-background-radius: 10");
+                return;
+            }
         }
 
         Map<String, Object> docData = new HashMap<>();
+        docData.put("orderNumber", orderNumber.getText());
+
+        if (phoneNumber.getText().isEmpty()) {
+            checkedPhoneNumber = null;
+        } else checkedPhoneNumber = Integer.parseInt(String.valueOf(phoneNumber.getText()));
         docData.put("customer", Arrays.asList(
                 name.getText(),
-                phoneNumber.getText(),
+                checkedPhoneNumber,
                 street.getText(),
                 city.getText()
         ));
@@ -125,7 +139,6 @@ public class EditInfoController {
     }
 
 
-
     public void editItems(ActionEvent actionEvent) throws IOException {
         VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/editItems.fxml"));
         MainController.getMainController().mainStackPane.getChildren().clear();
@@ -150,5 +163,39 @@ public class EditInfoController {
             }
         }
 
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        pickUpOption.getItems().add("Osobní");
+        pickUpOption.getItems().add("Rozvoz");
+
+        if (storage.editedOrder.getOrderNumber() != null) {
+            orderNumber.setText(String.valueOf(storage.editedOrder.getOrderNumber()));
+        }
+        if (storage.editedOrder.getCustomer().getName() != null) {
+            name.setText(storage.editedOrder.getCustomer().getName());
+        }
+        if (storage.editedOrder.getCustomer().getPhoneNumber() != null) {
+            phoneNumber.setText(String.valueOf(storage.editedOrder.getCustomer().getPhoneNumber()));
+        }
+        if (storage.editedOrder.getCustomer().getStreet() != null) {
+            street.setText(storage.editedOrder.getCustomer().getStreet());
+        }
+        if (storage.editedOrder.getCustomer().getCity() != null) {
+            city.setText(storage.editedOrder.getCustomer().getCity());
+        }
+        if (storage.editedOrder.getDateBegin() != null) {
+            dateBegin.setValue(storage.editedOrder.getDateBegin());
+        }
+        if (storage.editedOrder.getOrderPickupInfo() != null) {
+            pickUpOption.setValue(storage.editedOrder.getOrderPickupInfo());
+        }
+        if (storage.editedOrder.getDateEnd() != null) {
+            dateEnd.setValue(storage.editedOrder.getDateEnd());
+        }
+        if (storage.editedOrder.getNotes() != null) {
+            notes.setText(storage.editedOrder.getNotes());
+        }
     }
 }

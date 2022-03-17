@@ -18,6 +18,6 @@ Button:pressed{
 }
 
 #errorBox .label{
+-fx-font-family: Avenir Book;
 -fx-text-fill: #950925;
-
 }

@@ -15,6 +15,14 @@ public class ItemsController {
 
     private static ItemsController itemsController;
 
+    public ItemsController() {
+        itemsController = this;
+    }
+
+    public static ItemsController getItemsController() {
+        return itemsController;
+    }
+
     @FXML
     public TextField itemRecept;
     @FXML
@@ -24,14 +32,6 @@ public class ItemsController {
     @FXML
     public Button deleteButton;
 
-    public ItemsController() {
-        itemsController = this;
-    }
-
-    public static ItemsController getItemsController() {
-        return itemsController;
-    }
-
     /**
      * Button deletes Item in new order.
      * @param actionEvent
@@ -40,7 +40,5 @@ public class ItemsController {
         GridPane gridPane = (GridPane) deleteButton.getParent();
         VBox vBox = (VBox) deleteButton.getParent().getParent();
         vBox.getChildren().remove(gridPane);
-
-
     }
 }

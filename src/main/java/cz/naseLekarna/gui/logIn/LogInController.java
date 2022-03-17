@@ -2,13 +2,13 @@ package cz.naseLekarna.gui.logIn;
 
 import cz.naseLekarna.gui.application.StageController;
 import cz.naseLekarna.system.FirebaseService;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -23,6 +23,14 @@ public class LogInController {
 
     private static LogInController logInController;
 
+    public LogInController() {
+        logInController = this;
+    }
+
+    public static LogInController getLogInController() {
+        return logInController;
+    }
+
     @FXML
     public VBox loginBackground;
     @FXML
@@ -32,40 +40,31 @@ public class LogInController {
     @FXML
     public VBox errorBox;
 
-    public LogInController() {
-        logInController = this;
-    }
-
-    public static LogInController getLogInController() {
-        return logInController;
-    }
-
-
     StageController stageController = StageController.getStageController();
     FirebaseService firebaseService = new FirebaseService();
 
-
-    public void newUser() throws IOException {
-        stageController.mainStage.getChildren().clear();
-        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/adminLogin.fxml"));
-        stageController.mainStage.getChildren().add(vBox);
-    }
-
+    /**
+     * This method tries to log user upon given lofin info.
+     * @throws NoSuchAlgorithmException
+     * @throws ExecutionException
+     * @throws InterruptedException
+     * @throws IOException
+     */
     public void logIn() throws NoSuchAlgorithmException, ExecutionException, InterruptedException, IOException {
         errorBox.getChildren().clear();
-        if (userName.getText().trim().isEmpty()){
+        if (userName.getText().trim().isEmpty()) {
             Label error = new Label();
             error.setText("Zadejte uživatelské jméno.");
             errorBox.getChildren().add(error);
         }
-        if (password.getText().isEmpty()){
+        if (password.getText().isEmpty()) {
             Label error = new Label();
             error.setText("Zadejte heslo.");
             errorBox.getChildren().add(error);
         }
-        if (!userName.getText().trim().isEmpty() && !password.getText().isEmpty()){
-            Boolean result = firebaseService.validateLogin(userName.getText(),password.getText());
-            if (result){
+        if (!userName.getText().trim().isEmpty() && !password.getText().isEmpty()) {
+            Boolean result = firebaseService.validateLogin(userName.getText(), password.getText());
+            if (result) {
                 stageController.mainStage.getChildren().clear();
                 GridPane gridPane = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));
                 stageController.mainStage.getChildren().add(gridPane);
@@ -81,19 +80,14 @@ public class LogInController {
 
     }
 
-    public void next() throws IOException {
+    /**
+     * This method opens new user form.
+     * @throws IOException
+     */
+    public void newUser() throws IOException {
         stageController.mainStage.getChildren().clear();
-        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/newEmpForm.fxml"));
+        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/adminLogin.fxml"));
         stageController.mainStage.getChildren().add(vBox);
     }
 
-    public void finish() {
-
-    }
-
-    public void back() throws IOException {
-        stageController.mainStage.getChildren().clear();
-        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/logIn.fxml"));
-        stageController.mainStage.getChildren().add(vBox);
-    }
 }

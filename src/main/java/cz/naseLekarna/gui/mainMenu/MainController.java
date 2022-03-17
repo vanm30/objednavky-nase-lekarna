@@ -23,6 +23,15 @@ import java.util.ResourceBundle;
 public class MainController implements Initializable {
 
     private static MainController mainController;
+
+    public MainController() {
+        mainController = this;
+    }
+
+    public static MainController getMainController() {
+        return mainController;
+    }
+
     @FXML
     public Button menuButton;
     @FXML
@@ -33,13 +42,6 @@ public class MainController implements Initializable {
     public Label mainLabel;
     @FXML
     public Button removeMenu;
-
-    public MainController() {
-        mainController = this;
-    }
-    public static MainController getMainController() {
-        return mainController;
-    }
 
     /**
      * This method is called when inilializing this Controller. It puts homeView.fxml to main stack pane.
@@ -106,6 +108,10 @@ public class MainController implements Initializable {
         });
     }
 
+    /**
+     * This method opens home view.
+     * @throws IOException
+     */
     public void switchToHome() throws IOException {
         VBox vBox = (VBox) mainStackPane.lookup("#menuBox");
         TranslateTransition slide = new TranslateTransition();
@@ -126,11 +132,16 @@ public class MainController implements Initializable {
                 e.printStackTrace();
             }
             mainStackPane.getChildren().add(homeView);
+            mainLabel.setText("Aktivní Objednávky");
             menuButton.setVisible(true);
             removeMenu.setVisible(false);
         });
     }
 
+    /**
+     * This method opens settings.
+     * @throws IOException
+     */
     public void switchToSettings() throws IOException {
         VBox vBox = (VBox) mainStackPane.lookup("#menuBox");
         TranslateTransition slide = new TranslateTransition();

@@ -1,22 +1,18 @@
 package cz.naseLekarna.gui.lists;
 
 import cz.naseLekarna.gui.mainMenu.MainController;
-import cz.naseLekarna.system.Customer;
 import cz.naseLekarna.system.FirebaseService;
 import cz.naseLekarna.system.Storage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.concurrent.ExecutionException;
 
 /**
  * @author Matěj Vaník
@@ -42,12 +38,13 @@ public class CustomerListController implements Initializable {
 
     /**
      * When initialized, load and list all saved customers
+     *
      * @param location
      * @param resources
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        try {
+        /*try {
             firebaseService.loadUsers();
         } catch (ExecutionException e) {
             e.printStackTrace();
@@ -73,11 +70,12 @@ public class CustomerListController implements Initializable {
                 address.setText(customer.getStreet() + ", " + customer.getCity());
 
             }
-        }
+        }*/
     }
 
     /**
      * Back button.
+     *
      * @param actionEvent Takes user back.
      * @throws IOException
      */

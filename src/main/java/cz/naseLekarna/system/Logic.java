@@ -20,7 +20,7 @@ public class Logic {
     }
 
     public String hashPassword(String passwordToHash) throws NoSuchAlgorithmException {
-        String hashedPassword = null ;
+        String hashedPassword = null;
 
         MessageDigest md = MessageDigest.getInstance("SHA-256");
 
@@ -32,7 +32,7 @@ public class Logic {
             sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
         }
 
-         return hashedPassword = sb.toString();
+        return hashedPassword = sb.toString();
     }
 
 }

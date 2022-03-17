@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox stylesheets="@../stylesheet.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.naseLekarna.gui.newOrder.OrderInfoController">
+    <children>
+        <Label text="Základní údaje" textFill="#5ead87">
+            <font>
+                <Font name="Avenir Next Bold" size="12.0" />
+            </font>
+            <VBox.margin>
+                <Insets left="25.0" top="10.0" />
+            </VBox.margin>
+        </Label>
+        <VBox alignment="TOP_CENTER" style="-fx-background-color: #d3d3d3; -fx-background-radius: 10;" VBox.vgrow="NEVER">
+            <children>
+                <HBox>
+                    <children>
+                        <VBox>
+                            <children>
+                                <Label prefHeight="29.0" text="Číslo lístku">
+                                    <font>
+                                        <Font name="Avenir Book" size="13.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets />
+                                    </VBox.margin>
+                                </Label>
+                                <Label prefHeight="29.0" text="Klient">
+                                    <font>
+                                        <Font name="Avenir Book" size="13.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets top="5.0" />
+                                    </VBox.margin>
+                                </Label>
+                            </children>
+                        </VBox>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <VBox alignment="TOP_CENTER" fillWidth="false">
+                            <children>
+                                <TextField fx:id="orderNumber" alignment="CENTER" prefHeight="29.0" prefWidth="65.0" style="-fx-border-color: transparent; -fx-border-radius: 10;-fx-background-radius: 10">
+                                    <font>
+                                        <Font name="Avenir Book" size="12.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets />
+                                    </VBox.margin>
+                                </TextField>
+                                <TextField fx:id="name" prefHeight="29.0" prefWidth="130.0" promptText="Příjmení / Název firmy" style="-fx-border-color: transparent; -fx-border-radius: 10;-fx-background-radius: 10">
+                                    <font>
+                                        <Font name="Avenir Book" size="12.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets top="5.0" />
+                                    </VBox.margin>
+                                </TextField>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+            </children>
+            <VBox.margin>
+                <Insets left="20.0" right="20.0" />
+            </VBox.margin>
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+        </VBox>
+        <Label text="Informace o doručení" textFill="#5ead87">
+            <font>
+                <Font name="Avenir Next Bold" size="12.0" />
+            </font>
+            <VBox.margin>
+                <Insets left="25.0" />
+            </VBox.margin>
+        </Label>
+        <VBox alignment="TOP_CENTER" style="-fx-background-color: #d3d3d3 #d3d3d3; -fx-background-radius: 10;">
+            <children>
+                <HBox>
+                    <children>
+                        <VBox fillWidth="false">
+                            <children>
+                                <Label prefHeight="29.0" text="Datum přimu">
+                                    <font>
+                                        <Font name="Avenir Book" size="13.0" />
+                                    </font>
+                                </Label>
+                                <Label prefHeight="29.0" text="Způsob vyzvednutí">
+                                    <font>
+                                        <Font name="Avenir Book" size="13.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets top="5.0" />
+                                    </VBox.margin>
+                                </Label>
+                                <Label prefHeight="29.0" text="Datum platnosti">
+                                    <font>
+                                        <Font name="Avenir Book" size="13.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets top="5.0" />
+                                    </VBox.margin>
+                                </Label>
+                            </children>
+                        </VBox>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <VBox fillWidth="false">
+                            <children>
+                                <DatePicker fx:id="dateBegin" prefHeight="29.0" prefWidth="130.0" promptText="Datum přijmu" style="-fx-border-color: transparent" />
+                                <ChoiceBox fx:id="pickUpOption" prefHeight="29.0" prefWidth="130.0" style="-fx-border-color: transparent">
+                                    <VBox.margin>
+                                        <Insets top="5.0" />
+                                    </VBox.margin>
+                                </ChoiceBox>
+                                <DatePicker fx:id="dateEnd" prefHeight="29.0" prefWidth="130.0" promptText="Datum platnosti" style="-fx-border-color: transparent">
+                                    <VBox.margin>
+                                        <Insets top="5.0" />
+                                    </VBox.margin>
+                                </DatePicker>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+            </children>
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+            <VBox.margin>
+                <Insets left="20.0" right="20.0" />
+            </VBox.margin>
+        </VBox>
+        <Region VBox.vgrow="ALWAYS" />
+        <VBox fx:id="errorBox" alignment="BOTTOM_LEFT" prefHeight="40.0">
+            <padding>
+                <Insets left="30.0" />
+            </padding>
+        </VBox>
+        <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="46.0">
+            <children>
+                <Region HBox.hgrow="ALWAYS" />
+                <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToItems" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #5ead87#5ead87 #5ead87#5ead87; -fx-background-radius: 5;" text="ZPĚT" textFill="WHITE">
+                    <font>
+                        <Font name="Avenir Next Bold" size="12.0" />
+                    </font>
+                    <padding>
+                        <Insets left="5.0" right="5.0" />
+                    </padding>
+                </Button>
+                <Region HBox.hgrow="ALWAYS" />
+                <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addOptionalInfo" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #5ead87#5ead87 #5ead87#5ead87; -fx-background-radius: 5;" text="DALŠÍ" textFill="WHITE">
+                    <font>
+                        <Font name="Avenir Next Bold" size="12.0" />
+                    </font>
+                    <padding>
+                        <Insets left="5.0" right="5.0" />
+                    </padding>
+                </Button>
+                <Region HBox.hgrow="ALWAYS" />
+            </children>
+        </HBox>
+    </children>
+</VBox>

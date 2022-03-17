@@ -1,6 +1,5 @@
 package cz.naseLekarna.gui.application;
 
-import cz.naseLekarna.gui.logIn.LogInController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -30,6 +29,11 @@ public class StageController implements Initializable {
     @FXML
     public StackPane mainStage;
 
+    /**
+     * Initializer for Main Stage of app.
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         VBox vBox = null;

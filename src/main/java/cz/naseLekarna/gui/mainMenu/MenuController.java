@@ -2,9 +2,7 @@ package cz.naseLekarna.gui.mainMenu;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.VBox;
-import org.apache.log4j.chainsaw.Main;
 
 import java.io.IOException;
 
@@ -30,6 +28,7 @@ public class MenuController {
 
     /**
      * Menu button takes user to Home screen.
+     *
      * @param actionEvent
      * @throws IOException
      */
@@ -40,6 +39,7 @@ public class MenuController {
 
     /**
      * Menu button takes user to Order History screen
+     *
      * @param actionEvent
      */
     public void switchToHistory(ActionEvent actionEvent) throws IOException {
@@ -47,6 +47,11 @@ public class MenuController {
         /*TODO*/
     }
 
+    /**
+     * Menu button takes user to Settings screen.
+     * @param actionEvent
+     * @throws IOException
+     */
     public void switchToSettings(ActionEvent actionEvent) throws IOException {
         MainController.getMainController().switchToSettings();
     }

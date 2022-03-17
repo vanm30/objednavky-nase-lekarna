@@ -1,9 +1,9 @@
 package cz.naseLekarna.gui.editOrder;
 
-import cz.naseLekarna.gui.newOrder.NewOrderController;
 import cz.naseLekarna.gui.mainMenu.MainController;
 import cz.naseLekarna.system.FirebaseService;
 import cz.naseLekarna.system.Storage;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -21,13 +21,6 @@ import java.util.concurrent.ExecutionException;
 public class OrderOpener {
 
     private static OrderOpener orderOpener;
-    public VBox listPripravek;
-    public VBox listRecept;
-    public HBox orderInfo;
-    public Label name;
-
-    Storage storage = Storage.getStorage();
-    FirebaseService firebaseService = new FirebaseService();
 
     public OrderOpener() {
         orderOpener = this;
@@ -37,24 +30,35 @@ public class OrderOpener {
         return orderOpener;
     }
 
+    @FXML
+    public VBox listPripravek;
+    @FXML
+    public VBox listRecept;
+    @FXML
+    public HBox orderInfo;
+    @FXML
+    public Label name;
+    @FXML
+    public Label orderNumber;
+    @FXML
+    public Label orderID;
 
+    Storage storage = Storage.getStorage();
+    FirebaseService firebaseService = new FirebaseService();
+
+    /**
+     * This order opens clicked order to edit it.
+     * @param mouseEvent
+     * @throws IOException
+     * @throws ExecutionException
+     * @throws InterruptedException
+     */
     public void openOrder(MouseEvent mouseEvent) throws IOException, ExecutionException, InterruptedException {
+        firebaseService.getInfoForEdit(orderID.getText());
         VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/editOrder.fxml"));
         MainController.getMainController().mainStackPane.getChildren().clear();
         MainController.getMainController().mainStackPane.getChildren().add(vBox);
         MainController.getMainController().mainLabel.setText("Editace Objednávky");
-        firebaseService.getInfoForEdit(name.getText());
-
-        EditInfoController.getEditController().pickUpOption.getItems().add("Osobní");
-        EditInfoController.getEditController().pickUpOption.getItems().add("Rozvoz");
-        EditInfoController.getEditController().name.setText(storage.editedOrder.getCustomer().getName());
-        EditInfoController.getEditController().phoneNumber.setText(String.valueOf(storage.editedOrder.getCustomer().getPhoneNumber()));
-        EditInfoController.getEditController().street.setText(storage.editedOrder.getCustomer().getStreet());
-        EditInfoController.getEditController().city.setText(storage.editedOrder.getCustomer().getCity());
-        EditInfoController.getEditController().dateBegin.setValue(NewOrderController.LOCAL_DATE(storage.editedOrder.getDateBegin()));
-        EditInfoController.getEditController().pickUpOption.setValue(storage.editedOrder.getOrderPickupInfo());
-        EditInfoController.getEditController().dateEnd.setValue(NewOrderController.LOCAL_DATE(storage.editedOrder.getDateEnd()));
-        EditInfoController.getEditController().notes.setText(storage.editedOrder.getNotes());
     }
 
     public void openOrdertoo(TouchEvent touchEvent) {
