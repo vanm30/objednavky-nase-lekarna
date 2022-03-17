@@ -11,13 +11,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="loginBackground" stylesheets="@../stylesheet.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.naseLekarna.gui.logIn.SignInController">
+<VBox fx:id="loginBackground" stylesheets="@/stylesheet.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.naseLekarna.gui.logIn.SignInController">
     <children>
         <Button mnemonicParsing="false" onAction="#back" style="-fx-background-color: transparent;">
             <graphic>
                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../images/delete_black.png" />
+                        <Image url="@/images/delete_black.png" />
                     </image>
                 </ImageView>
             </graphic>
@@ -25,11 +25,11 @@
                 <Insets left="20.0" top="20.0" />
             </VBox.margin>
         </Button>
-        <VBox alignment="TOP_CENTER" stylesheets="@../stylesheet.css">
+        <VBox alignment="TOP_CENTER" stylesheets="@/stylesheet.css">
             <children>
                 <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../images/logoNL.png" />
+                        <Image url="@/images/logoNL.png" />
                     </image>
                 </ImageView>
                 <Label text="NAŠE LÉKÁRNA ">
@@ -44,7 +44,7 @@
                                 <Font name="Avenir Book" size="16.0" />
                             </font>
                         </Label>
-                        <Label text="ZAMĚSTNANCE" textFill="#434343">
+                        <Label text="UŽIVATELE" textFill="#434343">
                             <font>
                                 <Font name="Avenir Book" size="16.0" />
                             </font>
@@ -61,7 +61,7 @@
                                         <Font name="Avenir Book" size="13.0" />
                                     </font>
                                 </Label>
-                                <Label text="2. Zadejte infomace nového zaměstnance" wrapText="true">
+                                <Label text="2. Zadejte infomace nového uživatele" wrapText="true">
                                     <font>
                                         <Font name="Avenir Next Bold" size="13.0" />
                                     </font>
@@ -75,7 +75,7 @@
                             <children>
                                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../images/user.png" />
+                                        <Image url="@/images/user.png" />
                                     </image>
                                 </ImageView>
                                 <TextField fx:id="newUsername" prefHeight="30.0" promptText="Uživatelské jméno" style="-fx-background-color: transparent; -fx-border-color: transparent;" HBox.hgrow="ALWAYS">
@@ -92,7 +92,7 @@
                             <children>
                                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../images/password.png" />
+                                        <Image url="@/images/password.png" />
                                     </image>
                                 </ImageView>
                                 <PasswordField fx:id="newPassword" prefHeight="30.0" promptText="Heslo" style="-fx-background-color: transparent; -fx-border-color: transparent;" HBox.hgrow="ALWAYS">

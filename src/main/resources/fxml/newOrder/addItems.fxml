@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane alignment="TOP_CENTER" style="-fx-background-color: white;" stylesheets="@../stylesheet.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.naseLekarna.gui.newOrder.OrderItemsController">
+<StackPane alignment="TOP_CENTER" style="-fx-background-color: white;" stylesheets="@/stylesheet.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.naseLekarna.gui.newOrder.OrderItemsController">
     <children>
         <VBox alignment="TOP_CENTER">
             <children>

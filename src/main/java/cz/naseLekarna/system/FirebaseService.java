@@ -20,37 +20,42 @@ public class FirebaseService {
     Storage storage = Storage.getStorage();
 
     /**
-     * Method adds user to Firebase
+     * Method adds customer to Firebase
      *
      * @throws ExecutionException
      * @throws InterruptedException
      */
-    public void addUser() throws ExecutionException, InterruptedException {
+    public void addCustomer() throws ExecutionException, InterruptedException {
         Map<String, Object> docData = new HashMap<>();
         docData.put("name", storage.customer.getName());
         docData.put("phoneNumber", storage.customer.getPhoneNumber());
         docData.put("street", storage.customer.getStreet());
         docData.put("city", storage.customer.getCity());
-        ApiFuture<DocumentReference> addedDocRef = db.collection("customer").add(docData);
+        ApiFuture<WriteResult> addedDocRef = db.collection("customers").document(String.valueOf(storage.customer.getPhoneNumber())).set(docData);
         addedDocRef.get();
     }
 
-    /* *//**
-     * Method loads Users to storage
+    /**
+     * Method loads customer to storage
      * @throws ExecutionException
      * @throws InterruptedException
-     *//*
-    public void loadUsers() throws ExecutionException, InterruptedException {
+     */
+    public void loadCustomers() throws ExecutionException, InterruptedException {
         storage.activeCustomers.clear();
 
         ApiFuture<QuerySnapshot> future = db.collection("customers").get();
         List<QueryDocumentSnapshot> documents = future.get().getDocuments();
         for (QueryDocumentSnapshot document : documents) {
-            Customer customer = new Customer(document.get("name"), Integer.parseInt(document.get("phoneNumber").toString()), document.get("street"), document.get("city"));
+            Customer customer = new Customer();
+            customer.setName((String) document.get("name"));
+            customer.setPhoneNumber(Integer.parseInt(String.valueOf(document.get("phoneNumber"))));
+            customer.setStreet((String) document.get("street"));
+            customer.setCity((String) document.get("city"));
+
             storage.getActiveCustomers().add(customer);
         }
         future.get();
-    }*/
+    }
 
     /**
      * Method adds order to Firebase
@@ -110,8 +115,25 @@ public class FirebaseService {
         future.get();
     }
 
+    public void getCustomerInfo(String id) throws ExecutionException, InterruptedException {
+        DocumentReference docRef = db.collection("customers").document(id);
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+        storage.newOrder.getCustomer().setName((String) document.get("name"));
+        storage.newOrder.getCustomer().setPhoneNumber(Integer.parseInt(String.valueOf(document.get("phoneNumber"))));
+        storage.newOrder.getCustomer().setCity((String) document.get("city"));
+        storage.newOrder.getCustomer().setStreet((String) document.get("street"));
+        future.get();
+    }
+
     public void updateOrder(Map<String, Object> docData) throws ExecutionException, InterruptedException {
         DocumentReference docRef = db.collection("orders").document(storage.getEditedOrder().getOrderId());
+        ApiFuture<WriteResult> writeResult = docRef.update(docData);
+        writeResult.get();
+    }
+
+    public void updateSettings(Map<String, Object> docData) throws ExecutionException, InterruptedException {
+        DocumentReference docRef = db.collection("users").document(storage.user.id);
         ApiFuture<WriteResult> writeResult = docRef.update(docData);
         writeResult.get();
     }
@@ -161,13 +183,16 @@ public class FirebaseService {
     }
 
     public boolean validateLogin(String userName, String password) throws ExecutionException, InterruptedException, NoSuchAlgorithmException {
-        ApiFuture<QuerySnapshot> future = db.collection("employees").get();
+        ApiFuture<QuerySnapshot> future = db.collection("users").get();
         List<QueryDocumentSnapshot> documents = future.get().getDocuments();
 
         String hashedEntryPassword = Logic.getLogic().hashPassword(password);
 
         for (QueryDocumentSnapshot document : documents) {
             if (userName.equals(document.get("username")) && hashedEntryPassword.equals(document.get("password"))) {
+                storage.user = new User(document.getId(), (String) document.get("username"),(ArrayList) document.get("settings"));
+                System.out.println(storage.user.userName);
+                System.out.println(storage.user.settings);
                 return true;
             }
         }
@@ -176,11 +201,11 @@ public class FirebaseService {
 
     //TODO zda je pouzivanej
 
-    public void addEmployee(String username, String password) throws ExecutionException, InterruptedException, NoSuchAlgorithmException {
+    public void addUser(String username, String password) throws ExecutionException, InterruptedException, NoSuchAlgorithmException {
         Map<String, Object> docData = new HashMap<>();
         docData.put("username", username);
         docData.put("password", Logic.getLogic().hashPassword(password));
-        ApiFuture<DocumentReference> addedDocRef = db.collection("employees").add(docData);
+        ApiFuture<DocumentReference> addedDocRef = db.collection("users").add(docData);
         addedDocRef.get();
 
 

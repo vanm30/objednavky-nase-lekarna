@@ -7,7 +7,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<VBox stylesheets="@../stylesheet.css" alignment="TOP_CENTER" style="-fx-background-color: white;"
+<VBox stylesheets="@/stylesheet.css" alignment="TOP_CENTER" style="-fx-background-color: white;"
       xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="cz.naseLekarna.gui.mainMenu.SettingsController">
     <children>
@@ -21,7 +21,7 @@
                             </font>
                         </Label>
                         <Region HBox.hgrow="ALWAYS"/>
-                        <CheckBox alignment="CENTER" graphicTextGap="10.0" mnemonicParsing="false" HBox.hgrow="NEVER"/>
+                        <CheckBox fx:id="autoUserSave" alignment="CENTER" graphicTextGap="10.0" mnemonicParsing="false" HBox.hgrow="NEVER"/>
                     </children>
                     <VBox.margin>
                         <Insets/>

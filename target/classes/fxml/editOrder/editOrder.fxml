@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<VBox alignment="CENTER_LEFT" stylesheets="@../stylesheet.css" xmlns="http://javafx.com/javafx/null"
+<VBox alignment="CENTER_LEFT" stylesheets="@/stylesheet.css" xmlns="http://javafx.com/javafx/null"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.naseLekarna.gui.editOrder.EditInfoController">
     <children>
         <VBox style="-fx-background-color: #d3d3d3; -fx-background-radius: 10;">

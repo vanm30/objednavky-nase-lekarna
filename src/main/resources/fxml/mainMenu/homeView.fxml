@@ -5,7 +5,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-<VBox alignment="BOTTOM_CENTER" style="-fx-background-color: white;" stylesheets="@../stylesheet.css"
+<VBox alignment="BOTTOM_CENTER" style="-fx-background-color: white;" stylesheets="@/stylesheet.css"
       xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="cz.naseLekarna.gui.mainMenu.HomeViewController">
     <children>
@@ -19,7 +19,7 @@
                     <graphic>
                         <ImageView fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../images/plus.png"/>
+                                <Image url="@/images/plus.png"/>
                             </image>
                         </ImageView>
                     </graphic>

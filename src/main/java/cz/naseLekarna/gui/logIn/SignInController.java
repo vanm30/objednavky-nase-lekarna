@@ -38,20 +38,17 @@ public class SignInController {
     @FXML
     public VBox errorBox;
 
-
     StageController stageController = StageController.getStageController();
     FirebaseService firebaseService = new FirebaseService();
 
-
-
     /**
-     * This method takes user to new Employee form.
+     * This method takes user to new User form.
      * @throws IOException
      */
     public void next() throws IOException, NoSuchAlgorithmException, ExecutionException, InterruptedException {
         if (firebaseService.validateLogin("admin",adminPassword.getText())){
             stageController.mainStage.getChildren().clear();
-            VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/newEmpForm.fxml"));
+            VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/login/newUserForm.fxml"));
             stageController.mainStage.getChildren().add(vBox);
         } else {
             errorBox.getChildren().clear();
@@ -62,7 +59,7 @@ public class SignInController {
     }
 
     public void finish() throws NoSuchAlgorithmException, ExecutionException, InterruptedException, IOException {
-        firebaseService.addEmployee(newUsername.getText(),newPassword.getText());
+        firebaseService.addUser(newUsername.getText(),newPassword.getText());
         back();
     }
 
@@ -72,7 +69,7 @@ public class SignInController {
      */
     public void back() throws IOException {
         stageController.mainStage.getChildren().clear();
-        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/logIn.fxml"));
+        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/logIn/logIn.fxml"));
         stageController.mainStage.getChildren().add(vBox);
     }
 }

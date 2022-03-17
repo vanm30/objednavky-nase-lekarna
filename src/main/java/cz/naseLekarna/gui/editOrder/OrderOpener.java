@@ -55,7 +55,7 @@ public class OrderOpener {
      */
     public void openOrder(MouseEvent mouseEvent) throws IOException, ExecutionException, InterruptedException {
         firebaseService.getInfoForEdit(orderID.getText());
-        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/editOrder.fxml"));
+        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/editOrder/editOrder.fxml"));
         MainController.getMainController().mainStackPane.getChildren().clear();
         MainController.getMainController().mainStackPane.getChildren().add(vBox);
         MainController.getMainController().mainLabel.setText("Editace Objednávky");

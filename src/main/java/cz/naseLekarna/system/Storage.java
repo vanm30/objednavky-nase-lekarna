@@ -19,12 +19,14 @@ public class Storage {
         return storage;
     }
 
+    public User user;
     public Customer customer;
     public Order newOrder;
     public Order editedOrder;
 
     List<Order> activeOrders = new ArrayList<Order>();
     List<Customer> activeCustomers = new ArrayList<>();
+
 
     public List<Customer> getActiveCustomers() {
         return activeCustomers;

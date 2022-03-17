@@ -59,7 +59,7 @@ public class OrderItemsController implements Initializable {
             for (int i = 0; i < storage.newOrder.orderedPripravekList.size(); i++) {
                 GridPane gridPane = null;
                 try {
-                    gridPane = FXMLLoader.load(getClass().getResource("/fxml/itemPripravek.fxml"));
+                    gridPane = FXMLLoader.load(getClass().getResource("/fxml/newOrder/itemPripravek.fxml"));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -74,7 +74,7 @@ public class OrderItemsController implements Initializable {
             for (int i = 0; i < storage.newOrder.orderedReceptList.size(); i++) {
                 GridPane gridPane = null;
                 try {
-                    gridPane = FXMLLoader.load(getClass().getResource("/fxml/itemRecept.fxml"));
+                    gridPane = FXMLLoader.load(getClass().getResource("/fxml/newOrder/itemRecept.fxml"));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -92,7 +92,7 @@ public class OrderItemsController implements Initializable {
      * @throws Exception
      */
     public void addRecept(ActionEvent actionEvent) throws Exception {
-        GridPane gridPane = FXMLLoader.load(getClass().getResource("/fxml/itemRecept.fxml"));
+        GridPane gridPane = FXMLLoader.load(getClass().getResource("/fxml/newOrder/itemRecept.fxml"));
         itemsField.getChildren().add(gridPane);
     }
 
@@ -103,7 +103,7 @@ public class OrderItemsController implements Initializable {
      * @throws Exception
      */
     public void addPripravek(ActionEvent actionEvent) throws Exception {
-        GridPane gridPane = FXMLLoader.load(getClass().getResource("/fxml/itemPripravek.fxml"));
+        GridPane gridPane = FXMLLoader.load(getClass().getResource("/fxml/newOrder/itemPripravek.fxml"));
         itemsField.getChildren().add(gridPane);
     }
 
@@ -137,7 +137,7 @@ public class OrderItemsController implements Initializable {
      */
     public void backToOrderList(ActionEvent actionEvent) throws IOException {
         MainController.getMainController().mainStackPane.getChildren().clear();
-        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/homeView.fxml"));
+        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/mainMenu/homeView.fxml"));
         MainController.getMainController().mainStackPane.getChildren().add(vBox);
         MainController.getMainController().mainLabel.setText("Nová Objednávka");
     }
@@ -213,7 +213,7 @@ public class OrderItemsController implements Initializable {
         //exec new page
         saveItems();
         MainController.getMainController().mainStackPane.getChildren().clear();
-        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/orderInfo.fxml"));
+        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/newOrder/orderInfo.fxml"));
         MainController.getMainController().mainStackPane.getChildren().add(vBox);
     }
 

@@ -1,6 +1,7 @@
 package cz.naseLekarna.gui.newOrder;
 
 import cz.naseLekarna.gui.mainMenu.MainController;
+import cz.naseLekarna.system.Customer;
 import cz.naseLekarna.system.FirebaseService;
 import cz.naseLekarna.system.Storage;
 import cz.naseLekarna.system.Validator;
@@ -12,6 +13,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -50,6 +52,8 @@ public class OptionalInfoController implements Initializable {
     public TextArea notes;
     @FXML
     public VBox errorBox;
+    @FXML
+    public Label addToDbLabel;
 
     Storage storage = Storage.getStorage();
     FirebaseService firebaseService = new FirebaseService();
@@ -75,6 +79,9 @@ public class OptionalInfoController implements Initializable {
         }
         if (storage.newOrder.getNotes() != null) {
             notes.setText(storage.newOrder.getNotes());
+        }
+        if (storage.user.settings.get(0).equals("1")){
+            addToDatabase.setSelected(true);
         }
     }
 
@@ -111,6 +118,16 @@ public class OptionalInfoController implements Initializable {
                 fail++;
             }
         }
+        if (addToDatabase.isSelected()){
+            if (name.getText().isEmpty()){
+                mistakes.add("Pro přidání do databáze, zadejte jméno klieta.");
+                fail++;
+            }
+            if (phoneNumber.getText().isEmpty()){
+                mistakes.add("Pro přidání do databáze, zadejte telefonní číslo.");
+                fail++;
+            }
+        }
 
         if (fail>0) {
             errorBox.getChildren().clear();
@@ -125,11 +142,24 @@ public class OptionalInfoController implements Initializable {
         //Save Info
         saveInfo();
 
+        if (addToDatabase.isSelected()){
+            storage.customer = new Customer();
+            storage.customer.setName(name.getText());
+            storage.customer.setPhoneNumber(Integer.valueOf((String) phoneNumber.getText()));
+            if (!city.getText().isEmpty()){
+                storage.customer.setCity(city.getText());
+            } else storage.customer.setCity(null);
+            if (!street.getText().isEmpty()) {
+                storage.customer.setStreet(street.getText());
+            } else storage.customer.setStreet(null);
+            firebaseService.addCustomer();
+        }
+
         //Upload order to firebase
         firebaseService.addOrder();
 
         MainController.getMainController().mainStackPane.getChildren().clear();
-        VBox vBox1 = FXMLLoader.load(getClass().getResource("/fxml/homeView.fxml"));
+        VBox vBox1 = FXMLLoader.load(getClass().getResource("/fxml/mainMenu/homeView.fxml"));
         MainController.getMainController().mainStackPane.getChildren().add(vBox1);
         MainController.getMainController().mainLabel.setText("Aktivní Objednávky");
 
@@ -143,7 +173,7 @@ public class OptionalInfoController implements Initializable {
     public void backToOrderInfo(ActionEvent actionEvent) throws IOException {
         saveInfo();
         MainController.getMainController().mainStackPane.getChildren().clear();
-        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/orderInfo.fxml"));
+        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/newOrder/orderInfo.fxml"));
         MainController.getMainController().mainStackPane.getChildren().add(vBox);
     }
 
@@ -158,5 +188,12 @@ public class OptionalInfoController implements Initializable {
         storage.newOrder.getCustomer().setStreet(street.getText());
         storage.newOrder.getCustomer().setCity(city.getText());
         storage.newOrder.setNotes(notes.getText());
+    }
+
+
+    public void findCustomer(ActionEvent actionEvent) throws IOException {
+        MainController.getMainController().mainStackPane.getChildren().clear();
+        StackPane stackPane = FXMLLoader.load(getClass().getResource("/fxml/lists/customerList.fxml"));
+        MainController.getMainController().mainStackPane.getChildren().add(stackPane);
     }
 }

@@ -44,13 +44,14 @@ public class LogInController {
     FirebaseService firebaseService = new FirebaseService();
 
     /**
-     * This method tries to log user upon given lofin info.
+     * This method tries to log user upon given login info.
      * @throws NoSuchAlgorithmException
      * @throws ExecutionException
      * @throws InterruptedException
      * @throws IOException
      */
     public void logIn() throws NoSuchAlgorithmException, ExecutionException, InterruptedException, IOException {
+        //Form check
         errorBox.getChildren().clear();
         if (userName.getText().trim().isEmpty()) {
             Label error = new Label();
@@ -64,9 +65,12 @@ public class LogInController {
         }
         if (!userName.getText().trim().isEmpty() && !password.getText().isEmpty()) {
             Boolean result = firebaseService.validateLogin(userName.getText(), password.getText());
+            //Logs in user
             if (result) {
+
+                //New scene
                 stageController.mainStage.getChildren().clear();
-                GridPane gridPane = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));
+                GridPane gridPane = FXMLLoader.load(getClass().getResource("/fxml/mainMenu/main.fxml"));
                 stageController.mainStage.getChildren().add(gridPane);
 
             } else {
@@ -76,8 +80,6 @@ public class LogInController {
                 errorBox.getChildren().add(error);
             }
         }
-
-
     }
 
     /**
@@ -86,7 +88,7 @@ public class LogInController {
      */
     public void newUser() throws IOException {
         stageController.mainStage.getChildren().clear();
-        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/adminLogin.fxml"));
+        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/login/adminLogin.fxml"));
         stageController.mainStage.getChildren().add(vBox);
     }
 

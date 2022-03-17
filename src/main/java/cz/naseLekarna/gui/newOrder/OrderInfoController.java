@@ -118,7 +118,7 @@ public class OrderInfoController implements Initializable {
     public void backToItems(ActionEvent actionEvent) throws IOException {
         saveOrderInfo();
         MainController.getMainController().mainStackPane.getChildren().clear();
-        StackPane stackPane = FXMLLoader.load(getClass().getResource("/fxml/addItems.fxml"));
+        StackPane stackPane = FXMLLoader.load(getClass().getResource("/fxml/newOrder/addItems.fxml"));
         MainController.getMainController().mainStackPane.getChildren().add(stackPane);
     }
 
@@ -159,7 +159,7 @@ public class OrderInfoController implements Initializable {
         //exec save and next page
         saveOrderInfo();
         MainController.getMainController().mainStackPane.getChildren().clear();
-        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/optionalInfo.fxml"));
+        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/newOrder/optionalInfo.fxml"));
         MainController.getMainController().mainStackPane.getChildren().add(vBox);
     }
 }

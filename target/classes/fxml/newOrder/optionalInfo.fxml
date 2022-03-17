@@ -97,7 +97,7 @@
                 </HBox>
                 <HBox alignment="CENTER_LEFT">
                     <children>
-                        <Label fx:id="addToDbLabel" text="Přidat do databáze">
+                        <Label text="Přidat do databáze">
                             <font>
                                 <Font name="Avenir Book" size="13.0" />
                             </font>

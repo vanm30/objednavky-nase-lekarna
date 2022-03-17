@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<HBox fx:id="orderInfo" alignment="CENTER" stylesheets="@../stylesheet.css" xmlns="http://javafx.com/javafx/null"
+<HBox fx:id="orderInfo" alignment="CENTER" stylesheets="@/stylesheet.css" xmlns="http://javafx.com/javafx/null"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.naseLekarna.gui.editOrder.OrderOpener">
     <children>
         <VBox fx:id="infoBox" alignment="TOP_CENTER" onMouseClicked="#openOrder" onTouchPressed="#openOrder"

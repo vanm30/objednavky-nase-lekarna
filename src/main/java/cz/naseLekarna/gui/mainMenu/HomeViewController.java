@@ -44,7 +44,7 @@ public class HomeViewController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         StackPane stackPane = null;
         try {
-            stackPane = FXMLLoader.load(getClass().getResource("/fxml/orderList.fxml"));
+            stackPane = FXMLLoader.load(getClass().getResource("/fxml/lists/orderList.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -61,7 +61,7 @@ public class HomeViewController implements Initializable {
         storage.newOrder = new Order();
         storage.newOrder.setCustomer(new Customer());
         MainController.getMainController().mainStackPane.getChildren().clear();
-        StackPane stackPane = FXMLLoader.load(getClass().getResource("/fxml/addItems.fxml"));
+        StackPane stackPane = FXMLLoader.load(getClass().getResource("/fxml/newOrder/addItems.fxml"));
         MainController.getMainController().mainStackPane.getChildren().add(stackPane);
         MainController.getMainController().mainLabel.setText("Nová Objednávka");
 

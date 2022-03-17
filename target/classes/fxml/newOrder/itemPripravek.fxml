@@ -6,7 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<GridPane style="-fx-background-color: transparent;" stylesheets="@../stylesheet.css"
+<GridPane style="-fx-background-color: transparent;" stylesheets="@/stylesheet.css"
           xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1"
           fx:controller="cz.naseLekarna.gui.newOrder.ItemsController">
     <columnConstraints>
@@ -96,7 +96,7 @@
             <graphic>
                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../images/delete.png"/>
+                        <Image url="@/images/delete.png"/>
                     </image>
                 </ImageView>
             </graphic>

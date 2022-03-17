@@ -53,7 +53,7 @@ public class MainController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         VBox vBox = null;
         try {
-            vBox = FXMLLoader.load(getClass().getResource("/fxml/homeView.fxml"));
+            vBox = FXMLLoader.load(getClass().getResource("/fxml/mainMenu/homeView.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -67,7 +67,7 @@ public class MainController implements Initializable {
      * @throws Exception
      */
     public void openMenu() throws Exception {
-        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/menu.fxml"));
+        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/mainMenu/menu.fxml"));
         mainStackPane.getChildren().add(vBox);
         vBox.setTranslateX(-219);
 
@@ -127,7 +127,7 @@ public class MainController implements Initializable {
             mainStackPane.getChildren().clear();
             VBox homeView = null;
             try {
-                homeView = FXMLLoader.load(getClass().getResource("/fxml/homeView.fxml"));
+                homeView = FXMLLoader.load(getClass().getResource("/fxml/mainMenu/homeView.fxml"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -157,7 +157,7 @@ public class MainController implements Initializable {
             mainStackPane.getChildren().clear();
             VBox settings = null;
             try {
-                settings = FXMLLoader.load(getClass().getResource("/fxml/settings.fxml"));
+                settings = FXMLLoader.load(getClass().getResource("/fxml/mainMenu/settings.fxml"));
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -3,7 +3,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<StackPane stylesheets="@../stylesheet.css" alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/null"
+<StackPane stylesheets="@/stylesheet.css" alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/null"
            xmlns:fx="http://javafx.com/fxml/1"
            fx:controller="cz.naseLekarna.gui.lists.OrderListController">
     <children>

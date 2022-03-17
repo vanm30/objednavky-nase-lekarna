@@ -1,8 +1,10 @@
 package cz.naseLekarna.gui.lists;
 
 import cz.naseLekarna.gui.mainMenu.MainController;
+import cz.naseLekarna.gui.newOrder.OptionalInfoController;
 import cz.naseLekarna.gui.newOrder.OrderInfoController;
 import cz.naseLekarna.system.Customer;
+import cz.naseLekarna.system.FirebaseService;
 import cz.naseLekarna.system.Storage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +16,7 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 /**
  * @author Matěj Vaník
@@ -33,9 +36,11 @@ public class SavedCustomerController {
 
     @FXML
     public Label name;
+    @FXML
+    public Label phoneNumber;
 
     Storage storage = Storage.getStorage();
-
+    FirebaseService firebaseService = new FirebaseService();
 
     /**
      * Method loads new order creation and writes data of selected customer
@@ -43,23 +48,14 @@ public class SavedCustomerController {
      * @param mouseEvent
      * @throws IOException
      */
-    public void writeData(MouseEvent mouseEvent) throws IOException {
+    public void writeData(MouseEvent mouseEvent) throws IOException, ExecutionException, InterruptedException {
+        firebaseService.getCustomerInfo(phoneNumber.getText());
         MainController.getMainController().mainStackPane.getChildren().clear();
-        VBox vBox1 = FXMLLoader.load(getClass().getResource("/fxml/optionalInfo.fxml"));
-        MainController.getMainController().mainStackPane.getChildren().add(vBox1);
+        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/newOrder/optionalInfo.fxml"));
+        MainController.getMainController().mainStackPane.getChildren().add(vBox);
         MainController.getMainController().mainLabel.setText("Nový Pacient");
-        OrderInfoController.getCustomerInfoController().dateBegin.setValue(LocalDate.now());
-
-        List<Customer> list = storage.getActiveCustomers();
-        for (Customer customer : list) {
-            if (customer.getName() == name.getText()) {
-                OrderInfoController.getCustomerInfoController().name.setText(customer.getName());
-                OrderInfoController.getCustomerInfoController().phoneNumber.setText(String.valueOf(customer.getPhoneNumber()));
-                OrderInfoController.getCustomerInfoController().street.setText(customer.getStreet());
-                OrderInfoController.getCustomerInfoController().city.setText(customer.getCity());
-            }
-        }
-
+        OptionalInfoController.getOptionalInfoController().addToDatabase.setVisible(false);
+        OptionalInfoController.getOptionalInfoController().addToDbLabel.setVisible(false);
     }
 
     public void writeDataToo(TouchEvent touchEvent) {

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox stylesheets="@../stylesheet.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.naseLekarna.gui.newOrder.OrderInfoController">
+<VBox stylesheets="@/stylesheet.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.naseLekarna.gui.newOrder.OrderInfoController">
     <children>
         <Label text="Základní údaje" textFill="#5ead87">
             <font>

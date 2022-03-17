@@ -4,7 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<VBox stylesheets="@../stylesheet.css" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/null"
+<VBox stylesheets="@/stylesheet.css" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/null"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="cz.naseLekarna.gui.lists.SavedCustomerController">
     <children>

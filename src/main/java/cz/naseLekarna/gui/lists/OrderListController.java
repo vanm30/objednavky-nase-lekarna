@@ -69,7 +69,7 @@ public class OrderListController implements Initializable {
             for (Order order : list) {
                 HBox hBox = null;
                 try {
-                    hBox = FXMLLoader.load(getClass().getResource("/fxml/orderItem.fxml"));
+                    hBox = FXMLLoader.load(getClass().getResource("/fxml/editOrder/orderItem.fxml"));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

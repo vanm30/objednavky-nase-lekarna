@@ -23,7 +23,7 @@ public class Start extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/stage.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/application/stage.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.setTitle("naše lékárna");

@@ -38,7 +38,7 @@ public class StageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         VBox vBox = null;
         try {
-            vBox = FXMLLoader.load(getClass().getResource("/fxml/logIn.fxml"));
+            vBox = FXMLLoader.load(getClass().getResource("/fxml/login/logIn.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
