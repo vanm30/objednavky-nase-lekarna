@@ -178,7 +178,7 @@ public class EditInfoController implements Initializable {
         firebaseService.deleteOrder();
 
         MainController.getMainController().mainStackPane.getChildren().clear();
-        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/homeView/homeView.fxml"));
+        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/mainMenu/homeView.fxml"));
         MainController.getMainController().mainStackPane.getChildren().add(vBox);
         MainController.getMainController().mainLabel.setText("Aktivní Objednávky");
     }

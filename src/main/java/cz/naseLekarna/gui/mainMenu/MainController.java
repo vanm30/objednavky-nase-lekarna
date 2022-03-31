@@ -1,11 +1,15 @@
 package cz.naseLekarna.gui.mainMenu;
 
+import cz.naseLekarna.gui.lists.OrderListController;
+import cz.naseLekarna.system.Storage;
 import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -13,7 +17,10 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 /**
  * @author Matěj Vaník
@@ -42,6 +49,10 @@ public class MainController implements Initializable {
     public Label mainLabel;
     @FXML
     public Button removeMenu;
+    @FXML
+    public TextField searchBar;
+
+    Storage storage = Storage.getStorage();
 
     /**
      * This method is called when inilializing this Controller. It puts homeView.fxml to main stack pane.
@@ -59,6 +70,7 @@ public class MainController implements Initializable {
         }
         mainStackPane.getChildren().add(vBox);
         removeMenu.setVisible(false);
+        searchBar.setVisible(false);
     }
 
     /**
@@ -168,4 +180,46 @@ public class MainController implements Initializable {
         });
     }
 
+    public void startSearch(ActionEvent actionEvent) {
+
+        if (mainLabel.isVisible()){
+            mainLabel.setVisible(false);
+            searchBar.setVisible(true);
+        } else{
+            mainLabel.setVisible(true);
+            searchBar.setVisible(false);
+        }
+    }
+
+
+    public void search() {
+        if (searchBar.getText().isEmpty()){
+            OrderListController.getOrderListController().loadOrders();
+            return;
+        }
+
+        if(!storage.getActiveOrders().isEmpty()){
+            ArrayList<String> names = storage.orderNames;
+            ArrayList<Integer> numbers = storage.orderNumbers;
+            String search = searchBar.getText();
+
+            Set<Object> searchedNames = new HashSet<Object>();
+
+            for (Object name : names) {
+                if (name.toString().contains(search)) {
+                    searchedNames.add(name);
+                }
+            }
+            for (Object number : numbers){
+                if (search.equals(number.toString())) {
+                    searchedNames.add(number);
+                }
+            }
+            if (!searchedNames.isEmpty()){
+                OrderListController.getOrderListController().searchOrders(searchedNames);
+            } else {
+                OrderListController.getOrderListController().activeOrders.getChildren().clear();
+            }
+        }
+    }
 }

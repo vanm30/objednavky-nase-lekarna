@@ -42,4 +42,14 @@ public class Validator {
         return string != null && string.matches("^[a-žA-Ž0-9]*$");
     }
 
+    /**
+     * Method checks if String is Alphanumeric and can contain white space.
+     *
+     * @param string Any string
+     * @return True if is alphanumeric, false if not.
+     */
+    public static boolean isAlphaNumericWithSpace(String string) {
+        return string != null && string.matches("^[a-žA-Ž0-9 ]*$");
+    }
+
 }

@@ -3,16 +3,14 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<StackPane stylesheets="@/stylesheet.css" alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/null"
-           xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="cz.naseLekarna.gui.lists.OrderListController">
+
+<StackPane alignment="TOP_CENTER" stylesheets="@/stylesheet.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.naseLekarna.gui.lists.OrderListController">
     <children>
         <VBox alignment="TOP_CENTER">
             <children>
-                <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: white;"
-                            VBox.vgrow="ALWAYS">
+                <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: white;" VBox.vgrow="ALWAYS">
                     <content>
-                        <VBox fx:id="activeOrders"/>
+                        <VBox fx:id="activeOrders" />
                     </content>
                 </ScrollPane>
             </children>

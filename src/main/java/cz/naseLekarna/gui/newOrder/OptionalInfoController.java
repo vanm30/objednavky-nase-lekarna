@@ -105,7 +105,7 @@ public class OptionalInfoController implements Initializable {
             }
         }
         if (!street.getText().isEmpty()){
-            if (!Validator.isAlphaNumeric(street.getText())){
+            if (!Validator.isAlphaNumericWithSpace(street.getText())){
                 street.setStyle("-fx-border-color: red;-fx-border-radius: 10;-fx-background-color: white; -fx-background-radius: 10;");
                 mistakes.add("Musíte zadat platnou adresu.");
                 fail++;
@@ -192,6 +192,7 @@ public class OptionalInfoController implements Initializable {
 
 
     public void findCustomer(ActionEvent actionEvent) throws IOException {
+        saveInfo();
         MainController.getMainController().mainStackPane.getChildren().clear();
         StackPane stackPane = FXMLLoader.load(getClass().getResource("/fxml/lists/customerList.fxml"));
         MainController.getMainController().mainStackPane.getChildren().add(stackPane);

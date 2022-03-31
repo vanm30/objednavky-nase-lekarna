@@ -24,8 +24,11 @@ public class Storage {
     public Order newOrder;
     public Order editedOrder;
 
-    List<Order> activeOrders = new ArrayList<Order>();
-    List<Customer> activeCustomers = new ArrayList<>();
+    public List<Order> activeOrders = new ArrayList<Order>();
+    public List<Customer> activeCustomers = new ArrayList<>();
+
+    public ArrayList<Integer> orderNumbers = new ArrayList<>();
+    public ArrayList<String> orderNames = new ArrayList<>();
 
 
     public List<Customer> getActiveCustomers() {

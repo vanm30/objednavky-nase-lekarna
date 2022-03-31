@@ -93,6 +93,8 @@ public class FirebaseService {
      */
     public void loadOrders() throws ExecutionException, InterruptedException {
         storage.activeOrders.clear();
+        storage.orderNumbers.clear();
+        storage.orderNames.clear();
         CollectionReference orders = db.collection("orders");
         Query query = orders.orderBy("dateEnd");
         ApiFuture<QuerySnapshot> querySnapshot = query.get();
@@ -100,6 +102,8 @@ public class FirebaseService {
         for (DocumentSnapshot document : querySnapshot.get().getDocuments()) {
             Order order = writeDownInfo(document);
             storage.getActiveOrders().add(order);
+            storage.orderNumbers.add(order.getOrderNumber());
+            storage.orderNames.add(order.getCustomer().getName());
         }
         query.get();
     }
@@ -191,8 +195,6 @@ public class FirebaseService {
         for (QueryDocumentSnapshot document : documents) {
             if (userName.equals(document.get("username")) && hashedEntryPassword.equals(document.get("password"))) {
                 storage.user = new User(document.getId(), (String) document.get("username"),(ArrayList) document.get("settings"));
-                System.out.println(storage.user.userName);
-                System.out.println(storage.user.settings);
                 return true;
             }
         }
