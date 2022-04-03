@@ -13,11 +13,29 @@ Button:pressed{
        -fx-background-color: transparent;
 }
 
-#loginBackground{
+#logInBackground{
 -fx-background-color: linear-gradient(#5EAD87,#61D8DE);
+}
+
+#upperBar{
+-fx-background-color: linear-gradient(#5EAD87,#409988);
 }
 
 #errorBox .label{
 -fx-font-family: Avenir Book;
 -fx-text-fill: #950925;
 }
+
+#logInButton{
+-fx-background-color: #2F4858;
+}
+
+#searchError{
+-fx-font-family: Avenir Book;
+-fx-text-fill: #950925;
+-fx-padding: 30px;
+-fx-border-insets: 30px;
+-fx-background-insets: 30px;
+}
+
+

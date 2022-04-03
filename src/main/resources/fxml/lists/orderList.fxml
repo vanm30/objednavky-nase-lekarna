@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -10,7 +11,10 @@
             <children>
                 <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: white;" VBox.vgrow="ALWAYS">
                     <content>
-                        <VBox fx:id="activeOrders" />
+                        <VBox fx:id="activeOrders" alignment="TOP_CENTER">
+                     <padding>
+                        <Insets bottom="20.0" />
+                     </padding></VBox>
                     </content>
                 </ScrollPane>
             </children>

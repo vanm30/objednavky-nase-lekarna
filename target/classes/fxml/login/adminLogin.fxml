@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="loginBackground" stylesheets="@/stylesheet.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.naseLekarna.gui.logIn.SignInController">
+<VBox fx:id="logInBackground" stylesheets="@/stylesheet.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.naseLekarna.gui.logIn.SignInController">
     <children>
         <Button mnemonicParsing="false" onAction="#back" style="-fx-background-color: transparent;">
             <graphic>
@@ -70,14 +70,14 @@
                                 <Insets bottom="20.0" top="40.0" />
                             </VBox.margin>
                         </VBox>
-                        <HBox style="-fx-background-color: white; -fx-background-radius: 10;">
+                        <HBox fx:id="passwordBox" style="-fx-background-color: white; -fx-background-radius: 10;">
                             <children>
                                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@/images/password.png" />
                                     </image>
                                 </ImageView>
-                                <PasswordField fx:id="adminPassword" prefHeight="30.0" promptText="Heslo" style="-fx-background-color: transparent; -fx-border-color: transparent;" HBox.hgrow="ALWAYS">
+                                <PasswordField onAction="#next" fx:id="adminPassword" prefHeight="30.0" promptText="Heslo" style="-fx-background-color: transparent; -fx-border-color: transparent;" HBox.hgrow="ALWAYS">
                                     <font>
                                         <Font name="Avenir Book" size="12.0" />
                                     </font>
@@ -99,7 +99,7 @@
                     </padding>
                 </VBox>
                 <VBox fx:id="errorBox" alignment="TOP_LEFT" prefHeight="40.0" />
-                <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#next" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #5ead87#5ead87 #5ead87#5ead87; -fx-background-radius: 5;" text="POKRAČOVAT" textFill="WHITE">
+                <Button fx:id="logInButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#next" prefHeight="30.0" prefWidth="100.0" style="-fx-background-radius: 5;" text="POKRAČOVAT" textFill="WHITE">
                     <font>
                         <Font name="Avenir Next Bold" size="12.0" />
                     </font>

@@ -59,6 +59,7 @@ public class OrderInfoController implements Initializable {
     public VBox errorBox;
 
     Storage storage = Storage.getStorage();
+    MainController mainController = MainController.getMainController();
 
     /**
      * This method is run when initialing this Controller. It fills ChoiceBox with following options. If user already filled some info, it will load stored info.
@@ -68,6 +69,10 @@ public class OrderInfoController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //set visibility
+        mainController.searchButton.setVisible(false);
+        mainController.searchBar.setVisible(false);
+
         pickUpOption.getItems().add("Osobní");
         pickUpOption.getItems().add("Rozvoz");
 

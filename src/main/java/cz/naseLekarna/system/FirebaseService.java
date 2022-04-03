@@ -42,7 +42,6 @@ public class FirebaseService {
      */
     public void loadCustomers() throws ExecutionException, InterruptedException {
         storage.activeCustomers.clear();
-
         ApiFuture<QuerySnapshot> future = db.collection("customers").get();
         List<QueryDocumentSnapshot> documents = future.get().getDocuments();
         for (QueryDocumentSnapshot document : documents) {
@@ -51,7 +50,6 @@ public class FirebaseService {
             customer.setPhoneNumber(Integer.parseInt(String.valueOf(document.get("phoneNumber"))));
             customer.setStreet((String) document.get("street"));
             customer.setCity((String) document.get("city"));
-
             storage.getActiveCustomers().add(customer);
         }
         future.get();

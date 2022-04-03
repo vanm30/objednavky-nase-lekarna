@@ -36,9 +36,14 @@ public class MenuController implements Initializable {
 
     Storage storage = Storage.getStorage();
     StageController stage = StageController.getStageController();
+    MainController mainController = MainController.getMainController();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //set visibility
+        mainController.searchBar.setVisible(false);
+        mainController.mainLabel.setVisible(true);
+
         userName.setText(storage.user.userName);
     }
 

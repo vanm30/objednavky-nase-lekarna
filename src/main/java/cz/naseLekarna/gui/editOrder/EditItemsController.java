@@ -8,21 +8,25 @@ import cz.naseLekarna.system.Validator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import org.apache.log4j.chainsaw.Main;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
 
 /**
  * @author Matěj Vaník
  * @created 09.02.2022
  */
-public class EditItemsController {
+public class EditItemsController implements Initializable {
 
     private static EditItemsController editItemsController;
 
@@ -44,6 +48,14 @@ public class EditItemsController {
     public VBox errorBox;
 
     Storage storage = Storage.getStorage();
+    MainController mainController = MainController.getMainController();
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        //set visibility
+        mainController.searchButton.setVisible(false);
+        mainController.searchBar.setVisible(false);
+    }
 
     /**
      * This method add item (Pripravek) to item list.

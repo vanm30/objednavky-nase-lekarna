@@ -1,5 +1,7 @@
 package cz.naseLekarna.system;
 
+import cz.naseLekarna.gui.mainMenu.HomeViewController;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +31,6 @@ public class Storage {
 
     public ArrayList<Integer> orderNumbers = new ArrayList<>();
     public ArrayList<String> orderNames = new ArrayList<>();
-
 
     public List<Customer> getActiveCustomers() {
         return activeCustomers;

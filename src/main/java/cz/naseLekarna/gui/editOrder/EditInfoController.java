@@ -54,9 +54,15 @@ public class EditInfoController implements Initializable {
 
     Storage storage = Storage.getStorage();
     FirebaseService firebaseService = new FirebaseService();
+    MainController mainController = MainController.getMainController();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //set visibility
+        mainController.searchButton.setVisible(false);
+        mainController.searchBar.setVisible(false);
+
+
         pickUpOption.getItems().add("Osobní");
         pickUpOption.getItems().add("Rozvoz");
 
@@ -168,26 +174,26 @@ public class EditInfoController implements Initializable {
 
         firebaseService.updateOrder(docData);
 
-        MainController.getMainController().mainStackPane.getChildren().clear();
+        mainController.mainStackPane.getChildren().clear();
         VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/mainMenu/homeView.fxml"));
-        MainController.getMainController().mainStackPane.getChildren().add(vBox);
-        MainController.getMainController().mainLabel.setText("Aktivní Objednávky");
+        mainController.mainStackPane.getChildren().add(vBox);
+        mainController.mainLabel.setText("Aktivní Objednávky");
     }
 
     public void finishTask(ActionEvent actionEvent) throws IOException, ExecutionException, InterruptedException {
         firebaseService.deleteOrder();
 
-        MainController.getMainController().mainStackPane.getChildren().clear();
+        mainController.mainStackPane.getChildren().clear();
         VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/mainMenu/homeView.fxml"));
-        MainController.getMainController().mainStackPane.getChildren().add(vBox);
-        MainController.getMainController().mainLabel.setText("Aktivní Objednávky");
+        mainController.mainStackPane.getChildren().add(vBox);
+        mainController.mainLabel.setText("Aktivní Objednávky");
     }
 
 
     public void editItems(ActionEvent actionEvent) throws IOException {
         VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/editOrder/editItems.fxml"));
-        MainController.getMainController().mainStackPane.getChildren().clear();
-        MainController.getMainController().mainStackPane.getChildren().add(vBox);
+        mainController.mainStackPane.getChildren().clear();
+        mainController.mainStackPane.getChildren().add(vBox);
 
         if (storage.editedOrder.orderedPripravekList.size() > 0) {
             for (int i = 0; i < storage.editedOrder.orderedPripravekList.size(); i++) {

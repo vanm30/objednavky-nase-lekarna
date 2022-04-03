@@ -1,12 +1,15 @@
 package cz.naseLekarna.gui.mainMenu;
 
+import cz.naseLekarna.gui.lists.CustomerListController;
 import cz.naseLekarna.gui.lists.OrderListController;
+import cz.naseLekarna.system.Customer;
 import cz.naseLekarna.system.Storage;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -51,6 +54,8 @@ public class MainController implements Initializable {
     public Button removeMenu;
     @FXML
     public TextField searchBar;
+    @FXML
+    public Button searchButton;
 
     Storage storage = Storage.getStorage();
 
@@ -122,6 +127,7 @@ public class MainController implements Initializable {
 
     /**
      * This method opens home view.
+     *
      * @throws IOException
      */
     public void switchToHome() throws IOException {
@@ -152,6 +158,7 @@ public class MainController implements Initializable {
 
     /**
      * This method opens settings.
+     *
      * @throws IOException
      */
     public void switchToSettings() throws IOException {
@@ -181,11 +188,17 @@ public class MainController implements Initializable {
     }
 
     public void startSearch(ActionEvent actionEvent) {
-
-        if (mainLabel.isVisible()){
+        if (mainLabel.isVisible()) {
             mainLabel.setVisible(false);
             searchBar.setVisible(true);
-        } else{
+        } else {
+            if (mainStackPane.getChildren().get(0).getId() != null && mainStackPane.getChildren().get(0).getId().equals("orders") && !searchBar.getText().isEmpty()){
+                OrderListController.getOrderListController().loadOrders();
+            }
+            if (mainStackPane.getChildren().get(0).getId() != null && mainStackPane.getChildren().get(0).getId().equals("customersList") && !searchBar.getText().isEmpty()){
+                CustomerListController.getCustomerListController().loadCustomers();
+            }
+            searchBar.clear();
             mainLabel.setVisible(true);
             searchBar.setVisible(false);
         }
@@ -193,32 +206,63 @@ public class MainController implements Initializable {
 
 
     public void search() {
-        if (searchBar.getText().isEmpty()){
-            OrderListController.getOrderListController().loadOrders();
+        if (mainStackPane.getChildren().get(0).getId() == null){
             return;
         }
+        if (mainStackPane.getChildren().get(0).getId().equals("orders")) {
+            if (searchBar.getText().isEmpty()) {
+                OrderListController.getOrderListController().loadOrders();
+            } else if (!storage.getActiveOrders().isEmpty()) {
+                ArrayList<String> names = storage.orderNames;
+                ArrayList<Integer> numbers = storage.orderNumbers;
+                String search = searchBar.getText();
+                Set<Object> searchedNames = new HashSet<Object>();
 
-        if(!storage.getActiveOrders().isEmpty()){
-            ArrayList<String> names = storage.orderNames;
-            ArrayList<Integer> numbers = storage.orderNumbers;
-            String search = searchBar.getText();
-
-            Set<Object> searchedNames = new HashSet<Object>();
-
-            for (Object name : names) {
-                if (name.toString().contains(search)) {
-                    searchedNames.add(name);
+                for (Object name : names) {
+                    if (name.toString().contains(search)) {
+                        searchedNames.add(name);
+                    }
+                }
+                for (Object number : numbers) {
+                    if (search.equals(number.toString())) {
+                        searchedNames.add(number);
+                    }
+                }
+                if (!searchedNames.isEmpty()) {
+                    OrderListController.getOrderListController().searchOrders(searchedNames);
+                } else {
+                    OrderListController.getOrderListController().activeOrders.getChildren().clear();
+                    Label label = new Label();
+                    label.setText("Nezalezeny žádné objednávky.");
+                    label.setId("searchError");
+                    OrderListController.getOrderListController().activeOrders.getChildren().add(label);
                 }
             }
-            for (Object number : numbers){
-                if (search.equals(number.toString())) {
-                    searchedNames.add(number);
+        }
+        if (mainStackPane.getChildren().get(0).getId().equals("customersList")) {
+            if (searchBar.getText().isEmpty()) {
+                CustomerListController.getCustomerListController().loadCustomers();
+            } else if (!storage.getActiveCustomers().isEmpty()) {
+                String search = searchBar.getText();
+                Set<Customer> searchedCustomers = new HashSet<>();
+
+                for (Customer customer : storage.getActiveCustomers()) {
+                    if (customer.getName().contains(search)) searchedCustomers.add(customer);
+                    if (customer.getPhoneNumber().toString().equals(search)) searchedCustomers.add(customer);
+                    if (!(customer.getStreet() == null)) {
+                        if (customer.getStreet().contains(search)) searchedCustomers.add(customer);
+                    }
+                    if (!(customer.getCity() == null)) {
+                        if (customer.getCity().contains(search)) searchedCustomers.add(customer);
+                    }
                 }
-            }
-            if (!searchedNames.isEmpty()){
-                OrderListController.getOrderListController().searchOrders(searchedNames);
-            } else {
-                OrderListController.getOrderListController().activeOrders.getChildren().clear();
+
+                if (!searchedCustomers.isEmpty()) {
+                    CustomerListController.getCustomerListController().searchCustomers(searchedCustomers);
+                } else {
+                    CustomerListController.getCustomerListController().customers.getChildren().clear();
+
+                }
             }
         }
     }

@@ -11,6 +11,7 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.chrono.MinguoChronology;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,9 +39,14 @@ public class SettingsController implements Initializable {
 
     Storage storage = Storage.getStorage();
     FirebaseService firebaseService = new FirebaseService();
+    MainController mainController = MainController.getMainController();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //set visibility
+        mainController.searchButton.setVisible(false);
+        mainController.searchBar.setVisible(false);
+
         if (storage.user.settings.get(0).equals("1")){
             autoUserSave.setSelected(true);
         }

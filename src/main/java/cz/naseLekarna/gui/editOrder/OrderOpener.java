@@ -5,13 +5,17 @@ import cz.naseLekarna.system.FirebaseService;
 import cz.naseLekarna.system.Storage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TouchEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import org.apache.log4j.chainsaw.Main;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -63,6 +67,4 @@ public class OrderOpener {
 
     public void openOrdertoo(TouchEvent touchEvent) {
     }
-
-
 }

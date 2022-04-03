@@ -110,7 +110,7 @@
                         <Insets top="5.0" />
                     </VBox.margin>
                 </HBox>
-            <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#findCustomer" prefHeight="25.0" style="-fx-background-color: #5ead87#5ead87 #5ead87#5ead87; -fx-background-radius: 5;" text="Vyhledat zákazníka" textFill="WHITE">
+            <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#findCustomer" prefHeight="25.0" style="-fx-background-color :#409988; -fx-background-radius: 5;" text="Vyhledat zákazníka" textFill="WHITE">
                <font>
                   <Font name="Avenir Next Bold" size="12.0" />
                </font>
@@ -161,13 +161,13 @@
         <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="46.0">
             <children>
                 <Region HBox.hgrow="ALWAYS" />
-                <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToOrderInfo" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #5ead87#5ead87 #5ead87#5ead87; -fx-background-radius: 5;" text="ZPĚT" textFill="WHITE">
+                <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToOrderInfo" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #4f6573; -fx-background-radius: 5;" text="ZPĚT" textFill="WHITE">
                     <font>
                         <Font name="Avenir Next Bold" size="12.0" />
                     </font>
                 </Button>
                 <Region HBox.hgrow="ALWAYS" />
-                <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#finishOrder" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #5ead87#5ead87 #5ead87#5ead87; -fx-background-radius: 5;" text="HOTOVO" textFill="WHITE">
+                <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#finishOrder" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color :#409988; -fx-background-radius: 5;" text="HOTOVO" textFill="WHITE">
                     <font>
                         <Font name="Avenir Next Bold" size="12.0" />
                     </font>

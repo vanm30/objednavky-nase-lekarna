@@ -4,13 +4,16 @@ package cz.naseLekarna.gui.newOrder;
 import cz.naseLekarna.gui.mainMenu.MainController;
 import cz.naseLekarna.system.*;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import org.apache.commons.text.StringEscapeUtils;
 
@@ -43,9 +46,14 @@ public class OrderItemsController implements Initializable {
     public Button addPripravek;
     @FXML
     public VBox errorBox;
+    @FXML
+    public ScrollPane scrollPane;
+    @FXML
+    public StackPane node;
 
     Storage storage = Storage.getStorage();
     FirebaseService firebaseService = new FirebaseService();
+    MainController mainController = MainController.getMainController();
 
     /**
      * If some items are stored in new Order - load all items.
@@ -54,6 +62,12 @@ public class OrderItemsController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //set visibility
+        mainController.searchButton.setVisible(false);
+        mainController.searchBar.setVisible(false);
+
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         //Load Items
         if (storage.newOrder.orderedPripravekList.size() > 0) {
             for (int i = 0; i < storage.newOrder.orderedPripravekList.size(); i++) {
@@ -127,19 +141,6 @@ public class OrderItemsController implements Initializable {
             }
         }
 
-    }
-
-
-    /**
-     * This method switches back to home view.
-     * @param actionEvent
-     * @throws IOException
-     */
-    public void backToOrderList(ActionEvent actionEvent) throws IOException {
-        MainController.getMainController().mainStackPane.getChildren().clear();
-        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/mainMenu/homeView.fxml"));
-        MainController.getMainController().mainStackPane.getChildren().add(vBox);
-        MainController.getMainController().mainLabel.setText("Nová Objednávka");
     }
 
     /**
@@ -218,4 +219,10 @@ public class OrderItemsController implements Initializable {
     }
 
 
+    public void backToOrderList() throws IOException {
+            MainController.getMainController().mainStackPane.getChildren().clear();
+            VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/mainMenu/homeView.fxml"));
+            MainController.getMainController().mainStackPane.getChildren().add(vBox);
+            MainController.getMainController().mainLabel.setText("Nová Objednávka");
+    }
 }

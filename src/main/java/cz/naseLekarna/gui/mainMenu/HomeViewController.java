@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import org.apache.log4j.chainsaw.Main;
 
 import java.io.IOException;
 import java.net.URL;
@@ -34,6 +35,7 @@ public class HomeViewController implements Initializable {
     public VBox orderBackground;
 
     Storage storage = Storage.getStorage();
+    MainController mainController = MainController.getMainController();
 
     /**
      * When Home view is opened, it also opens order list.
@@ -42,6 +44,10 @@ public class HomeViewController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //set visibility
+        mainController.searchButton.setVisible(true);
+        mainController.searchBar.setVisible(false);
+
         StackPane stackPane = null;
         try {
             stackPane = FXMLLoader.load(getClass().getResource("/fxml/lists/orderList.fxml"));
@@ -64,6 +70,5 @@ public class HomeViewController implements Initializable {
         StackPane stackPane = FXMLLoader.load(getClass().getResource("/fxml/newOrder/addItems.fxml"));
         MainController.getMainController().mainStackPane.getChildren().add(stackPane);
         MainController.getMainController().mainLabel.setText("Nová Objednávka");
-
     }
 }

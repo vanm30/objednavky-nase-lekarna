@@ -1,5 +1,6 @@
 package cz.naseLekarna.gui.lists;
 
+import cz.naseLekarna.gui.mainMenu.MainController;
 import cz.naseLekarna.system.FirebaseService;
 import cz.naseLekarna.system.Order;
 import cz.naseLekarna.system.Storage;
@@ -74,7 +75,6 @@ public class OrderListController implements Initializable {
             List<Order> list = storage.getActiveOrders();
 
             for (Order order : list) {
-
                 HBox hBox = null;
                 try {
                     hBox = FXMLLoader.load(getClass().getResource("/fxml/editOrder/orderItem.fxml"));
@@ -168,12 +168,11 @@ public class OrderListController implements Initializable {
 
     public void searchOrders(Set<Object> searched) {
         activeOrders.getChildren().clear();
-        ArrayList<Order> list = new ArrayList<Order>();
+        ArrayList<Order> list = new ArrayList<>();
             if (searched != null) {
                 for (Object object : searched) {
                     if (Validator.isNumeric(object.toString())) {
                         for (Order order : storage.getActiveOrders()) {
-                            System.out.println(storage.getActiveOrders());
                             if (order.getOrderNumber().equals(object)) {
                                 list.add(order);
                             }

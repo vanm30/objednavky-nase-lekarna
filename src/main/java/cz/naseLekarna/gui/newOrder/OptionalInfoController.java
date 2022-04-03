@@ -57,6 +57,7 @@ public class OptionalInfoController implements Initializable {
 
     Storage storage = Storage.getStorage();
     FirebaseService firebaseService = new FirebaseService();
+    MainController mainController = MainController.getMainController();
 
     /**
      * This method checks if there is some info saved in storage and fills it.
@@ -65,6 +66,10 @@ public class OptionalInfoController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //set visibility
+        mainController.searchButton.setVisible(false);
+        mainController.searchBar.setVisible(false);
+
         if (storage.newOrder.getCustomer().getName() != null) {
             name.setText(storage.newOrder.getCustomer().getName());
         }
