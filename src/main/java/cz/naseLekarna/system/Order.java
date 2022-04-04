@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class Order {
     private String orderId;
-    private Integer orderNumber;
+    public Integer orderNumber;
     private Customer customer;
     private LocalDate dateBegin;
     private String orderPickupInfo;

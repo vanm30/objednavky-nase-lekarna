@@ -100,10 +100,13 @@ public class FirebaseService {
         for (DocumentSnapshot document : querySnapshot.get().getDocuments()) {
             Order order = writeDownInfo(document);
             storage.getActiveOrders().add(order);
-            storage.orderNumbers.add(order.getOrderNumber());
+            if (order.orderNumber != null){
+                storage.orderNumbers.add(order.getOrderNumber());
+            }
             storage.orderNames.add(order.getCustomer().getName());
         }
         query.get();
+        System.out.println(storage.getActiveOrders());
     }
 
 
@@ -156,8 +159,9 @@ public class FirebaseService {
         customer.setStreet((String) listCustomer.get(2));
         customer.setCity((String) listCustomer.get(3));
         order.setCustomer(customer);
-
-        order.setOrderNumber(Integer.parseInt(String.valueOf(document.get("orderNumber"))));
+        if (document.get("orderNumber") != null){
+            order.setOrderNumber(Integer.parseInt(String.valueOf(document.get("orderNumber"))));
+        }
         order.setDateBegin(LOCAL_DATE((String) document.get("dateBegin")));
         order.setDateEnd(LOCAL_DATE((String) document.get("dateEnd")));
         order.setOrderPickupInfo((String) document.get("orderPickUpInfo"));
@@ -188,9 +192,8 @@ public class FirebaseService {
         ApiFuture<QuerySnapshot> future = db.collection("users").get();
         List<QueryDocumentSnapshot> documents = future.get().getDocuments();
 
-        String hashedEntryPassword = Logic.getLogic().hashPassword(password);
-
         for (QueryDocumentSnapshot document : documents) {
+            String hashedEntryPassword = Logic.getLogic().hashPassword(document.get("salt") + password);
             if (userName.equals(document.get("username")) && hashedEntryPassword.equals(document.get("password"))) {
                 storage.user = new User(document.getId(), (String) document.get("username"),(ArrayList) document.get("settings"));
                 return true;
@@ -203,14 +206,20 @@ public class FirebaseService {
 
     public void addUser(String username, String password) throws ExecutionException, InterruptedException, NoSuchAlgorithmException {
         Map<String, Object> docData = new HashMap<>();
+
+        String salt = Logic.getLogic().generateSalt();
+
+        String saltedPassword = salt + password;
+
         docData.put("username", username);
-        docData.put("password", Logic.getLogic().hashPassword(password));
+        docData.put("password", Logic.getLogic().hashPassword(saltedPassword));
+        docData.put("salt", salt);
+        docData.put("settings", Arrays.asList(
+                "0"
+        ));
         ApiFuture<DocumentReference> addedDocRef = db.collection("users").add(docData);
         addedDocRef.get();
-
-
     }
-
     /**
      * Method converts String to LocalDate
      *

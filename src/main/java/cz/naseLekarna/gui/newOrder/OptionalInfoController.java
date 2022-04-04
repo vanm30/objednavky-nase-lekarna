@@ -166,7 +166,7 @@ public class OptionalInfoController implements Initializable {
         MainController.getMainController().mainStackPane.getChildren().clear();
         VBox vBox1 = FXMLLoader.load(getClass().getResource("/fxml/mainMenu/homeView.fxml"));
         MainController.getMainController().mainStackPane.getChildren().add(vBox1);
-        MainController.getMainController().mainLabel.setText("Aktivní Objednávky");
+        MainController.getMainController().mainLabel.setText("Aktivní objednávky");
 
     }
 

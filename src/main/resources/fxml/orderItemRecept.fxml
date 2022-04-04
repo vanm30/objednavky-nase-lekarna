@@ -4,14 +4,15 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
+
 <HBox stylesheets="@/stylesheet.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label fx:id="code" text="Yo">
+        <Label fx:id="code">
             <HBox.margin>
-                <Insets left="40.0"/>
+                <Insets left="40.0" />
             </HBox.margin>
             <font>
-                <Font name="Avenir Book" size="13.0"/>
+                <Font name="Avenir Book" size="13.0" />
             </font>
         </Label>
     </children>

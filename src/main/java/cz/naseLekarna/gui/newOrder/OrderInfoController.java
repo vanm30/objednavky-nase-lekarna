@@ -142,7 +142,7 @@ public class OrderInfoController implements Initializable {
             orderNumber.setStyle("-fx-border-color: red;-fx-border-radius: 10;-fx-background-color: white; -fx-background-radius: 10;");
             mistakes.add("Prosím vyplňte alespoň jeden záznam \n v sekci \"Základní údaje\"");
             fail++;
-        } else if (!Validator.isNumeric(orderNumber.getText())) {
+        }else if (!orderNumber.getText().isEmpty() && !Validator.isNumeric(orderNumber.getText())) {
             orderNumber.setStyle("-fx-border-color: red;-fx-border-radius: 10;-fx-background-color: white; -fx-background-radius: 10;");
             mistakes.add("V poli \"Číslo lístku\" může být pouze číslo.");
             fail++;

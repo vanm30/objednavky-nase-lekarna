@@ -12,9 +12,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import jdk.nashorn.internal.ir.IfNode;
 import org.apache.commons.text.StringEscapeUtils;
 
 import java.io.IOException;
@@ -97,15 +100,22 @@ public class OrderItemsController implements Initializable {
                 y.setText(storage.newOrder.orderedReceptList.get(i).getCode());
             }
         }
+        if (storage.newOrder.orderedPripravekList.size() == 0 && storage.newOrder.orderedReceptList.size() == 0) {
+            try {
+                addPripravek();
+                addRecept();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
      * Button adds item (Recept) to order
      *
-     * @param actionEvent
      * @throws Exception
      */
-    public void addRecept(ActionEvent actionEvent) throws Exception {
+    public void addRecept() throws Exception {
         GridPane gridPane = FXMLLoader.load(getClass().getResource("/fxml/newOrder/itemRecept.fxml"));
         itemsField.getChildren().add(gridPane);
     }
@@ -113,10 +123,9 @@ public class OrderItemsController implements Initializable {
     /**
      * Button adds item (Pripravek) to order
      *
-     * @param actionEvent
      * @throws Exception
      */
-    public void addPripravek(ActionEvent actionEvent) throws Exception {
+    public void addPripravek() throws Exception {
         GridPane gridPane = FXMLLoader.load(getClass().getResource("/fxml/newOrder/itemPripravek.fxml"));
         itemsField.getChildren().add(gridPane);
     }
@@ -131,12 +140,16 @@ public class OrderItemsController implements Initializable {
         for (int i = 0; i < itemsField.getChildren().size(); i++) {
             final TextField x = (TextField) itemsField.getChildren().get(i).lookup("#itemRecept");
             if (x != null) {
-                storage.newOrder.orderedReceptList.add(new ItemRecept(x.getText()));
+                if (!x.getText().isEmpty()){
+                    storage.newOrder.orderedReceptList.add(new ItemRecept(x.getText()));
+                }
             } else {
                 final TextField y = (TextField) itemsField.getChildren().get(i).lookup("#itemPripravek");
                 final TextField z = (TextField) itemsField.getChildren().get(i).lookup("#itemPripravekAmount");
                 if (y != null) {
-                    storage.newOrder.orderedPripravekList.add(new ItemPripravek(Integer.parseInt(z.getText()), y.getText()));
+                    if (!z.getText().isEmpty() && !y.getText().isEmpty()){
+                        storage.newOrder.orderedPripravekList.add(new ItemPripravek(Integer.parseInt(z.getText()), y.getText()));
+                    }
                 }
             }
         }
@@ -149,11 +162,12 @@ public class OrderItemsController implements Initializable {
      * @throws IOException
      */
     public void nextToOrderInfo(ActionEvent actionEvent) throws IOException {
+        saveItems();
         //Form check
         int fail = 0;
         ArrayList<String> mistakes = new ArrayList<String>();
 
-        if (itemsField.getChildren().isEmpty()) {
+        if (itemsField.getChildren().isEmpty() ||(storage.newOrder.orderedReceptList.size() == 0 && storage.newOrder.orderedPripravekList.size() == 0)) {
             addRecept.setStyle("-fx-border-color: red;-fx-border-radius: 5 ;-fx-background-color: #5ead87#5ead87 #5ead87#5ead87; -fx-background-radius: 5;");
             addPripravek.setStyle("-fx-border-color: red;-fx-border-radius: 5 ;-fx-background-color: #5ead87#5ead87 #5ead87#5ead87; -fx-background-radius: 5;");
             mistakes.add("Musíte zadat alespoň jednu položku.");
@@ -175,7 +189,7 @@ public class OrderItemsController implements Initializable {
         for (int i = 0; i < itemsField.getChildren().size(); i++) {
             final TextField x = (TextField) itemsField.getChildren().get(i).lookup("#itemRecept");
             if (x != null) {
-                if (x.getText().isEmpty() || !Validator.isAlphaNumeric(x.getText()) || x.getText().length() != 12) {
+                if (!x.getText().isEmpty() && (!Validator.isAlphaNumeric(x.getText()) || x.getText().length() != 12)) {
                     x.setStyle("-fx-border-color: red;-fx-border-radius: 10;-fx-background-color: white; -fx-background-radius: 10;");
                     fail++;
                 } else {
@@ -185,13 +199,7 @@ public class OrderItemsController implements Initializable {
                 final TextField y = (TextField) itemsField.getChildren().get(i).lookup("#itemPripravek");
                 final TextField z = (TextField) itemsField.getChildren().get(i).lookup("#itemPripravekAmount");
                 if (y != null) {
-                    if (y.getText().isEmpty()) {
-                        y.setStyle("-fx-border-color: red;-fx-border-radius: 10;-fx-background-color: white; -fx-background-radius: 10;");
-                        fail++;
-                    } else {
-                        y.setStyle("-fx-background-color: white; -fx-background-radius: 10;");
-                    }
-                    if (z.getText().isEmpty() || !Validator.isNumeric(z.getText())) {
+                    if (!z.getText().isEmpty() && !Validator.isNumeric(z.getText())) {
                         z.setStyle("-fx-border-color: red;-fx-border-radius: 10;-fx-background-color: white; -fx-background-radius: 10;");
                         fail++;
                     } else {
@@ -210,9 +218,7 @@ public class OrderItemsController implements Initializable {
             });
             return;
         }
-
         //exec new page
-        saveItems();
         MainController.getMainController().mainStackPane.getChildren().clear();
         VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/newOrder/orderInfo.fxml"));
         MainController.getMainController().mainStackPane.getChildren().add(vBox);
@@ -223,6 +229,12 @@ public class OrderItemsController implements Initializable {
             MainController.getMainController().mainStackPane.getChildren().clear();
             VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/mainMenu/homeView.fxml"));
             MainController.getMainController().mainStackPane.getChildren().add(vBox);
-            MainController.getMainController().mainLabel.setText("Nová Objednávka");
+            MainController.getMainController().mainLabel.setText("Aktivní objednávky");
+    }
+
+    public void test(KeyEvent keyEvent) {
+        if  (keyEvent.getCode() == KeyCode.ESCAPE){
+            System.out.println(MainController.getMainController().mainStackPane.getChildren().get(0).getId());
+        }
     }
 }

@@ -56,7 +56,7 @@ public class SavedCustomerController {
         MainController.getMainController().mainStackPane.getChildren().clear();
         VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/newOrder/optionalInfo.fxml"));
         MainController.getMainController().mainStackPane.getChildren().add(vBox);
-        MainController.getMainController().mainLabel.setText("Nový Pacient");
+        MainController.getMainController().mainLabel.setText("Nová objednávka");
         OptionalInfoController.getOptionalInfoController().addToDatabase.setVisible(false);
         OptionalInfoController.getOptionalInfoController().addToDbLabel.setVisible(false);
     }

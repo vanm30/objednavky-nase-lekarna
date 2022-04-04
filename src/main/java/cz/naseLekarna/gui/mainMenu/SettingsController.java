@@ -70,13 +70,13 @@ public class SettingsController implements Initializable {
         MainController.getMainController().mainStackPane.getChildren().clear();
         VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/mainMenu/homeView.fxml"));
         MainController.getMainController().mainStackPane.getChildren().add(vBox);
-        MainController.getMainController().mainLabel.setText("Aktivní Objednávky");
+        MainController.getMainController().mainLabel.setText("Aktivní objednávky");
     }
 
     public void goBack(ActionEvent actionEvent) throws IOException {
         MainController.getMainController().mainStackPane.getChildren().clear();
         VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/mainMenu/homeView.fxml"));
         MainController.getMainController().mainStackPane.getChildren().add(vBox);
-        MainController.getMainController().mainLabel.setText("Aktivní Objednávky");
+        MainController.getMainController().mainLabel.setText("Aktivní objednávky");
     }
 }

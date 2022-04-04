@@ -64,21 +64,6 @@
                         <Font name="Avenir Book" size="14.0" />
                     </font>
                 </Button>
-                <Button graphicTextGap="20.0" mnemonicParsing="false" onAction="#switchToHistory" style="-fx-background-color: transparent;" text="Historie">
-                    <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../../images/history.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <font>
-                        <Font name="Avenir Book" size="14.0" />
-                    </font>
-                    <VBox.margin>
-                        <Insets top="5.0" />
-                    </VBox.margin>
-                </Button>
                 <Button graphicTextGap="20.0" mnemonicParsing="false" onAction="#switchToSettings" style="-fx-background-color: transparent;" text="Nastavení">
                     <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -119,7 +104,7 @@
                   </Label>
                </children>
             </HBox>
-            <Button onAction="#logOut" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Odhlásit se" underline="true">
+            <Button mnemonicParsing="false" onAction="#logOut" style="-fx-background-color: transparent;" text="Odhlásit se" underline="true">
                <font>
                   <Font name="Avenir Book" size="14.0" />
                </font>

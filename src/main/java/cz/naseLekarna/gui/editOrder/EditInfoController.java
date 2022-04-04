@@ -114,7 +114,7 @@ public class EditInfoController implements Initializable {
             orderNumber.setStyle("-fx-border-color: red;-fx-border-radius: 10;-fx-background-color: white; -fx-background-radius: 10;");
             mistakes.add("Prosím vyplňte alespoň jeden záznam \n v sekci \"Základní údaje\"");
             fail++;
-        } else if (!Validator.isNumeric(orderNumber.getText())) {
+        } else if (!orderNumber.getText().isEmpty() && !Validator.isNumeric(orderNumber.getText())) {
             orderNumber.setStyle("-fx-border-color: red;-fx-border-radius: 10;-fx-background-color: white; -fx-background-radius: 10;");
             mistakes.add("V poli \"Číslo lístku\" může být pouze číslo.");
             fail++;
@@ -149,8 +149,9 @@ public class EditInfoController implements Initializable {
         }
 
         Map<String, Object> docData = new HashMap<>();
-        docData.put("orderNumber", orderNumber.getText());
-
+        if (!orderNumber.getText().isEmpty()){
+            docData.put("orderNumber", orderNumber.getText());
+        } else docData.put("orderNumber", null);
         if (phoneNumber.getText().isEmpty()) {
             checkedPhoneNumber = null;
         } else checkedPhoneNumber = Integer.parseInt(String.valueOf(phoneNumber.getText()));
@@ -177,7 +178,7 @@ public class EditInfoController implements Initializable {
         mainController.mainStackPane.getChildren().clear();
         VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/mainMenu/homeView.fxml"));
         mainController.mainStackPane.getChildren().add(vBox);
-        mainController.mainLabel.setText("Aktivní Objednávky");
+        mainController.mainLabel.setText("Aktivní objednávky");
     }
 
     public void finishTask(ActionEvent actionEvent) throws IOException, ExecutionException, InterruptedException {
@@ -186,7 +187,7 @@ public class EditInfoController implements Initializable {
         mainController.mainStackPane.getChildren().clear();
         VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/mainMenu/homeView.fxml"));
         mainController.mainStackPane.getChildren().add(vBox);
-        mainController.mainLabel.setText("Aktivní Objednávky");
+        mainController.mainLabel.setText("Aktivní objednávky");
     }
 
 
@@ -194,6 +195,7 @@ public class EditInfoController implements Initializable {
         VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/editOrder/editItems.fxml"));
         mainController.mainStackPane.getChildren().clear();
         mainController.mainStackPane.getChildren().add(vBox);
+        mainController.mainLabel.setText("Editace položek");
 
         if (storage.editedOrder.orderedPripravekList.size() > 0) {
             for (int i = 0; i < storage.editedOrder.orderedPripravekList.size(); i++) {

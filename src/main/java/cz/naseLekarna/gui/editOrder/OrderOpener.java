@@ -62,7 +62,7 @@ public class OrderOpener {
         VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/editOrder/editOrder.fxml"));
         MainController.getMainController().mainStackPane.getChildren().clear();
         MainController.getMainController().mainStackPane.getChildren().add(vBox);
-        MainController.getMainController().mainLabel.setText("Editace Objednávky");
+        MainController.getMainController().mainLabel.setText("Editace objednávky");
     }
 
     public void openOrdertoo(TouchEvent touchEvent) {

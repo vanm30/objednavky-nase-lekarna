@@ -2,6 +2,9 @@ package cz.naseLekarna.system;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.util.Base64;
+import java.util.Random;
 
 /**
  * @author Matěj Vaník
@@ -19,6 +22,8 @@ public class Logic {
         return logic;
     }
 
+    private static final Random RANDOM = new SecureRandom();
+
     public String hashPassword(String passwordToHash) throws NoSuchAlgorithmException {
         String hashedPassword = null;
 
@@ -35,4 +40,9 @@ public class Logic {
         return hashedPassword = sb.toString();
     }
 
+    public String generateSalt() {
+        byte[] salt = new byte[16];
+        RANDOM.nextBytes(salt);
+        return Base64.getEncoder().encodeToString(salt);
+    }
 }

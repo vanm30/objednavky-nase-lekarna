@@ -13,7 +13,7 @@
         <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="46.0" VBox.vgrow="NEVER">
             <children>
                 <Region HBox.hgrow="ALWAYS" />
-                <Button fx:id="addPripravek" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addPripravek" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #5ead87#5ead87 #5ead87#5ead87; -fx-background-radius: 5;" text="PŘÍPRAVEK" textFill="WHITE">
+                <Button fx:id="addPripravek" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addPripravek" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #409988; -fx-background-radius: 5;" text="PŘÍPRAVEK" textFill="WHITE">
                     <font>
                         <Font name="Avenir Next Bold" size="12.0" />
                     </font>
@@ -22,7 +22,7 @@
                     </padding>
                 </Button>
                 <Region HBox.hgrow="ALWAYS" />
-                <Button fx:id="addRecept" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addRecept" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #5ead87#5ead87 #5ead87#5ead87; -fx-background-radius: 5;" text="RECEPT" textFill="WHITE">
+                <Button fx:id="addRecept" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addRecept" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #409988; -fx-background-radius: 5;" text="RECEPT" textFill="WHITE">
                     <font>
                         <Font name="Avenir Next Bold" size="12.0" />
                     </font>
@@ -42,11 +42,14 @@
          <padding>
             <Insets left="30.0" />
          </padding>
+         <VBox.margin>
+            <Insets left="20.0" right="20.0" />
+         </VBox.margin>
       </VBox>
         <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="46.0" VBox.vgrow="ALWAYS">
             <children>
                 <Region HBox.hgrow="ALWAYS" />
-                <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#finishItemsEdit" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #5ead87#5ead87 #5ead87#5ead87; -fx-background-radius: 5;" text="HOTOVO" textFill="WHITE">
+                <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#finishItemsEdit" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #409988; -fx-background-radius: 5;" text="HOTOVO" textFill="WHITE">
                     <font>
                         <Font name="Avenir Next Bold" size="12.0" />
                     </font>

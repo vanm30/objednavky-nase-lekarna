@@ -60,6 +60,7 @@ public class CustomerListController implements Initializable {
 
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        mainController.mainLabel.setText("Vyhledat zákazníka");
         loadCustomers();
     }
 
@@ -136,6 +137,6 @@ public class CustomerListController implements Initializable {
         VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/newOrder/optionalInfo.fxml"));
         MainController.getMainController().mainStackPane.getChildren().clear();
         MainController.getMainController().mainStackPane.getChildren().add(vBox);
-        MainController.getMainController().mainLabel.setText("Nová Objednávka");
+        MainController.getMainController().mainLabel.setText("Nová objednávka");
     }
 }

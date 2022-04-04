@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.SwipeEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
@@ -52,4 +53,5 @@ public class StageController implements Initializable {
         mainStage.requestFocus();
         mainStage.getChildren().add(vBox);
     }
+
 }
