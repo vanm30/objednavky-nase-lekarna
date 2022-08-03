@@ -130,7 +130,7 @@ public class EditInfoController implements Initializable {
             } else  phoneNumber.setStyle("-fx-background-color: white; -fx-background-radius: 10;");
         } else  phoneNumber.setStyle("-fx-background-color: white; -fx-background-radius: 10;");
         if (!street.getText().isEmpty()){
-            if (!Validator.isAlphaNumeric(street.getText())){
+            if (!Validator.isAlphaNumericWithSpace(street.getText())){
                 street.setStyle("-fx-border-color: red;-fx-border-radius: 10;-fx-background-color: white; -fx-background-radius: 10;");
                 mistakes.add("Musíte zadat platnou adresu.");
                 fail++;

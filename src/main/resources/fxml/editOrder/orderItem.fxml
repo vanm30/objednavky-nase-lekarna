@@ -9,7 +9,7 @@
 
 <HBox fx:id="orderInfo" alignment="CENTER" stylesheets="@/stylesheet.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.naseLekarna.gui.editOrder.OrderOpener">
     <children>
-        <VBox fx:id="infoBox" alignment="TOP_CENTER" onMouseClicked="#openOrder" onTouchPressed="#openOrder" style="-fx-background-color: #d3d3d3; -fx-background-radius: 10;" HBox.hgrow="ALWAYS">
+        <VBox fx:id="infoBox" alignment="TOP_CENTER" onMouseClicked="#openOrder" onTouchPressed="#openOrder" style="-fx-background-color: white; -fx-background-radius: 10;" HBox.hgrow="ALWAYS">
             <children>
                 <Label fx:id="orderID" prefHeight="10.0" visible="false">
                     <font>

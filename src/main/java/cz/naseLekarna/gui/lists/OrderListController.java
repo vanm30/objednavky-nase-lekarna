@@ -160,11 +160,16 @@ public class OrderListController implements Initializable {
                 LocalDate fourDays = today.plusDays(4);
                 LocalDate dateEndCompare = order.getDateEnd();
                 if ((dateEndCompare.isBefore(fourDays) && dateEndCompare.isAfter(today)) || dateEndCompare.isBefore(today) || dateEndCompare.isEqual(today)) {
-                    hBox.lookup("#infoBox").setStyle("-fx-background-color: #d3d3d3; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #e03e82; -fx-border-width: 2");
+                    hBox.lookup("#infoBox").setStyle("-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #e03e82; -fx-border-width: 2");
                 } else if (dateEndCompare.isBefore(week) && dateEndCompare.isAfter(threeDays)) {
-                    hBox.lookup("#infoBox").setStyle("-fx-background-color: #d3d3d3; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #ead023; -fx-border-width: 2");
+                    hBox.lookup("#infoBox").setStyle("-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #ead023; -fx-border-width: 2");
                 }
             }
+        } else{
+            Label label = new Label();
+            label.setText("Žádné objednávky");
+            label.setId("empty");
+            activeOrders.getChildren().add(label);
         }
     }
 
@@ -274,9 +279,9 @@ public class OrderListController implements Initializable {
                 LocalDate fourDays = today.plusDays(4);
                 LocalDate dateEndCompare = order.getDateEnd();
                 if ((dateEndCompare.isBefore(fourDays) && dateEndCompare.isAfter(today)) || dateEndCompare.isBefore(today) || dateEndCompare.isEqual(today)) {
-                    hBox.lookup("#infoBox").setStyle("-fx-background-color: #d3d3d3; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #e03e82; -fx-border-width: 2");
+                    hBox.lookup("#infoBox").setStyle("-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #e03e82; -fx-border-width: 2");
                 } else if (dateEndCompare.isBefore(week) && dateEndCompare.isAfter(threeDays)) {
-                    hBox.lookup("#infoBox").setStyle("-fx-background-color: #d3d3d3; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #ead023; -fx-border-width: 2");
+                    hBox.lookup("#infoBox").setStyle("-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #ead023; -fx-border-width: 2");
                 }
             }
         }

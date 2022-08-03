@@ -1,0 +1,13 @@
+<settings>
+    <profiles>
+        <profile>
+            <id>android-settings</id>
+            <properties>
+                <android.sdk.path>/users/hoffi/android-sdk-mac_x86-1.6_r1</android.sdk.path>
+            </properties>
+        </profile>
+    </profiles>
+    <activeProfiles>
+        <activeProfile>android-settings</activeProfile>
+    </activeProfiles>
+</settings>

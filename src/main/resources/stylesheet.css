@@ -26,6 +26,16 @@ Button:pressed{
 -fx-text-fill: #950925;
 }
 
+#activeOrders #empty{
+-fx-font-family: Avenir Book;
+-fx-text-fill: #950925;
+-fx-padding: 30px;
+}
+
+#activeOrders #orderInfo{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
 #logInButton{
 -fx-background-color: #2F4858;
 }

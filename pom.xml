@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <packaging>jar</packaging>
+    <packaging>apk</packaging>
     <name>objednavkyNaseLekarna</name>
     <artifactId>objednavkyNaseLekarna</artifactId>
     <groupId>cz.naseLekarna.java</groupId>
     <version>1.0-SNAPSHOT</version>
 
-    <description>An example Java 8 project using Maven and JUnit 5.x</description>
+    <description>A mobile app for managing orders.</description>
 
-    <url>https://github.com/example/test</url>
+    <url>https://gitlab.com/vanm30/objednavkovy-system-nase-lekarna</url>
 
     <licenses>
         <license>
@@ -20,81 +21,28 @@
     </licenses>
 
     <organization>
-        <name>Example Organization</name>
-        <url>http://example.com/</url>
+        <name>naše Lékárna</name>
+        <url>http://www.naselekarnabrno.cz/</url>
     </organization>
-
-    <scm>
-        <url>https://github.com/example/test</url>
-        <connection>git@github.com:example/test.git</connection>
-        <developerConnection>git@github.com:example/test.git</developerConnection>
-    </scm>
-
-    <issueManagement>
-        <system>Issues</system>
-        <url>https://github.com/example/test/issues</url>
-    </issueManagement>
-
-    <ciManagement>
-        <system>Pipelines</system>
-        <url>https://github.com/example/test/pipelines</url>
-    </ciManagement>
-
-    <contributors>
-        <contributor>
-            <name>Some Contributor</name>
-            <email>some.contributor@example.com</email>
-            <url>http://example.com/</url>
-            <organization>Example Organization</organization>
-            <organizationUrl>http://example.com/</organizationUrl>
-            <roles>
-                <role>scrum-master</role>
-            </roles>
-            <timezone>Europe/Amsterdam</timezone>
-        </contributor>
-        <contributor>
-            <name>Another Contributor</name>
-            <email>another.contributor@example.com</email>
-            <url>http://example.com/</url>
-            <organization>Example Organization</organization>
-            <organizationUrl>http://example.com/</organizationUrl>
-            <roles>
-                <role>product-owner</role>
-            </roles>
-            <timezone>Europe/Amsterdam</timezone>
-        </contributor>
-    </contributors>
 
     <developers>
         <developer>
-            <id>somedev</id>
-            <email>some.developer@example.com</email>
-            <name>Some Developer</name>
-            <organization>Example Organization</organization>
-            <organizationUrl>http://example.com/</organizationUrl>
+            <id>vanm30</id>
+            <email>vanm30@vse.cz</email>
+            <name>Matěj Vaník</name>
+            <organization>Vysoká škola ekonomická v Praze</organization>
+            <organizationUrl>www.vse.cz</organizationUrl>
             <roles>
                 <role>architect</role>
                 <role>developer</role>
             </roles>
-            <timezone>Europe/Amsterdam</timezone>
-        </developer>
-        <developer>
-            <id>otherdev</id>
-            <email>other.developer@example.com</email>
-            <name>Other Developer</name>
-            <organization>Example Organization</organization>
-            <organizationUrl>http://example.com/</organizationUrl>
-            <roles>
-                <role>architect</role>
-                <role>developer</role>
-            </roles>
-            <timezone>Europe/Amsterdam</timezone>
+            <timezone>Europe/Prague</timezone>
         </developer>
     </developers>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <main.class>com.example.test.HelloWorld</main.class>
+        <main.class>cz.naseLekarna.main.Start</main.class>
         <java.version>8</java.version>
         <junit.jupiter.version>5.4.2</junit.jupiter.version>
         <maven.compiler.plugin.version>3.8.0</maven.compiler.plugin.version>
@@ -142,12 +90,18 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>com.simpligility.maven.plugins</groupId>
+                <artifactId>android-maven-plugin</artifactId>
+                <version>4.3.0</version> <!-- use latest release -->
+                <extensions>true</extensions>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven.compiler.plugin.version}</version>
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
+                    <source>8</source>
+                    <target>8</target>
                     <showWarnings>true</showWarnings>
                     <showDeprecation>true</showDeprecation>
                 </configuration>
