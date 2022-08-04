@@ -1,14 +1,12 @@
-- No items error => different colloring
-- Better UI of order on main screen
-- Date on order - czech version
 - NEXT button to upper right
-- add pripravek or recept below items
 - add visual guide during order creation (we know where we are, 1.Položky ----> 2.Pacient ---> 3. DOKONČENO ...)
 - recept items -> lowercase always to uppercase
 - specialchars
+
+
 - Better UI generally
 - TESTING
 - lock order when editing
-- Describe each log in order (Jmeno:, Datum:, ...)
+- Date on order - czech version
 
 due date: 8.8.2022

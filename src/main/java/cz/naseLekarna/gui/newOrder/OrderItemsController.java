@@ -117,7 +117,7 @@ public class OrderItemsController implements Initializable {
      */
     public void addRecept() throws Exception {
         GridPane gridPane = FXMLLoader.load(getClass().getResource("/fxml/newOrder/itemRecept.fxml"));
-        itemsField.getChildren().add(gridPane);
+        itemsField.getChildren().add(0, gridPane);
     }
 
     /**
@@ -127,7 +127,7 @@ public class OrderItemsController implements Initializable {
      */
     public void addPripravek() throws Exception {
         GridPane gridPane = FXMLLoader.load(getClass().getResource("/fxml/newOrder/itemPripravek.fxml"));
-        itemsField.getChildren().add(gridPane);
+        itemsField.getChildren().add(0, gridPane);
     }
 
     /**
@@ -168,13 +168,13 @@ public class OrderItemsController implements Initializable {
         ArrayList<String> mistakes = new ArrayList<String>();
 
         if (itemsField.getChildren().isEmpty() ||(storage.newOrder.orderedReceptList.size() == 0 && storage.newOrder.orderedPripravekList.size() == 0)) {
-            addRecept.setStyle("-fx-border-color: red;-fx-border-radius: 5 ;-fx-background-color: #5ead87#5ead87 #5ead87#5ead87; -fx-background-radius: 5;");
-            addPripravek.setStyle("-fx-border-color: red;-fx-border-radius: 5 ;-fx-background-color: #5ead87#5ead87 #5ead87#5ead87; -fx-background-radius: 5;");
+            addRecept.setStyle("-fx-border-color: red;-fx-border-radius: 5 ;-fx-background-color: #409988; -fx-background-radius: 5;");
+            addPripravek.setStyle("-fx-border-color: red;-fx-border-radius: 5 ;-fx-background-color: #409988; -fx-background-radius: 5;");
             mistakes.add("Musíte zadat alespoň jednu položku.");
             fail++;
         } else {
-            addRecept.setStyle("-fx-background-color: #5ead87#5ead87 #5ead87#5ead87; -fx-background-radius: 5;");
-            addPripravek.setStyle("-fx-background-color: #5ead87#5ead87 #5ead87#5ead87; -fx-background-radius: 5;");
+            addRecept.setStyle("-fx-background-color: #409988; -fx-background-radius: 5;");
+            addPripravek.setStyle("-fx-background-color: #409988; -fx-background-radius: 5;");
         }
         if (fail>0) {
             errorBox.getChildren().clear();
