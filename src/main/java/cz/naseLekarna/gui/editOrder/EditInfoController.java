@@ -161,12 +161,12 @@ public class EditInfoController implements Initializable {
                 street.getText(),
                 city.getText()
         ));
-        if (!storage.editedOrder.orderedPripravekList.isEmpty()) {
+
             docData.put("itemPripravekList", storage.editedOrder.getOrderedPripravekList());
-        }
-        if (!storage.editedOrder.orderedReceptList.isEmpty()) {
+
+
             docData.put("itemReceptList", storage.editedOrder.getOrderedReceptList());
-        }
+
         docData.put("dateBegin", dateBegin.getValue().toString());
         docData.put("orderPickUpInfo", pickUpOption.getValue());
         docData.put("dateEnd", dateEnd.getValue().toString());

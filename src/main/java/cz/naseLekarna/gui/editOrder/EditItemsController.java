@@ -1,6 +1,7 @@
 package cz.naseLekarna.gui.editOrder;
 
 import cz.naseLekarna.gui.mainMenu.MainController;
+import cz.naseLekarna.gui.newOrder.OrderItemsController;
 import cz.naseLekarna.system.ItemPripravek;
 import cz.naseLekarna.system.ItemRecept;
 import cz.naseLekarna.system.Storage;
@@ -118,7 +119,7 @@ public class EditItemsController implements Initializable {
         int fail = 0;
         ArrayList<String> mistakes = new ArrayList<String>();
 
-        if (itemsField.getChildren().isEmpty()) {
+        if (itemsField.getChildren().size() < 2) {
             addRecept.setStyle("-fx-border-color: red;-fx-border-radius: 5 ;-fx-background-color: #5ead87#5ead87 #5ead87#5ead87; -fx-background-radius: 5;");
             addPripravek.setStyle("-fx-border-color: red;-fx-border-radius: 5 ;-fx-background-color: #5ead87#5ead87 #5ead87#5ead87; -fx-background-radius: 5;");
             mistakes.add("Musíte zadat alespoň jednu položku.");
@@ -127,6 +128,8 @@ public class EditItemsController implements Initializable {
             addRecept.setStyle("-fx-background-color: #5ead87#5ead87 #5ead87#5ead87; -fx-background-radius: 5;");
             addPripravek.setStyle("-fx-background-color: #5ead87#5ead87 #5ead87#5ead87; -fx-background-radius: 5;");
         }
+
+
         if (fail>0) {
             errorBox.getChildren().clear();
             mistakes.forEach(mistake -> {
@@ -182,12 +185,14 @@ public class EditItemsController implements Initializable {
         for (int i = 0; i < itemsField.getChildren().size(); i++) {
             final TextField x = (TextField) itemsField.getChildren().get(i).lookup("#itemRecept");
             if (x != null) {
-                storage.editedOrder.orderedReceptList.add(new ItemRecept(x.getText()));
+                storage.editedOrder.orderedReceptList.add(new ItemRecept(x.getText().toUpperCase()));
+                System.out.println(storage.editedOrder.orderedReceptList);
             } else {
                 final TextField y = (TextField) itemsField.getChildren().get(i).lookup("#itemPripravek");
                 final TextField z = (TextField) itemsField.getChildren().get(i).lookup("#itemPripravekAmount");
                 if (y != null) {
                     storage.editedOrder.orderedPripravekList.add(new ItemPripravek(Integer.parseInt(z.getText()), y.getText()));
+                    System.out.println(storage.editedOrder.orderedPripravekList);
                 }
             }
         }

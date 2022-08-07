@@ -167,7 +167,7 @@ public class OrderItemsController implements Initializable {
         int fail = 0;
         ArrayList<String> mistakes = new ArrayList<String>();
 
-        if (itemsField.getChildren().isEmpty() ||(storage.newOrder.orderedReceptList.size() == 0 && storage.newOrder.orderedPripravekList.size() == 0)) {
+        if (itemsField.getChildren().size() < 2 ||(storage.newOrder.orderedReceptList.size() == 0 && storage.newOrder.orderedPripravekList.size() == 0)) {
             addRecept.setStyle("-fx-border-color: red;-fx-border-radius: 5 ;-fx-background-color: #409988; -fx-background-radius: 5;");
             addPripravek.setStyle("-fx-border-color: red;-fx-border-radius: 5 ;-fx-background-color: #409988; -fx-background-radius: 5;");
             mistakes.add("Musíte zadat alespoň jednu položku.");
