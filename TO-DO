@@ -1,12 +1,16 @@
-- NEXT button to upper right
-- add visual guide during order creation (we know where we are, 1.Položky ----> 2.Pacient ---> 3. DOKONČENO ...)
-- recept items -> lowercase always to uppercase
-- specialchars
+- lock order when editing - 8.8.
+- fix editing items (when deleting all it does not delete all but does nothing -> dont let user delete all, at least one item required)
+
 
 
 - Better UI generally
 - TESTING
-- lock order when editing
-- Date on order - czech version
 
-due date: 8.8.2022
+
+
+- font family
+- specialchars
+
+
+
+- TBD - Icons link and shoutout

@@ -80,7 +80,7 @@ public class OrderItemsController implements Initializable {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                OrderItemsController.getNewOrderController().itemsField.getChildren().add(gridPane);
+                itemsField.getChildren().add(0, gridPane);
                 final TextField y = (TextField) gridPane.lookup("#itemPripravek");
                 final TextField z = (TextField) gridPane.lookup("#itemPripravekAmount");
                 y.setText(storage.newOrder.orderedPripravekList.get(i).getName());
@@ -95,7 +95,7 @@ public class OrderItemsController implements Initializable {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                OrderItemsController.getNewOrderController().itemsField.getChildren().add(gridPane);
+                itemsField.getChildren().add(0, gridPane);
                 final TextField y = (TextField) gridPane.lookup("#itemRecept");
                 y.setText(storage.newOrder.orderedReceptList.get(i).getCode());
             }
@@ -141,7 +141,7 @@ public class OrderItemsController implements Initializable {
             final TextField x = (TextField) itemsField.getChildren().get(i).lookup("#itemRecept");
             if (x != null) {
                 if (!x.getText().isEmpty()){
-                    storage.newOrder.orderedReceptList.add(new ItemRecept(x.getText()));
+                    storage.newOrder.orderedReceptList.add(new ItemRecept(x.getText().toUpperCase()));
                 }
             } else {
                 final TextField y = (TextField) itemsField.getChildren().get(i).lookup("#itemPripravek");

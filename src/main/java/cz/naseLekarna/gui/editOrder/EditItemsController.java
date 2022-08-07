@@ -55,6 +55,35 @@ public class EditItemsController implements Initializable {
         //set visibility
         mainController.searchButton.setVisible(false);
         mainController.searchBar.setVisible(false);
+
+        if (storage.editedOrder.orderedPripravekList.size() > 0)  {
+            for (int i = 0; i < storage.editedOrder.orderedPripravekList.size(); i++) {
+                GridPane gridPane = null;
+                try {
+                    gridPane = FXMLLoader.load(getClass().getResource("/fxml/newOrder/itemPripravek.fxml"));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                itemsField.getChildren().add(0, gridPane);
+                final TextField y = (TextField) gridPane.lookup("#itemPripravek");
+                final TextField z = (TextField) gridPane.lookup("#itemPripravekAmount");
+                y.setText(storage.editedOrder.orderedPripravekList.get(i).getName());
+                z.setText(String.valueOf(storage.editedOrder.orderedPripravekList.get(i).getAmount()));
+            }
+        }
+        if (storage.editedOrder.orderedReceptList.size() > 0) {
+            for (int i = 0; i < storage.editedOrder.orderedReceptList.size(); i++) {
+                GridPane gridPane = null;
+                try {
+                    gridPane = FXMLLoader.load(getClass().getResource("/fxml/newOrder/itemRecept.fxml"));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                itemsField.getChildren().add(0, gridPane);
+                final TextField y = (TextField) gridPane.lookup("#itemRecept");
+                y.setText(storage.editedOrder.orderedReceptList.get(i).getCode());
+            }
+        }
     }
 
     /**
@@ -64,7 +93,7 @@ public class EditItemsController implements Initializable {
      */
     public void addPripravek(ActionEvent actionEvent) throws IOException {
         GridPane gridPane = FXMLLoader.load(getClass().getResource("/fxml/newOrder/itemPripravek.fxml"));
-        itemsField.getChildren().add(gridPane);
+        itemsField.getChildren().add(0,gridPane);
     }
 
     /**
@@ -74,7 +103,7 @@ public class EditItemsController implements Initializable {
      */
     public void addRecept(ActionEvent actionEvent) throws IOException {
         GridPane gridPane = FXMLLoader.load(getClass().getResource("/fxml/newOrder/itemRecept.fxml"));
-        itemsField.getChildren().add(gridPane);
+        itemsField.getChildren().add(0,gridPane);
     }
 
     /**

@@ -91,8 +91,8 @@ public class OrderListController implements Initializable {
                     name.setText("-");
                 } else name.setText(order.getCustomer().getName());
                 orderPickUpInfo.setText(order.getOrderPickupInfo());
-                String dateEnd = order.getDateEnd().format(DateTimeFormatter.ofPattern("d.M.y")); //TODO
-                date.setText(String.valueOf(order.getDateEnd()));
+                String dateEnd = order.getDateEnd().format(DateTimeFormatter.ofPattern("d. M. y"));
+                date.setText(dateEnd);
                 if (order.orderNumber != null) {
                     orderNumber.setText(order.getOrderNumber().toString());
                 } else orderNumber.setText("-");

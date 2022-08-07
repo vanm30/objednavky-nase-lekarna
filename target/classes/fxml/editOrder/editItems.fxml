@@ -8,36 +8,42 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.naseLekarna.gui.editOrder.EditItemsController">
+<VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.naseLekarna.gui.editOrder.EditItemsController">
     <children>
-        <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="46.0" VBox.vgrow="NEVER">
-            <children>
-                <Region HBox.hgrow="ALWAYS" />
-                <Button fx:id="addPripravek" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addPripravek" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #409988; -fx-background-radius: 5;" text="PŘÍPRAVEK" textFill="WHITE">
-                    <font>
-                        <Font name="Avenir Next Bold" size="12.0" />
-                    </font>
-                    <padding>
-                        <Insets left="5.0" right="5.0" />
-                    </padding>
-                </Button>
-                <Region HBox.hgrow="ALWAYS" />
-                <Button fx:id="addRecept" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addRecept" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #409988; -fx-background-radius: 5;" text="RECEPT" textFill="WHITE">
-                    <font>
-                        <Font name="Avenir Next Bold" size="12.0" />
-                    </font>
-                    <padding>
-                        <Insets left="5.0" right="5.0" />
-                    </padding>
-                </Button>
-                <Region HBox.hgrow="ALWAYS" />
-            </children>
-        </HBox>
-        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: white;" VBox.vgrow="ALWAYS">
-            <content>
-                <VBox fx:id="itemsField" alignment="TOP_CENTER" style="-fx-background-color: transparent;" />
-            </content>
-        </ScrollPane>
+      <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: white;">
+         <content>
+            <VBox fx:id="itemsField" alignment="TOP_CENTER" style="-fx-background-color: transparent;">
+               <children>
+                  <HBox alignment="CENTER" VBox.vgrow="NEVER">
+                     <children>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button fx:id="addPripravek" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addPripravek" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color :#409988; -fx-background-radius: 5;" text="PŘÍPRAVEK" textFill="WHITE">
+                           <font>
+                              <Font name="Avenir Next Bold" size="12.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" right="5.0" />
+                           </padding>
+                        </Button>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button fx:id="addRecept" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addRecept" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color :#409988; -fx-background-radius: 5;" text="RECEPT" textFill="WHITE">
+                           <font>
+                              <Font name="Avenir Next Bold" size="12.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" right="5.0" />
+                           </padding>
+                        </Button>
+                        <Region HBox.hgrow="ALWAYS" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="20.0" top="20.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
       <VBox fx:id="errorBox" alignment="BOTTOM_LEFT" prefHeight="40.0">
          <padding>
             <Insets left="30.0" />

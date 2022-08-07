@@ -196,25 +196,5 @@ public class EditInfoController implements Initializable {
         mainController.mainStackPane.getChildren().clear();
         mainController.mainStackPane.getChildren().add(vBox);
         mainController.mainLabel.setText("Editace položek");
-
-        if (storage.editedOrder.orderedPripravekList.size() > 0) {
-            for (int i = 0; i < storage.editedOrder.orderedPripravekList.size(); i++) {
-                GridPane gridPane = FXMLLoader.load(getClass().getResource("/fxml/newOrder/itemPripravek.fxml"));
-                EditItemsController.getEditItemsController().itemsField.getChildren().add(gridPane);
-                final TextField y = (TextField) gridPane.lookup("#itemPripravek");
-                final TextField z = (TextField) gridPane.lookup("#itemPripravekAmount");
-                y.setText(storage.editedOrder.orderedPripravekList.get(i).getName());
-                z.setText(String.valueOf(storage.editedOrder.orderedPripravekList.get(i).getAmount()));
-            }
-        }
-        if (storage.editedOrder.orderedReceptList.size() > 0) {
-            for (int i = 0; i < storage.editedOrder.orderedReceptList.size(); i++) {
-                GridPane gridPane = FXMLLoader.load(getClass().getResource("/fxml/newOrder/itemRecept.fxml"));
-                EditItemsController.getEditItemsController().itemsField.getChildren().add(gridPane);
-                final TextField y = (TextField) gridPane.lookup("#itemRecept");
-                y.setText(storage.editedOrder.orderedReceptList.get(i).getCode());
-            }
-        }
-
     }
 }

@@ -2,9 +2,15 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -13,6 +19,76 @@
     <children>
         <VBox alignment="TOP_CENTER">
             <children>
+            <GridPane minHeight="-Infinity">
+              <columnConstraints>
+                <ColumnConstraints fillWidth="false" halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="60.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" />
+                  <ColumnConstraints fillWidth="false" halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" />
+                  <ColumnConstraints fillWidth="false" halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="60.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints fillHeight="false" vgrow="NEVER" />
+                <RowConstraints fillHeight="false" vgrow="NEVER" />
+              </rowConstraints>
+               <children>
+                  <HBox alignment="CENTER" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-background-color: #409988;">
+                     <children>
+                        <Label text="1">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 100; -fx-border-color: black; -fx-border-radius: 100;" GridPane.columnIndex="2">
+                     <children>
+                        <Label text="2">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 100; -fx-border-color: black; -fx-border-radius: 100;" GridPane.columnIndex="4">
+                     <children>
+                        <Label text="3">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Label text="Položky" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="Objednávka" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="Klient" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="36.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowSpan="2147483647">
+                     <image>
+                        <Image url="@../../images/arrow_right.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="36.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowSpan="2147483647">
+                     <image>
+                        <Image url="@../../images/arrow_right.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </VBox.margin>
+            </GridPane>
                 <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: white;" VBox.vgrow="ALWAYS">
                     <content>
                         <VBox fx:id="itemsField" alignment="TOP_CENTER" style="-fx-background-color: transparent;">
@@ -51,29 +127,47 @@
                   <Insets left="30.0" />
                </padding>
             </VBox>
-                <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="46.0" VBox.vgrow="ALWAYS">
-                    <children>
-                        <Region HBox.hgrow="ALWAYS" />
-                        <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToOrderList" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #4f6573; -fx-background-radius: 5;" text="ZPĚT" textFill="WHITE">
-                            <font>
-                                <Font name="Avenir Next Bold" size="12.0" />
-                            </font>
-                            <padding>
-                                <Insets left="5.0" right="5.0" />
-                            </padding>
-                        </Button>
-                        <Region HBox.hgrow="ALWAYS" />
-                        <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#nextToOrderInfo" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color :#409988; -fx-background-radius: 5;" text="DALŠÍ" textFill="WHITE">
-                            <font>
-                                <Font name="Avenir Next Bold" size="12.0" />
-                            </font>
-                            <padding>
-                                <Insets left="5.0" right="5.0" />
-                            </padding>
-                        </Button>
-                        <Region HBox.hgrow="ALWAYS" />
-                    </children>
-                </HBox>
+            <HBox alignment="CENTER">
+               <children>
+                  <Button fx:id="logInButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToOrderList" prefHeight="35.0" prefWidth="35.0" style="-fx-background-radius: 100;" textFill="WHITE">
+                     <font>
+                        <Font name="Avenir Next Bold" size="12.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/back.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="40.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#nextToOrderInfo" prefHeight="35.0" prefWidth="35.0" style="-fx-background-radius: 100; -fx-background-color: #409988;" textFill="WHITE">
+                     <font>
+                        <Font name="Avenir Next Bold" size="12.0" />
+                     </font>
+                     <padding>
+                        <Insets left="5.0" right="5.0" />
+                     </padding>
+                     <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/forward.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets right="40.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" top="20.0" />
+               </VBox.margin>
+            </HBox>
             </children>
             <StackPane.margin>
                 <Insets left="20.0" right="20.0" />

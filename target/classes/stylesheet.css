@@ -1,4 +1,4 @@
-/*All buttons now have pointer cursor when hovering.*/
+/*All buttons now have pointer cursor when hovering. Only for desktop (future implementation for desktop usage)*/
 Button{
 -fx-cursor: hand;
 }
@@ -32,7 +32,7 @@ Button:pressed{
 -fx-padding: 30px;
 }
 
-#activeOrders #orderInfo{
+#activeOrders #orderInfo {
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
 
