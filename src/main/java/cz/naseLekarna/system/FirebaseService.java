@@ -106,7 +106,6 @@ public class FirebaseService {
             storage.orderNames.add(order.getCustomer().getName());
         }
         query.get();
-        System.out.println(storage.getActiveOrders());
     }
 
 
@@ -131,10 +130,20 @@ public class FirebaseService {
         future.get();
     }
 
-    public void updateOrder(Map<String, Object> docData) throws ExecutionException, InterruptedException {
+    public boolean updateOrder(Map<String, Object> docData) throws ExecutionException, InterruptedException {
+        DocumentReference docRefTest = db.collection("orders").document(storage.editedOrder.getOrderId());
+        ApiFuture<DocumentSnapshot> future = docRefTest.get();
+        DocumentSnapshot document = future.get();
+        Order order = writeDownInfo(document);
+
+        if (!order.equals(storage.editedOrder)){
+            return false;
+        }
+
         DocumentReference docRef = db.collection("orders").document(storage.getEditedOrder().getOrderId());
         ApiFuture<WriteResult> writeResult = docRef.update(docData);
         writeResult.get();
+        return true;
     }
 
     public void updateSettings(Map<String, Object> docData) throws ExecutionException, InterruptedException {

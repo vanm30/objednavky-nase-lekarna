@@ -1,13 +1,11 @@
-- lock order when editing - 8.8.
-- fix editing items (when deleting all it does not delete all but does nothing -> dont let user delete all, at least one item required)
-- in edit order make back button in items so if they mess up they can just go back and change nothing
+- change buttons in edit order
+- animate stuff
+- infobox better gui
 
 
-- Better UI generally
+
+
 - TESTING
-
-
-
 - font family
 - specialchars
 

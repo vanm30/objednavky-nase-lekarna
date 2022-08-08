@@ -203,4 +203,11 @@ public class EditItemsController implements Initializable {
         MainController.getMainController().mainLabel.setText("Editace objednávky");
 
     }
+
+    public void back(ActionEvent actionEvent) throws IOException {
+        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/editOrder/editOrder.fxml"));
+        MainController.getMainController().mainStackPane.getChildren().clear();
+        MainController.getMainController().mainStackPane.getChildren().add(vBox);
+        MainController.getMainController().mainLabel.setText("Editace objednávky");
+    }
 }

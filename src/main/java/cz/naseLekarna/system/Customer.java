@@ -1,5 +1,7 @@
 package cz.naseLekarna.system;
 
+import java.util.Objects;
+
 /**
  * @author Matěj Vaník
  * @created 29.11.2021
@@ -50,5 +52,18 @@ public class Customer {
 
     public void setSave(Boolean save) {
         this.save = save;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Customer)) return false;
+        Customer customer = (Customer) o;
+        return Objects.equals(getName(), customer.getName()) && Objects.equals(getPhoneNumber(), customer.getPhoneNumber()) && Objects.equals(getStreet(), customer.getStreet()) && Objects.equals(getCity(), customer.getCity()) && Objects.equals(getSave(), customer.getSave());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getPhoneNumber(), getStreet(), getCity(), getSave());
     }
 }

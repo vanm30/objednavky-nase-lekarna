@@ -1,5 +1,8 @@
 package cz.naseLekarna.gui.editOrder;
 
+import cz.naseLekarna.gui.application.InfoBoxController;
+import cz.naseLekarna.gui.application.StageController;
+import cz.naseLekarna.gui.mainMenu.HomeViewController;
 import cz.naseLekarna.gui.mainMenu.MainController;
 import cz.naseLekarna.system.FirebaseService;
 import cz.naseLekarna.system.Storage;
@@ -61,7 +64,6 @@ public class EditInfoController implements Initializable {
         //set visibility
         mainController.searchButton.setVisible(false);
         mainController.searchBar.setVisible(false);
-
 
         pickUpOption.getItems().add("Osobní");
         pickUpOption.getItems().add("Rozvoz");
@@ -173,17 +175,22 @@ public class EditInfoController implements Initializable {
         docData.put("notes", notes.getText());
 
 
-        firebaseService.updateOrder(docData);
+        boolean updated = firebaseService.updateOrder(docData);
 
         mainController.mainStackPane.getChildren().clear();
         VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/mainMenu/homeView.fxml"));
         mainController.mainStackPane.getChildren().add(vBox);
         mainController.mainLabel.setText("Aktivní objednávky");
+        if (!updated){
+            HomeViewController.getOrderController().orders.setDisable(true);
+            GridPane gridPane = FXMLLoader.load(getClass().getResource("/fxml/application/infoBox.fxml"));
+            StageController.getStageController().mainStage.getChildren().add(gridPane);
+            InfoBoxController.getInfoBoxController().infoText.setText("Objednávka byla před Vámi upravena. Zkuste to znovu.");
+        }
     }
 
     public void finishTask(ActionEvent actionEvent) throws IOException, ExecutionException, InterruptedException {
         firebaseService.deleteOrder();
-
         mainController.mainStackPane.getChildren().clear();
         VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/mainMenu/homeView.fxml"));
         mainController.mainStackPane.getChildren().add(vBox);

@@ -33,6 +33,8 @@ public class HomeViewController implements Initializable {
 
     @FXML
     public VBox orderBackground;
+    @FXML
+    public VBox orders;
 
     Storage storage = Storage.getStorage();
     MainController mainController = MainController.getMainController();
