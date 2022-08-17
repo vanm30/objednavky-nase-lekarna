@@ -17,6 +17,7 @@ public class Order {
     private String orderPickupInfo;
     private LocalDate dateEnd;
     private String notes;
+    private boolean customerFromDb;
     public List<ItemPripravek> orderedPripravekList = new ArrayList<ItemPripravek>();
     public List<ItemRecept> orderedReceptList = new ArrayList<ItemRecept>();
 
@@ -93,6 +94,14 @@ public class Order {
 
     public void setOrderId(String orderId) {
         this.orderId = orderId;
+    }
+
+    public boolean isCustomerFromDb() {
+        return customerFromDb;
+    }
+
+    public void setCustomerFromDb(boolean customerFromDb) {
+        this.customerFromDb = customerFromDb;
     }
 
     @Override

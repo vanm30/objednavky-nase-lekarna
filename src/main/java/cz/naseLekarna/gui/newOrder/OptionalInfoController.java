@@ -13,6 +13,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
@@ -53,8 +54,9 @@ public class OptionalInfoController implements Initializable {
     @FXML
     public VBox errorBox;
     @FXML
+    public HBox dbLine;
+    @FXML
     public Label addToDbLabel;
-
     Storage storage = Storage.getStorage();
     FirebaseService firebaseService = new FirebaseService();
     MainController mainController = MainController.getMainController();
@@ -69,6 +71,11 @@ public class OptionalInfoController implements Initializable {
         //set visibility
         mainController.searchButton.setVisible(false);
         mainController.searchBar.setVisible(false);
+
+        if (storage.newOrder.isCustomerFromDb()){
+            dbLine.setVisible(false);
+            addToDatabase.setSelected(false);
+        } else dbLine.setVisible(true);
 
         if (storage.newOrder.getCustomer().getName() != null) {
             name.setText(storage.newOrder.getCustomer().getName());
@@ -193,13 +200,5 @@ public class OptionalInfoController implements Initializable {
         storage.newOrder.getCustomer().setStreet(street.getText());
         storage.newOrder.getCustomer().setCity(city.getText());
         storage.newOrder.setNotes(notes.getText());
-    }
-
-
-    public void findCustomer(ActionEvent actionEvent) throws IOException {
-        saveInfo();
-        MainController.getMainController().mainStackPane.getChildren().clear();
-        StackPane stackPane = FXMLLoader.load(getClass().getResource("/fxml/lists/customerList.fxml"));
-        MainController.getMainController().mainStackPane.getChildren().add(stackPane);
     }
 }

@@ -170,7 +170,7 @@
                         <Insets top="5.0" />
                     </VBox.margin>
                 </HBox>
-                <HBox alignment="CENTER_LEFT">
+                <HBox fx:id="dbLine" alignment="CENTER_LEFT">
                     <children>
                         <Label fx:id="addToDbLabel" text="Přidat do databáze">
                             <font>
@@ -185,17 +185,6 @@
                         <Insets top="5.0" />
                     </VBox.margin>
                 </HBox>
-            <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#findCustomer" prefHeight="25.0" style="-fx-background-color :#409988; -fx-background-radius: 5;" text="Vyhledat zákazníka" textFill="WHITE">
-               <font>
-                  <Font name="Avenir Next Bold" size="12.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-               <padding>
-                  <Insets left="10.0" right="10.0" />
-               </padding>
-            </Button>
             </children>
             <VBox.margin>
                 <Insets left="20.0" right="20.0" />

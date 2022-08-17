@@ -68,7 +68,7 @@
                   </ImageView>
                </graphic>
                <HBox.margin>
-                  <Insets left="60.0" />
+                  <Insets left="40.0" />
                </HBox.margin>
             </Button>
             <Region HBox.hgrow="ALWAYS" />
@@ -87,7 +87,7 @@
                   </ImageView>
                </graphic>
                <HBox.margin>
-                  <Insets right="60.0" />
+                  <Insets right="40.0" />
                </HBox.margin>
             </Button>
          </children>

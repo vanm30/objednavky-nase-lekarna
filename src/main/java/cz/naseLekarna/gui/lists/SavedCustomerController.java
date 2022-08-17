@@ -54,11 +54,9 @@ public class SavedCustomerController {
     public void writeData(MouseEvent mouseEvent) throws IOException, ExecutionException, InterruptedException {
         firebaseService.getCustomerInfo(phoneNumber.getText());
         MainController.getMainController().mainStackPane.getChildren().clear();
-        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/newOrder/optionalInfo.fxml"));
+        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/newOrder/orderInfo.fxml"));
         MainController.getMainController().mainStackPane.getChildren().add(vBox);
         MainController.getMainController().mainLabel.setText("Nová objednávka");
-        OptionalInfoController.getOptionalInfoController().addToDatabase.setVisible(false);
-        OptionalInfoController.getOptionalInfoController().addToDbLabel.setVisible(false);
     }
 
     public void writeDataToo(TouchEvent touchEvent) {

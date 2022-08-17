@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -131,14 +132,52 @@
                                         <Insets />
                                     </VBox.margin>
                                 </TextField>
-                                <TextField fx:id="name" prefHeight="29.0" prefWidth="130.0" promptText="Příjmení / Název firmy" style="-fx-border-color: transparent; -fx-border-radius: 10;-fx-background-radius: 10">
-                                    <font>
-                                        <Font name="Avenir Book" size="12.0" />
-                                    </font>
-                                    <VBox.margin>
-                                        <Insets top="5.0" />
-                                    </VBox.margin>
-                                </TextField>
+                        <HBox alignment="CENTER">
+                           <children>
+                                      <TextField fx:id="name" prefHeight="29.0" prefWidth="130.0" promptText="Příjmení / Název firmy" style="-fx-border-color: transparent; -fx-border-radius: 10;-fx-background-radius: 10">
+                                          <font>
+                                              <Font name="Avenir Book" size="12.0" />
+                                          </font>
+                                      </TextField>
+                              <StackPane>
+                                 <children>
+                                    <Button fx:id="searchButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#searchCustomer" prefHeight="25.0" prefWidth="25.0" style="-fx-background-radius: 100; -fx-background-color: #409988;" textFill="WHITE">
+                                       <font>
+                                          <Font name="Avenir Next Bold" size="12.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="5.0" right="5.0" />
+                                       </padding>
+                                       <graphic>
+                                          <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../images/search.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <Button fx:id="forgetButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#forgetCustomer" prefHeight="25.0" prefWidth="25.0" style="-fx-background-radius: 100; -fx-background-color: #4f6573;" textFill="WHITE">
+                                       <font>
+                                          <Font name="Avenir Next Bold" size="12.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="5.0" right="5.0" />
+                                       </padding>
+                                       <graphic>
+                                          <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../images/delete_black.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                              </StackPane>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </HBox>
                             </children>
                         </VBox>
                     </children>

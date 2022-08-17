@@ -127,7 +127,16 @@ public class FirebaseService {
         storage.newOrder.getCustomer().setPhoneNumber(Integer.parseInt(String.valueOf(document.get("phoneNumber"))));
         storage.newOrder.getCustomer().setCity((String) document.get("city"));
         storage.newOrder.getCustomer().setStreet((String) document.get("street"));
+        storage.newOrder.setCustomerFromDb(true);
         future.get();
+    }
+
+    public void forgetCustomerInfo(){
+        storage.newOrder.getCustomer().setName(null);
+        storage.newOrder.getCustomer().setPhoneNumber(null);
+        storage.newOrder.getCustomer().setCity(null);
+        storage.newOrder.getCustomer().setStreet(null);
+        storage.newOrder.setCustomerFromDb(false);
     }
 
     public boolean updateOrder(Map<String, Object> docData) throws ExecutionException, InterruptedException {

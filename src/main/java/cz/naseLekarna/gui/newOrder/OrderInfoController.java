@@ -2,6 +2,7 @@ package cz.naseLekarna.gui.newOrder;
 
 
 import cz.naseLekarna.gui.mainMenu.MainController;
+import cz.naseLekarna.system.FirebaseService;
 import cz.naseLekarna.system.Storage;
 import cz.naseLekarna.system.Validator;
 import javafx.event.ActionEvent;
@@ -57,9 +58,14 @@ public class OrderInfoController implements Initializable {
     public TextField orderNumber;
     @FXML
     public VBox errorBox;
+    @FXML
+    public Button forgetButton;
+    @FXML
+    public Button searchButton;
 
     Storage storage = Storage.getStorage();
     MainController mainController = MainController.getMainController();
+    FirebaseService firebase = new FirebaseService();
 
     /**
      * This method is run when initialing this Controller. It fills ChoiceBox with following options. If user already filled some info, it will load stored info.
@@ -72,6 +78,15 @@ public class OrderInfoController implements Initializable {
         //set visibility
         mainController.searchButton.setVisible(false);
         mainController.searchBar.setVisible(false);
+        if (storage.newOrder.isCustomerFromDb()){
+            searchButton.setVisible(false);
+            forgetButton.setVisible(true);
+            name.setEditable(false);
+        } else {
+            searchButton.setVisible(true);
+            forgetButton.setVisible(false);
+            name.setEditable(true);
+        }
 
         pickUpOption.getItems().add("Osobní");
         pickUpOption.getItems().add("Rozvoz");
@@ -166,5 +181,20 @@ public class OrderInfoController implements Initializable {
         MainController.getMainController().mainStackPane.getChildren().clear();
         VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/newOrder/optionalInfo.fxml"));
         MainController.getMainController().mainStackPane.getChildren().add(vBox);
+    }
+    public void searchCustomer(ActionEvent actionEvent) throws IOException {
+        saveOrderInfo();
+        MainController.getMainController().mainStackPane.getChildren().clear();
+        StackPane stackPane = FXMLLoader.load(getClass().getResource("/fxml/lists/customerList.fxml"));
+        MainController.getMainController().mainStackPane.getChildren().add(stackPane);
+    }
+
+    public void forgetCustomer(ActionEvent actionEvent) throws IOException {
+        firebase.forgetCustomerInfo();
+        searchButton.setVisible(true);
+        forgetButton.setVisible(false);
+        name.setEditable(true);
+        name.clear();
+
     }
 }

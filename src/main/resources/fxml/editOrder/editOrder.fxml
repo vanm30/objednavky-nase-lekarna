@@ -7,12 +7,14 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER_LEFT" stylesheets="@/stylesheet.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.naseLekarna.gui.editOrder.EditInfoController">
+<VBox alignment="CENTER_LEFT" stylesheets="@/stylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.naseLekarna.gui.editOrder.EditInfoController">
     <children>
         <VBox style="-fx-background-color: #d3d3d3; -fx-background-radius: 10;">
             <children>
@@ -190,9 +192,9 @@
                 </TextArea>
             </children>
         </VBox>
-        <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity">
-            <children>
-                <Region HBox.hgrow="ALWAYS" />
+      <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity">
+         <children>
+            <Region HBox.hgrow="ALWAYS" />
                 <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#finishTask" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: #e36f5f; -fx-background-radius: 5;" text="DOKONČENO" textFill="WHITE">
                     <font>
                         <Font name="Avenir Next Bold" size="12.0" />
@@ -201,21 +203,53 @@
                         <Insets left="5.0" right="5.0" />
                     </padding>
                 </Button>
-                <Region HBox.hgrow="ALWAYS" />
-                <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#saveEdit" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #409988; -fx-background-radius: 5;" text="ULOŽIT" textFill="WHITE">
-                    <font>
-                        <Font name="Avenir Next Bold" size="12.0" />
-                    </font>
-                    <padding>
-                        <Insets left="5.0" right="5.0" />
-                    </padding>
-                </Button>
-                <Region HBox.hgrow="ALWAYS" />
-            </children>
-            <VBox.margin>
-                <Insets bottom="20.0" top="10.0" />
-            </VBox.margin>
-        </HBox>
+            <Region HBox.hgrow="ALWAYS" />
+         </children>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER">
+         <children>
+            <Button fx:id="logInButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cancelEdit" prefHeight="35.0" prefWidth="35.0" style="-fx-background-radius: 100;" textFill="WHITE">
+               <font>
+                  <Font name="Avenir Next Bold" size="12.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/back.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <HBox.margin>
+                  <Insets left="60.0" />
+               </HBox.margin>
+            </Button>
+            <Region HBox.hgrow="ALWAYS" />
+            <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#saveEdit" prefHeight="35.0" prefWidth="35.0" style="-fx-background-radius: 100; -fx-background-color: #409988;" textFill="WHITE">
+               <font>
+                  <Font name="Avenir Next Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets left="5.0" right="5.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="22.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/done.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <HBox.margin>
+                  <Insets right="60.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+         <VBox.margin>
+            <Insets bottom="20.0" top="20.0" />
+         </VBox.margin>
+      </HBox>
     </children>
     <padding>
         <Insets top="20.0" />

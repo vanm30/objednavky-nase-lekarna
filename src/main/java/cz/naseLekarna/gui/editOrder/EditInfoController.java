@@ -204,4 +204,11 @@ public class EditInfoController implements Initializable {
         mainController.mainStackPane.getChildren().add(vBox);
         mainController.mainLabel.setText("Editace položek");
     }
+
+    public void cancelEdit(ActionEvent actionEvent) throws IOException {
+        mainController.mainStackPane.getChildren().clear();
+        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/mainMenu/homeView.fxml"));
+        mainController.mainStackPane.getChildren().add(vBox);
+        mainController.mainLabel.setText("Aktivní objednávky");
+    }
 }

@@ -134,7 +134,7 @@ public class CustomerListController implements Initializable {
      * @throws IOException
      */
     public void backToNewOrder(ActionEvent actionEvent) throws IOException {
-        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/newOrder/optionalInfo.fxml"));
+        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/newOrder/orderInfo.fxml"));
         MainController.getMainController().mainStackPane.getChildren().clear();
         MainController.getMainController().mainStackPane.getChildren().add(vBox);
         MainController.getMainController().mainLabel.setText("Nová objednávka");

@@ -215,11 +215,11 @@ public class MainController implements Initializable {
             } else if (!storage.getActiveOrders().isEmpty()) {
                 ArrayList<String> names = storage.orderNames;
                 ArrayList<Integer> numbers = storage.orderNumbers;
-                String search = searchBar.getText();
+                String search = searchBar.getText().toLowerCase();
                 Set<Object> searchedNames = new HashSet<Object>();
 
                 for (Object name : names) {
-                    if (name.toString().contains(search)) {
+                    if (name.toString().toLowerCase().contains(search)) {
                         searchedNames.add(name);
                     }
                 }
