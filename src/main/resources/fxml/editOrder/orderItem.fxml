@@ -2,6 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -14,16 +16,36 @@
     <children>
         <VBox fx:id="infoBox" alignment="TOP_CENTER" onMouseClicked="#openOrder" onTouchPressed="#openOrder" style="-fx-background-color: white; -fx-background-radius: 10;" HBox.hgrow="ALWAYS">
             <children>
-                <Label fx:id="orderID" prefHeight="10.0" visible="false">
-                    <font>
-                        <Font size="10.0" />
-                    </font>
-                </Label>
-                <Label fx:id="orderNumber">
-                    <font>
-                        <Font name="System Bold" size="18.0" />
-                    </font>
-                </Label>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints vgrow="NEVER" />
+                <RowConstraints vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ImageView fx:id="warning" fitHeight="27.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@../../images/warning.png" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets left="5.0" />
+                     </GridPane.margin>
+                  </ImageView>
+                      <Label fx:id="orderID" prefHeight="10.0" visible="false" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER">
+                          <font>
+                              <Font size="10.0" />
+                          </font>
+                      </Label>
+                      <Label fx:id="orderNumber" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                          <font>
+                              <Font name="System Bold" size="18.0" />
+                          </font>
+                      </Label>
+               </children>
+            </GridPane>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
                       <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
@@ -44,7 +66,7 @@
                                     <Font name="System Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <Label text="Splatnost: " GridPane.rowIndex="1">
+                              <Label text="Vyzvednutí" GridPane.rowIndex="1">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>

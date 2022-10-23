@@ -20,6 +20,8 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
 
@@ -60,6 +62,7 @@ public class OptionalInfoController implements Initializable {
     Storage storage = Storage.getStorage();
     FirebaseService firebaseService = new FirebaseService();
     MainController mainController = MainController.getMainController();
+    Validator validator = new Validator();
 
     /**
      * This method checks if there is some info saved in storage and fills it.
@@ -109,6 +112,12 @@ public class OptionalInfoController implements Initializable {
         //Form check
         int fail = 0;
         ArrayList<String> mistakes = new ArrayList<String>();
+
+        name.setStyle("-fx-border-radius: 10;-fx-background-color: white; -fx-background-radius: 10;");
+        phoneNumber.setStyle("-fx-border-radius: 10;-fx-background-color: white; -fx-background-radius: 10;");
+        street.setStyle("-fx-border-radius: 10;-fx-background-color: white; -fx-background-radius: 10;");
+        city.setStyle("-fx-border-radius: 10;-fx-background-color: white; -fx-background-radius: 10;");
+
         if (!phoneNumber.getText().isEmpty()) {
             if (phoneNumber.getText().length() != 9 || !Validator.isNumeric(phoneNumber.getText())) {
                 phoneNumber.setStyle("-fx-border-color: red;-fx-border-radius: 10;-fx-background-color: white; -fx-background-radius: 10;");
@@ -132,22 +141,29 @@ public class OptionalInfoController implements Initializable {
         }
         if (addToDatabase.isSelected()){
             if (name.getText().isEmpty()){
+                name.setStyle("-fx-border-color: red;-fx-border-radius: 10;-fx-background-color: white; -fx-background-radius: 10;");
                 mistakes.add("Pro přidání do databáze, zadejte jméno klieta.");
                 fail++;
             }
             if (phoneNumber.getText().isEmpty()){
+                phoneNumber.setStyle("-fx-border-color: red;-fx-border-radius: 10;-fx-background-color: white; -fx-background-radius: 10;");
                 mistakes.add("Pro přidání do databáze, zadejte telefonní číslo.");
+                fail++;
+            }
+            if (street.getText().isEmpty()){
+                street.setStyle("-fx-border-color: red;-fx-border-radius: 10;-fx-background-color: white; -fx-background-radius: 10;");
+                mistakes.add("Pro přidání do databáze, zadejte ulici bydliště klienta.");
+                fail++;
+            }
+            if (city.getText().isEmpty()){
+                city.setStyle("-fx-border-color: red;-fx-border-radius: 10;-fx-background-color: white; -fx-background-radius: 10;");
+                mistakes.add("Pro přidání do databáze, zadejte město klienta.");
                 fail++;
             }
         }
 
         if (fail>0) {
-            errorBox.getChildren().clear();
-            mistakes.forEach(mistake -> {
-                Label label = new Label();
-                label.setText(mistake);
-                errorBox.getChildren().add(label);
-            });
+            validator.displayError(mistakes);
             return;
         }
 
@@ -155,16 +171,20 @@ public class OptionalInfoController implements Initializable {
         saveInfo();
 
         if (addToDatabase.isSelected()){
-            storage.customer = new Customer();
-            storage.customer.setName(name.getText());
-            storage.customer.setPhoneNumber(Integer.valueOf((String) phoneNumber.getText()));
-            if (!city.getText().isEmpty()){
-                storage.customer.setCity(city.getText());
-            } else storage.customer.setCity(null);
-            if (!street.getText().isEmpty()) {
-                storage.customer.setStreet(street.getText());
-            } else storage.customer.setStreet(null);
-            firebaseService.addCustomer();
+            Map<String, Object> docData = new HashMap<>();
+            docData.put("name", name.getText());
+            docData.put("phoneNumber", phoneNumber.getText());
+            docData.put("street", street.getText());
+            docData.put("city", city.getText());
+
+            Boolean result = firebaseService.addCustomer(docData,phoneNumber.getText());
+
+            if (!result){
+                phoneNumber.setStyle("-fx-border-color: red;-fx-border-radius: 10;-fx-background-color: white; -fx-background-radius: 10;");
+                mistakes.add("Telefonní číslo je již používané.");
+                validator.displayError(mistakes);
+                return;
+            }
         }
 
         //Upload order to firebase
@@ -195,7 +215,7 @@ public class OptionalInfoController implements Initializable {
     public void saveInfo() {
         storage.newOrder.getCustomer().setName(name.getText());
         if (!phoneNumber.getText().isEmpty()) {
-            storage.newOrder.getCustomer().setPhoneNumber(Integer.parseInt(phoneNumber.getText()));
+            storage.newOrder.getCustomer().setPhoneNumber(phoneNumber.getText());
         }
         storage.newOrder.getCustomer().setStreet(street.getText());
         storage.newOrder.getCustomer().setCity(city.getText());

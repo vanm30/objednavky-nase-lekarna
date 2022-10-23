@@ -79,4 +79,11 @@ public class SettingsController implements Initializable {
         MainController.getMainController().mainStackPane.getChildren().add(vBox);
         MainController.getMainController().mainLabel.setText("Aktivní objednávky");
     }
+
+    public void changePassword(ActionEvent actionEvent) throws IOException {
+        MainController.getMainController().mainStackPane.getChildren().clear();
+        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/mainMenu/changePassword.fxml"));
+        MainController.getMainController().mainStackPane.getChildren().add(vBox);
+        MainController.getMainController().mainLabel.setText("Změna hesla");
+    }
 }

@@ -50,6 +50,7 @@ public class EditInfoController implements Initializable {
     public ChoiceBox pickUpOption;
     @FXML
     public DatePicker dateEnd;
+    public DatePicker datePickUp;
     @FXML
     public TextArea notes;
     @FXML
@@ -58,6 +59,7 @@ public class EditInfoController implements Initializable {
     Storage storage = Storage.getStorage();
     FirebaseService firebaseService = new FirebaseService();
     MainController mainController = MainController.getMainController();
+    Validator validator = new Validator();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -92,6 +94,9 @@ public class EditInfoController implements Initializable {
         if (storage.editedOrder.getDateEnd() != null) {
             dateEnd.setValue(storage.editedOrder.getDateEnd());
         }
+        if (storage.editedOrder.getDatePickUp() != null) {
+            datePickUp.setValue(storage.editedOrder.getDatePickUp());
+        }
         if (storage.editedOrder.getNotes() != null) {
             notes.setText(storage.editedOrder.getNotes());
         }
@@ -105,9 +110,7 @@ public class EditInfoController implements Initializable {
      * @throws InterruptedException
      */
     public void saveEdit(ActionEvent actionEvent) throws IOException, ExecutionException, InterruptedException {
-
-        Integer checkedPhoneNumber;
-
+        String checkedPhoneNumber;
         //Form check
         int fail = 0;
         ArrayList<String> mistakes = new ArrayList<String>();
@@ -130,23 +133,24 @@ public class EditInfoController implements Initializable {
                 mistakes.add("Musíte zadat platné telefonní číslo.");
                 fail++;
             } else  phoneNumber.setStyle("-fx-background-color: white; -fx-background-radius: 10;");
-        } else  phoneNumber.setStyle("-fx-background-color: white; -fx-background-radius: 10;");
+        }
         if (!street.getText().isEmpty()){
             if (!Validator.isAlphaNumericWithSpace(street.getText())){
                 street.setStyle("-fx-border-color: red;-fx-border-radius: 10;-fx-background-color: white; -fx-background-radius: 10;");
                 mistakes.add("Musíte zadat platnou adresu.");
                 fail++;
             } else  street.setStyle("-fx-background-color: white; -fx-background-radius: 10;");
-        } else  street.setStyle("-fx-background-color: white; -fx-background-radius: 10;");
+        }
         if (!city.getText().isEmpty()){
             if (!Validator.isAlphaNumeric(city.getText())){
                 city.setStyle("-fx-border-color: red;-fx-border-radius: 10;-fx-background-color: white; -fx-background-radius: 10;");
                 mistakes.add("Musíte zadat platné město.");
                 fail++;
             } else  city.setStyle("-fx-background-color: white; -fx-background-radius: 10;");
-        } else  city.setStyle("-fx-background-color: white; -fx-background-radius: 10;");
+        }
 
         if (fail>0) {
+            validator.displayError(mistakes);
             return;
         }
 
@@ -156,7 +160,7 @@ public class EditInfoController implements Initializable {
         } else docData.put("orderNumber", null);
         if (phoneNumber.getText().isEmpty()) {
             checkedPhoneNumber = null;
-        } else checkedPhoneNumber = Integer.parseInt(String.valueOf(phoneNumber.getText()));
+        } else checkedPhoneNumber = phoneNumber.getText();
         docData.put("customer", Arrays.asList(
                 name.getText(),
                 checkedPhoneNumber,
@@ -172,21 +176,14 @@ public class EditInfoController implements Initializable {
         docData.put("dateBegin", dateBegin.getValue().toString());
         docData.put("orderPickUpInfo", pickUpOption.getValue());
         docData.put("dateEnd", dateEnd.getValue().toString());
+        docData.put("datePickUp", datePickUp.getValue().toString());
         docData.put("notes", notes.getText());
-
-
-        boolean updated = firebaseService.updateOrder(docData);
+        firebaseService.updateOrder(docData);
 
         mainController.mainStackPane.getChildren().clear();
         VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/mainMenu/homeView.fxml"));
         mainController.mainStackPane.getChildren().add(vBox);
         mainController.mainLabel.setText("Aktivní objednávky");
-        if (!updated){
-            HomeViewController.getOrderController().orders.setDisable(true);
-            GridPane gridPane = FXMLLoader.load(getClass().getResource("/fxml/application/infoBox.fxml"));
-            StageController.getStageController().mainStage.getChildren().add(gridPane);
-            InfoBoxController.getInfoBoxController().infoText.setText("Objednávka byla před Vámi upravena. Zkuste to znovu.");
-        }
     }
 
     public void finishTask(ActionEvent actionEvent) throws IOException, ExecutionException, InterruptedException {

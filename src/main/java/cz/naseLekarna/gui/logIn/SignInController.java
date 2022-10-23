@@ -65,9 +65,10 @@ public class SignInController {
     }
 
     public void finish() throws NoSuchAlgorithmException, ExecutionException, InterruptedException, IOException {
+        String name = newUsername.getText().trim().toLowerCase();
         int fail = 0;
         errorBox.getChildren().clear();
-        if (newUsername.getText().trim().isEmpty()){
+        if (name.isEmpty()){
             fail++;
             Label error = new Label();
             error.setText("Zadejte uživatelské jméno.");
@@ -79,8 +80,14 @@ public class SignInController {
             error.setText("Zadejte heslo.");
             errorBox.getChildren().add(error);
         }
+        if (firebaseService.userNameExists(name)){
+            fail++;
+            Label error = new Label();
+            error.setText("Uživatelské jméno je již používané.");
+            errorBox.getChildren().add(error);
+        }
         if (fail<1){
-            firebaseService.addUser(newUsername.getText().trim(),newPassword.getText());
+            firebaseService.addUser(name,newPassword.getText());
             back();
         }
     }

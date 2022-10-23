@@ -57,6 +57,7 @@ public class OrderItemsController implements Initializable {
     Storage storage = Storage.getStorage();
     FirebaseService firebaseService = new FirebaseService();
     MainController mainController = MainController.getMainController();
+    Validator validator = new Validator();
 
     /**
      * If some items are stored in new Order - load all items.
@@ -162,31 +163,12 @@ public class OrderItemsController implements Initializable {
      * @throws IOException
      */
     public void nextToOrderInfo(ActionEvent actionEvent) throws IOException {
-        saveItems();
         //Form check
         int fail = 0;
         ArrayList<String> mistakes = new ArrayList<String>();
 
-        if (itemsField.getChildren().size() < 2 ||(storage.newOrder.orderedReceptList.size() == 0 && storage.newOrder.orderedPripravekList.size() == 0)) {
-            addRecept.setStyle("-fx-border-color: red;-fx-border-radius: 5 ;-fx-background-color: #409988; -fx-background-radius: 5;");
-            addPripravek.setStyle("-fx-border-color: red;-fx-border-radius: 5 ;-fx-background-color: #409988; -fx-background-radius: 5;");
-            mistakes.add("Musíte zadat alespoň jednu položku.");
-            fail++;
-        } else {
-            addRecept.setStyle("-fx-background-color: #409988; -fx-background-radius: 5;");
-            addPripravek.setStyle("-fx-background-color: #409988; -fx-background-radius: 5;");
-        }
-        if (fail>0) {
-            errorBox.getChildren().clear();
-            mistakes.forEach(mistake -> {
-                Label label = new Label();
-                label.setText(mistake);
-                errorBox.getChildren().add(label);
-            });
-            return;
-        }
-
         for (int i = 0; i < itemsField.getChildren().size(); i++) {
+            // if recept
             final TextField x = (TextField) itemsField.getChildren().get(i).lookup("#itemRecept");
             if (x != null) {
                 if (!x.getText().isEmpty() && (!Validator.isAlphaNumeric(x.getText()) || x.getText().length() != 12)) {
@@ -196,26 +178,47 @@ public class OrderItemsController implements Initializable {
                     x.setStyle("-fx-background-color: white; -fx-background-radius: 10;");
                 }
             } else {
+                // if pripravek
                 final TextField y = (TextField) itemsField.getChildren().get(i).lookup("#itemPripravek");
                 final TextField z = (TextField) itemsField.getChildren().get(i).lookup("#itemPripravekAmount");
                 if (y != null) {
+                    y.setStyle("-fx-background-color: white; -fx-background-radius: 10;");
+                    z.setStyle("-fx-background-color: white; -fx-background-radius: 10;");
                     if (!z.getText().isEmpty() && !Validator.isNumeric(z.getText())) {
                         z.setStyle("-fx-border-color: red;-fx-border-radius: 10;-fx-background-color: white; -fx-background-radius: 10;");
                         fail++;
+                    }else if (z.getText().isEmpty() && !y.getText().isEmpty()) {
+                        z.setStyle("-fx-border-color: red;-fx-border-radius: 10;-fx-background-color: white; -fx-background-radius: 10;");
+                        fail++;
+                    }else if (y.getText().isEmpty() && !z.getText().isEmpty()) {
+                        y.setStyle("-fx-border-color: red;-fx-border-radius: 10;-fx-background-color: white; -fx-background-radius: 10;");
+                        fail++;
                     } else {
+                        y.setStyle("-fx-background-color: white; -fx-background-radius: 10;");
                         z.setStyle("-fx-background-color: white; -fx-background-radius: 10;");
                     }
                 }
             }
         }
         if (fail>0) {
-            mistakes.add("Prosím zadejte správné informace \n v označených buňkách.");
-            errorBox.getChildren().clear();
-            mistakes.forEach(mistake -> {
-                Label label = new Label();
-                label.setText(mistake);
-                errorBox.getChildren().add(label);
-            });
+            mistakes.add("Prosím zadejte správné informace v označených buňkách.");
+            validator.displayError(mistakes);
+            return;
+        }
+
+        saveItems();
+
+        if (itemsField.getChildren().size() < 2 ||(storage.newOrder.orderedReceptList.size() == 0 && storage.newOrder.orderedPripravekList.size() == 0)) {
+            addRecept.setStyle("-fx-border-color: red;-fx-border-radius: 5 ;-fx-background-color: #409988; -fx-background-radius: 5;");
+            addPripravek.setStyle("-fx-border-color: red;-fx-border-radius: 5 ;-fx-background-color: #409988; -fx-background-radius: 5;");
+            fail++;
+        } else {
+            addRecept.setStyle("-fx-background-color: #409988; -fx-background-radius: 5;");
+            addPripravek.setStyle("-fx-background-color: #409988; -fx-background-radius: 5;");
+        }
+        if (fail>0) {
+            mistakes.add("Prosím zadejte alespoň jednu položku.");
+            validator.displayError(mistakes);
             return;
         }
         //exec new page

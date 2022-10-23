@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 public class InfoBoxController {
 
@@ -19,7 +20,7 @@ public class InfoBoxController {
         return infoBoxController;
     }
 
-    public Label infoText;
+    public VBox errorBox;
     public GridPane infoBox;
 
 

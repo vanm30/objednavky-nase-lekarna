@@ -1,6 +1,7 @@
 package cz.naseLekarna.gui.lists;
 
 import cz.naseLekarna.gui.mainMenu.MainController;
+import cz.naseLekarna.gui.newOrder.FindCustomerController;
 import cz.naseLekarna.system.Customer;
 import cz.naseLekarna.system.FirebaseService;
 import cz.naseLekarna.system.Storage;
@@ -10,21 +11,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
-/**
- * @author Matěj Vaník
- * @created 07.02.2022
- */
 public class CustomerListController implements Initializable {
 
     private static CustomerListController customerListController;
@@ -36,6 +31,7 @@ public class CustomerListController implements Initializable {
     public static CustomerListController getCustomerListController() {
         return customerListController;
     }
+
 
     @FXML
     public VBox customers;
@@ -79,7 +75,7 @@ public class CustomerListController implements Initializable {
             for (Customer customer : list) {
                 VBox vBox = null;
                 try {
-                    vBox = FXMLLoader.load(getClass().getResource("/fxml/lists/customer.fxml"));
+                    vBox = FXMLLoader.load(getClass().getResource("/fxml/newOrder/customer.fxml"));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -97,6 +93,11 @@ public class CustomerListController implements Initializable {
                 phoneNumber.setText(String.valueOf(customer.getPhoneNumber()));
                 address.setText(street + ", " + city);
             }
+        } else{
+            Label label = new Label();
+            label.setText("Žádní zákazníci");
+            label.setId("empty");
+            customers.getChildren().add(label);
         }
     }
 
@@ -106,7 +107,7 @@ public class CustomerListController implements Initializable {
             for (Customer customer : searched) {
                 VBox vBox = null;
                 try {
-                    vBox = FXMLLoader.load(getClass().getResource("/fxml/lists/customer.fxml"));
+                    vBox = FXMLLoader.load(getClass().getResource("/fxml/newOrder/customer.fxml"));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -127,16 +128,10 @@ public class CustomerListController implements Initializable {
         }
     }
 
-    /**
-     * Back button.
-     *
-     * @param actionEvent Takes user back.
-     * @throws IOException
-     */
-    public void backToNewOrder(ActionEvent actionEvent) throws IOException {
-        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/newOrder/orderInfo.fxml"));
+    public void addCustomer(ActionEvent actionEvent) throws IOException {
+        VBox vBox = FXMLLoader.load(getClass().getResource("/fxml/editCustomer/AddCustomer.fxml"));
         MainController.getMainController().mainStackPane.getChildren().clear();
         MainController.getMainController().mainStackPane.getChildren().add(vBox);
-        MainController.getMainController().mainLabel.setText("Nová objednávka");
+        MainController.getMainController().mainLabel.setText("Nový klient");
     }
 }

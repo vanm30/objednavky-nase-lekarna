@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import org.apache.log4j.chainsaw.Main;
 
 import java.io.IOException;
 import java.net.URL;
@@ -53,7 +54,7 @@ public class MenuController implements Initializable {
      * @param actionEvent
      * @throws IOException
      */
-    public void switchToHome(ActionEvent actionEvent) throws IOException {
+    public void switchToHome(ActionEvent actionEvent) throws IOException, InterruptedException {
         MainController.getMainController().switchToHome();
     }
 
@@ -63,9 +64,8 @@ public class MenuController implements Initializable {
      *
      * @param actionEvent
      */
-    public void switchToHistory(ActionEvent actionEvent) throws IOException {
-        MainController.getMainController().closeMenu();
-        /*TODO*/
+    public void switchToCustomers(ActionEvent actionEvent) throws IOException, InterruptedException {
+        MainController.getMainController().switchToCustomers();
     }
 
     /**
@@ -73,12 +73,13 @@ public class MenuController implements Initializable {
      * @param actionEvent
      * @throws IOException
      */
-    public void switchToSettings(ActionEvent actionEvent) throws IOException {
+    public void switchToSettings(ActionEvent actionEvent) throws IOException, InterruptedException {
         MainController.getMainController().switchToSettings();
     }
 
 
     public void logOut(ActionEvent actionEvent) {
+        StageController.getStageController().mainStage.getChildren().clear();
         storage.user = null;
         VBox vBox = null;
         try {

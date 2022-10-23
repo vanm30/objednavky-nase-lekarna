@@ -25,6 +25,7 @@ public class Storage {
     public Customer customer;
     public Order newOrder;
     public Order editedOrder;
+    public Customer editedCustomer;
 
     public List<Order> activeOrders = new ArrayList<Order>();
     public List<Customer> activeCustomers = new ArrayList<>();
@@ -70,5 +71,13 @@ public class Storage {
 
     public void setEditedOrder(Order editedOrder) {
         this.editedOrder = editedOrder;
+    }
+
+    public Customer getEditedCustomer() {
+        return editedCustomer;
+    }
+
+    public void setEditedCustomer(Customer editedCustomer) {
+        this.editedCustomer = editedCustomer;
     }
 }

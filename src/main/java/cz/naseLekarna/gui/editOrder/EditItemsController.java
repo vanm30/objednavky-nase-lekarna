@@ -50,6 +50,7 @@ public class EditItemsController implements Initializable {
 
     Storage storage = Storage.getStorage();
     MainController mainController = MainController.getMainController();
+    Validator validator = new Validator();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -120,8 +121,8 @@ public class EditItemsController implements Initializable {
         ArrayList<String> mistakes = new ArrayList<String>();
 
         if (itemsField.getChildren().size() < 2) {
-            addRecept.setStyle("-fx-border-color: red;-fx-border-radius: 5 ;-fx-background-color: #5ead87#5ead87 #5ead87#5ead87; -fx-background-radius: 5;");
-            addPripravek.setStyle("-fx-border-color: red;-fx-border-radius: 5 ;-fx-background-color: #5ead87#5ead87 #5ead87#5ead87; -fx-background-radius: 5;");
+            addRecept.setStyle("-fx-border-color: red;-fx-border-radius: 5 ;-fx-background-color:  #409988; -fx-background-radius: 5;");
+            addPripravek.setStyle("-fx-border-color: red;-fx-border-radius: 5 ;-fx-background-color:  #409988; -fx-background-radius: 5;");
             mistakes.add("Musíte zadat alespoň jednu položku.");
             fail++;
         } else {
@@ -131,54 +132,47 @@ public class EditItemsController implements Initializable {
 
 
         if (fail>0) {
-            errorBox.getChildren().clear();
-            mistakes.forEach(mistake -> {
-                Label label = new Label();
-                label.setText(mistake);
-                errorBox.getChildren().add(label);
-            });
+            validator.displayError(mistakes);
             return;
         }
+
         for (int i = 0; i < itemsField.getChildren().size(); i++) {
+            // if recept
             final TextField x = (TextField) itemsField.getChildren().get(i).lookup("#itemRecept");
             if (x != null) {
-                if (x.getText().isEmpty() || !Validator.isAlphaNumeric(x.getText()) || x.getText().length() != 12) {
+                if (x.getText().isEmpty() || !x.getText().isEmpty() && (!Validator.isAlphaNumeric(x.getText()) || x.getText().length() != 12)){
                     x.setStyle("-fx-border-color: red;-fx-border-radius: 10;-fx-background-color: white; -fx-background-radius: 10;");
                     fail++;
                 } else {
                     x.setStyle("-fx-background-color: white; -fx-background-radius: 10;");
                 }
             } else {
+                // if pripravek
                 final TextField y = (TextField) itemsField.getChildren().get(i).lookup("#itemPripravek");
                 final TextField z = (TextField) itemsField.getChildren().get(i).lookup("#itemPripravekAmount");
                 if (y != null) {
-                    if (y.getText().isEmpty()) {
-                        y.setStyle("-fx-border-color: red;-fx-border-radius: 10;-fx-background-color: white; -fx-background-radius: 10;");
-                        fail++;
-                    } else {
-                        y.setStyle("-fx-background-color: white; -fx-background-radius: 10;");
-                    }
-                    if (z.getText().isEmpty() || !Validator.isNumeric(z.getText())) {
+                    if (z.getText().isEmpty() || !z.getText().isEmpty() && !Validator.isNumeric(z.getText()) || z.getText().isEmpty() && !y.getText().isEmpty()){
                         z.setStyle("-fx-border-color: red;-fx-border-radius: 10;-fx-background-color: white; -fx-background-radius: 10;");
                         fail++;
                     } else {
                         z.setStyle("-fx-background-color: white; -fx-background-radius: 10;");
                     }
+                    if (y.getText().isEmpty() || y.getText().isEmpty() && !z.getText().isEmpty()){
+                        y.setStyle("-fx-border-color: red;-fx-border-radius: 10;-fx-background-color: white; -fx-background-radius: 10;");
+                        fail++;
+                    } else {
+                        y.setStyle("-fx-background-color: white; -fx-background-radius: 10;");
+                    }
                 }
             }
         }
         if (fail>0) {
-            mistakes.add("Prosím zadejte správné informace \n v označených buňkách.");
-            errorBox.getChildren().clear();
-            mistakes.forEach(mistake -> {
-                Label label = new Label();
-                label.setText(mistake);
-                errorBox.getChildren().add(label);
-            });
+            mistakes.add("Prosím zkontrolujte zvýrazněné buňky.");
+            validator.displayError(mistakes);
             return;
         }
 
-        //exec save and upload
+        //exec save
         storage.editedOrder.orderedReceptList.clear();
         storage.editedOrder.orderedPripravekList.clear();
 
@@ -186,13 +180,11 @@ public class EditItemsController implements Initializable {
             final TextField x = (TextField) itemsField.getChildren().get(i).lookup("#itemRecept");
             if (x != null) {
                 storage.editedOrder.orderedReceptList.add(new ItemRecept(x.getText().toUpperCase()));
-                System.out.println(storage.editedOrder.orderedReceptList);
             } else {
                 final TextField y = (TextField) itemsField.getChildren().get(i).lookup("#itemPripravek");
                 final TextField z = (TextField) itemsField.getChildren().get(i).lookup("#itemPripravekAmount");
                 if (y != null) {
                     storage.editedOrder.orderedPripravekList.add(new ItemPripravek(Integer.parseInt(z.getText()), y.getText()));
-                    System.out.println(storage.editedOrder.orderedPripravekList);
                 }
             }
         }

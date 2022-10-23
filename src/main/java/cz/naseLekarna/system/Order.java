@@ -16,6 +16,7 @@ public class Order {
     private LocalDate dateBegin;
     private String orderPickupInfo;
     private LocalDate dateEnd;
+    private LocalDate datePickUp;
     private String notes;
     private boolean customerFromDb;
     public List<ItemPripravek> orderedPripravekList = new ArrayList<ItemPripravek>();
@@ -96,25 +97,20 @@ public class Order {
         this.orderId = orderId;
     }
 
+    public LocalDate getDatePickUp() {
+        return datePickUp;
+    }
+
+    public void setDatePickUp(LocalDate datePickUp) {
+        this.datePickUp = datePickUp;
+    }
+
     public boolean isCustomerFromDb() {
         return customerFromDb;
     }
 
     public void setCustomerFromDb(boolean customerFromDb) {
         this.customerFromDb = customerFromDb;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Order order = (Order) o;
-        return orderId.equals(order.orderId) && orderNumber.equals(order.orderNumber) && customer.equals(order.customer) && dateBegin.equals(order.dateBegin) && orderPickupInfo.equals(order.orderPickupInfo) && dateEnd.equals(order.dateEnd) && notes.equals(order.notes) && orderedPripravekList.equals(order.orderedPripravekList) && orderedReceptList.equals(order.orderedReceptList);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(orderId, orderNumber, customer, dateBegin, orderPickupInfo, dateEnd, notes, orderedPripravekList, orderedReceptList);
     }
 }
 

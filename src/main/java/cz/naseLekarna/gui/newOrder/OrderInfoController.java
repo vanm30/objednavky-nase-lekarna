@@ -53,6 +53,8 @@ public class OrderInfoController implements Initializable {
     @FXML
     public DatePicker dateEnd;
     @FXML
+    public DatePicker datePickUp;
+    @FXML
     public TextArea notes;
     @FXML
     public TextField orderNumber;
@@ -66,6 +68,7 @@ public class OrderInfoController implements Initializable {
     Storage storage = Storage.getStorage();
     MainController mainController = MainController.getMainController();
     FirebaseService firebase = new FirebaseService();
+    Validator validator = new Validator();
 
     /**
      * This method is run when initialing this Controller. It fills ChoiceBox with following options. If user already filled some info, it will load stored info.
@@ -107,6 +110,11 @@ public class OrderInfoController implements Initializable {
         } else {
             dateEnd.setValue(LocalDate.now().plusDays(14));
         }
+        if (storage.newOrder.getDatePickUp() != null) {
+            datePickUp.setValue(storage.newOrder.getDatePickUp());
+        } else {
+            datePickUp.setValue(LocalDate.now().plusDays(1));
+        }
         if (storage.newOrder.getOrderPickupInfo() != null) {
             pickUpOption.setValue(storage.newOrder.getOrderPickupInfo());
         } else {
@@ -127,6 +135,7 @@ public class OrderInfoController implements Initializable {
 
         storage.newOrder.setDateBegin(dateBegin.getValue());
         storage.newOrder.setDateEnd(dateEnd.getValue());
+        storage.newOrder.setDatePickUp(datePickUp.getValue());
         storage.newOrder.setOrderPickupInfo(pickUpOption.getValue());
     }
 
@@ -155,7 +164,7 @@ public class OrderInfoController implements Initializable {
         if (name.getText().isEmpty() && orderNumber.getText().isEmpty()) {
             name.setStyle("-fx-border-color: red;-fx-border-radius: 10;-fx-background-color: white; -fx-background-radius: 10;");
             orderNumber.setStyle("-fx-border-color: red;-fx-border-radius: 10;-fx-background-color: white; -fx-background-radius: 10;");
-            mistakes.add("Prosím vyplňte alespoň jeden záznam \n v sekci \"Základní údaje\"");
+            mistakes.add("Prosím vyplňte alespoň jeden záznam v sekci \"Základní údaje\"");
             fail++;
         }else if (!orderNumber.getText().isEmpty() && !Validator.isNumeric(orderNumber.getText())) {
             orderNumber.setStyle("-fx-border-color: red;-fx-border-radius: 10;-fx-background-color: white; -fx-background-radius: 10;");
@@ -167,12 +176,7 @@ public class OrderInfoController implements Initializable {
         }
 
         if (fail>0) {
-            errorBox.getChildren().clear();
-            mistakes.forEach(mistake -> {
-                Label label = new Label();
-                label.setText(mistake);
-                errorBox.getChildren().add(label);
-            });
+            validator.displayError(mistakes);
             return;
         }
 
@@ -185,7 +189,7 @@ public class OrderInfoController implements Initializable {
     public void searchCustomer(ActionEvent actionEvent) throws IOException {
         saveOrderInfo();
         MainController.getMainController().mainStackPane.getChildren().clear();
-        StackPane stackPane = FXMLLoader.load(getClass().getResource("/fxml/lists/customerList.fxml"));
+        StackPane stackPane = FXMLLoader.load(getClass().getResource("/fxml/newOrder/findCustomer.fxml"));
         MainController.getMainController().mainStackPane.getChildren().add(stackPane);
     }
 

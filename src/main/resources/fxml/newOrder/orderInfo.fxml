@@ -217,7 +217,15 @@
                                         <Insets top="5.0" />
                                     </VBox.margin>
                                 </Label>
-                                <Label prefHeight="29.0" text="Datum platnosti">
+                        <Label prefHeight="29.0" text="Datum vyzvednutí">
+                           <font>
+                              <Font name="Avenir Book" size="13.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                                <Label prefHeight="29.0" text="Datum splatnosti">
                                     <font>
                                         <Font name="Avenir Book" size="13.0" />
                                     </font>
@@ -236,6 +244,11 @@
                                         <Insets top="5.0" />
                                     </VBox.margin>
                                 </ChoiceBox>
+                        <DatePicker fx:id="datePickUp" prefHeight="29.0" prefWidth="130.0" promptText="Datum vyzvednutí" style="-fx-border-color: transparent">
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </DatePicker>
                                 <DatePicker fx:id="dateEnd" prefHeight="29.0" prefWidth="130.0" promptText="Datum platnosti" style="-fx-border-color: transparent">
                                     <VBox.margin>
                                         <Insets top="5.0" />
@@ -261,7 +274,7 @@
         </VBox>
       <HBox alignment="CENTER">
          <children>
-            <Button fx:id="logInButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToItems" prefHeight="35.0" prefWidth="35.0" style="-fx-background-radius: 100;" textFill="WHITE">
+            <Button fx:id="darkButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToItems" prefHeight="35.0" prefWidth="35.0" style="-fx-background-radius: 100;" textFill="WHITE">
                <font>
                   <Font name="Avenir Next Bold" size="12.0" />
                </font>

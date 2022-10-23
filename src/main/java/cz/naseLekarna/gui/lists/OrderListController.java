@@ -10,6 +10,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -83,20 +85,22 @@ public class OrderListController implements Initializable {
                 }
                 activeOrders.getChildren().add(hBox);
                 final Label name = (Label) hBox.lookup("#name");
+                final ImageView image = (ImageView) hBox.lookup("#warning");
                 final Label date = (Label) hBox.lookup("#date");
                 final Label orderID = (Label) hBox.lookup("#orderID");
                 final Label orderPickUpInfo = (Label) hBox.lookup("#orderPickUpInfo");
                 final Label orderNumber = (Label) hBox.lookup("#orderNumber");
+                image.setVisible(false);
                 if (order.getCustomer().getName().isEmpty()) {
                     name.setText("-");
-                } else name.setText(order.getCustomer().getName());
-                orderPickUpInfo.setText(order.getOrderPickupInfo());
-                String dateEnd = order.getDateEnd().format(DateTimeFormatter.ofPattern("d. M. y"));
-                date.setText(dateEnd);
+                } else name.setText(Validator.sanitizeHTML(order.getCustomer().getName()));
+                orderPickUpInfo.setText(Validator.sanitizeHTML(order.getOrderPickupInfo()));
+                String datePickUp = order.getDatePickUp().format(DateTimeFormatter.ofPattern("d. M. y"));
+                date.setText(Validator.sanitizeHTML(datePickUp));
                 if (order.orderNumber != null) {
-                    orderNumber.setText(order.getOrderNumber().toString());
+                    orderNumber.setText(Validator.sanitizeHTML(order.getOrderNumber().toString()));
                 } else orderNumber.setText("-");
-                orderID.setText(order.getOrderId());
+                orderID.setText(Validator.sanitizeHTML(order.getOrderId()));
 
                 if (!order.getOrderedReceptList().isEmpty()) {
                     final VBox vBox = (VBox) hBox.lookup("#listRecept");
@@ -106,7 +110,7 @@ public class OrderListController implements Initializable {
                             hBoxItem = FXMLLoader.load(getClass().getResource("/fxml/orderItemRecept.fxml"));
                             vBox.getChildren().add(hBoxItem);
                             final Label labelCode = (Label) hBoxItem.lookup("#code");
-                            labelCode.setText(String.valueOf(order.getOrderedReceptList().get(i).getCode()));
+                            labelCode.setText(Validator.sanitizeHTML(String.valueOf(order.getOrderedReceptList().get(i).getCode())));
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -134,8 +138,8 @@ public class OrderListController implements Initializable {
                             vBox.getChildren().add(hBoxItem);
                             final Label labelName = (Label) hBoxItem.lookup("#name");
                             final Label labelAmount = (Label) hBoxItem.lookup("#amount");
-                            labelName.setText(String.valueOf(order.getOrderedPripravekList().get(i).getName()));
-                            labelAmount.setText(String.valueOf(order.getOrderedPripravekList().get(i).getAmount() + " ks"));
+                            labelName.setText(Validator.sanitizeHTML(String.valueOf(order.getOrderedPripravekList().get(i).getName())));
+                            labelAmount.setText(Validator.sanitizeHTML(String.valueOf(order.getOrderedPripravekList().get(i).getAmount() + " ks")));
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -155,14 +159,13 @@ public class OrderListController implements Initializable {
                 }
 
                 LocalDate today = LocalDate.now();
-                LocalDate week = today.plusWeeks(1);
                 LocalDate threeDays = today.plusDays(3);
-                LocalDate fourDays = today.plusDays(4);
-                LocalDate dateEndCompare = order.getDateEnd();
-                if ((dateEndCompare.isBefore(fourDays) && dateEndCompare.isAfter(today)) || dateEndCompare.isBefore(today) || dateEndCompare.isEqual(today)) {
+                if (order.getDatePickUp().isEqual(today)) {
                     hBox.lookup("#infoBox").setStyle("-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #e03e82; -fx-border-width: 2");
-                } else if (dateEndCompare.isBefore(week) && dateEndCompare.isAfter(threeDays)) {
+                } else if (order.getDatePickUp().isBefore(threeDays) && order.getDatePickUp().isAfter(today)) {
                     hBox.lookup("#infoBox").setStyle("-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #ead023; -fx-border-width: 2");
+                } else if (order.getDatePickUp().isBefore(today)) {
+                    image.setVisible(true);
                 }
             }
         } else{
@@ -204,18 +207,20 @@ public class OrderListController implements Initializable {
                 }
                 activeOrders.getChildren().add(hBox);
                 final Label name = (Label) hBox.lookup("#name");
+                final ImageView image = (ImageView) hBox.lookup("#warning");
                 final Label date = (Label) hBox.lookup("#date");
                 final Label orderID = (Label) hBox.lookup("#orderID");
                 final Label orderPickUpInfo = (Label) hBox.lookup("#orderPickUpInfo");
                 final Label orderNumber = (Label) hBox.lookup("#orderNumber");
+
                 if (order.getCustomer().getName().isEmpty()) {
                     name.setText("-");
-                } else name.setText(order.getCustomer().getName());
-                orderPickUpInfo.setText(order.getOrderPickupInfo());
-                String dateEnd = order.getDateEnd().format(DateTimeFormatter.ofPattern("d.M.y")); //TODO
-                date.setText(String.valueOf(order.getDateEnd()));
-                orderNumber.setText(order.getOrderNumber().toString());
-                orderID.setText(order.getOrderId());
+                } else name.setText(Validator.sanitizeHTML(order.getCustomer().getName()));
+                orderPickUpInfo.setText(Validator.sanitizeHTML(order.getOrderPickupInfo()));
+                String datePickUp = order.getDatePickUp().format(DateTimeFormatter.ofPattern("d. M. y"));
+                date.setText(Validator.sanitizeHTML(datePickUp));
+                orderNumber.setText(Validator.sanitizeHTML(order.getOrderNumber().toString()));
+                orderID.setText(Validator.sanitizeHTML(order.getOrderId()));
 
                 if (!order.getOrderedReceptList().isEmpty()) {
                     final VBox vBox = (VBox) hBox.lookup("#listRecept");
@@ -225,7 +230,7 @@ public class OrderListController implements Initializable {
                             hBoxItem = FXMLLoader.load(getClass().getResource("/fxml/orderItemRecept.fxml"));
                             vBox.getChildren().add(hBoxItem);
                             final Label labelCode = (Label) hBoxItem.lookup("#code");
-                            labelCode.setText(String.valueOf(order.getOrderedReceptList().get(i).getCode()));
+                            labelCode.setText(Validator.sanitizeHTML(String.valueOf(order.getOrderedReceptList().get(i).getCode())));
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -253,8 +258,8 @@ public class OrderListController implements Initializable {
                             vBox.getChildren().add(hBoxItem);
                             final Label labelName = (Label) hBoxItem.lookup("#name");
                             final Label labelAmount = (Label) hBoxItem.lookup("#amount");
-                            labelName.setText(String.valueOf(order.getOrderedPripravekList().get(i).getName()));
-                            labelAmount.setText(String.valueOf(order.getOrderedPripravekList().get(i).getAmount() + " ks"));
+                            labelName.setText(Validator.sanitizeHTML(String.valueOf(order.getOrderedPripravekList().get(i).getName())));
+                            labelAmount.setText(Validator.sanitizeHTML(String.valueOf(order.getOrderedPripravekList().get(i).getAmount() + " ks")));
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -274,14 +279,13 @@ public class OrderListController implements Initializable {
                 }
 
                 LocalDate today = LocalDate.now();
-                LocalDate week = today.plusWeeks(1);
                 LocalDate threeDays = today.plusDays(3);
-                LocalDate fourDays = today.plusDays(4);
-                LocalDate dateEndCompare = order.getDateEnd();
-                if ((dateEndCompare.isBefore(fourDays) && dateEndCompare.isAfter(today)) || dateEndCompare.isBefore(today) || dateEndCompare.isEqual(today)) {
+                if (order.getDatePickUp().isEqual(today)) {
                     hBox.lookup("#infoBox").setStyle("-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #e03e82; -fx-border-width: 2");
-                } else if (dateEndCompare.isBefore(week) && dateEndCompare.isAfter(threeDays)) {
+                } else if (order.getDatePickUp().isBefore(threeDays) && order.getDatePickUp().isAfter(today)) {
                     hBox.lookup("#infoBox").setStyle("-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #ead023; -fx-border-width: 2");
+                } else if (order.getDatePickUp().isBefore(today)) {
+                    image.setVisible(true);
                 }
             }
         }

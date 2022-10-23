@@ -22,20 +22,12 @@
                     <children>
                         <VBox>
                             <children>
-                                <Label prefHeight="29.0" text="Číslo lístku">
+                                <Label prefHeight="27.0" text="Číslo lístku">
                                     <font>
                                         <Font name="Avenir Book" size="13.0" />
                                     </font>
                                 </Label>
-                                <Label prefHeight="29.0" text="Klient">
-                                    <font>
-                                        <Font name="Avenir Book" size="13.0" />
-                                    </font>
-                                    <VBox.margin>
-                                        <Insets top="5.0" />
-                                    </VBox.margin>
-                                </Label>
-                                <Label prefHeight="29.0" text="Telefon">
+                                <Label prefHeight="27.0" text="Klient">
                                     <font>
                                         <Font name="Avenir Book" size="13.0" />
                                     </font>
@@ -43,7 +35,7 @@
                                         <Insets top="5.0" />
                                     </VBox.margin>
                                 </Label>
-                                <Label prefHeight="29.0" text="Ulice">
+                                <Label prefHeight="27.0" text="Telefon">
                                     <font>
                                         <Font name="Avenir Book" size="13.0" />
                                     </font>
@@ -51,7 +43,7 @@
                                         <Insets top="5.0" />
                                     </VBox.margin>
                                 </Label>
-                                <Label prefHeight="29.0" text="Obec">
+                                <Label prefHeight="27.0" text="Ulice">
                                     <font>
                                         <Font name="Avenir Book" size="13.0" />
                                     </font>
@@ -59,7 +51,7 @@
                                         <Insets top="5.0" />
                                     </VBox.margin>
                                 </Label>
-                                <Label prefHeight="29.0" text="Datum přimu">
+                                <Label prefHeight="27.0" text="Obec">
                                     <font>
                                         <Font name="Avenir Book" size="13.0" />
                                     </font>
@@ -67,7 +59,7 @@
                                         <Insets top="5.0" />
                                     </VBox.margin>
                                 </Label>
-                                <Label prefHeight="29.0" text="Způsob vyzvednutí">
+                                <Label prefHeight="27.0" text="Datum přimu">
                                     <font>
                                         <Font name="Avenir Book" size="13.0" />
                                     </font>
@@ -75,7 +67,23 @@
                                         <Insets top="5.0" />
                                     </VBox.margin>
                                 </Label>
-                                <Label prefHeight="29.0" text="Datum výdeje">
+                                <Label prefHeight="27.0" text="Způsob vyzvednutí">
+                                    <font>
+                                        <Font name="Avenir Book" size="13.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets top="5.0" />
+                                    </VBox.margin>
+                                </Label>
+                        <Label prefHeight="27.0" text="Datum vyzvednutí">
+                           <font>
+                              <Font name="Avenir Book" size="13.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                                <Label prefHeight="27.0" text="Datum splatnosti">
                                     <font>
                                         <Font name="Avenir Book" size="13.0" />
                                     </font>
@@ -88,12 +96,12 @@
                         <Region HBox.hgrow="ALWAYS" />
                         <VBox alignment="TOP_CENTER" fillWidth="false" HBox.hgrow="NEVER">
                             <children>
-                                <TextField fx:id="orderNumber" alignment="CENTER" prefHeight="0.0" prefWidth="65.0" style="-fx-border-color: transparent; -fx-border-radius: 10;-fx-background-radius: 10" VBox.vgrow="NEVER">
+                                <TextField fx:id="orderNumber" alignment="CENTER" maxHeight="27.0" minHeight="27.0" prefHeight="27.0" prefWidth="65.0" style="-fx-border-color: transparent; -fx-border-radius: 10;-fx-background-radius: 10" VBox.vgrow="NEVER">
                                     <font>
                                         <Font name="Avenir Book" size="13.0" />
                                     </font>
                                 </TextField>
-                                <TextField fx:id="name" prefHeight="20.0" prefWidth="130.0" promptText="Nevyplněno" style="-fx-border-color: transparent; -fx-border-radius: 10;-fx-background-radius: 10">
+                                <TextField fx:id="name" maxHeight="27.0" minHeight="27.0" prefHeight="27.0" prefWidth="130.0" promptText="Nevyplněno" style="-fx-border-color: transparent; -fx-border-radius: 10;-fx-background-radius: 10">
                                     <font>
                                         <Font name="Avenir Book" size="12.0" />
                                     </font>
@@ -101,7 +109,7 @@
                                         <Insets top="5.0" />
                                     </VBox.margin>
                                 </TextField>
-                                <TextField fx:id="phoneNumber" prefHeight="20.0" prefWidth="130.0" promptText="Nevyplněno" style="-fx-border-color: transparent; -fx-border-radius: 10;-fx-background-radius: 10">
+                                <TextField fx:id="phoneNumber" maxHeight="27.0" minHeight="27.0" prefHeight="27.0" prefWidth="130.0" promptText="Nevyplněno" style="-fx-border-color: transparent; -fx-border-radius: 10;-fx-background-radius: 10">
                                     <font>
                                         <Font name="Avenir Book" size="12.0" />
                                     </font>
@@ -109,7 +117,7 @@
                                         <Insets top="5.0" />
                                     </VBox.margin>
                                 </TextField>
-                                <TextField fx:id="street" prefHeight="20.0" prefWidth="130.0" promptText="Nevyplněno" style="-fx-border-color: transparent; -fx-border-radius: 10;-fx-background-radius: 10">
+                                <TextField fx:id="street" maxHeight="27.0" minHeight="27.0" prefHeight="27.0" prefWidth="130.0" promptText="Nevyplněno" style="-fx-border-color: transparent; -fx-border-radius: 10;-fx-background-radius: 10">
                                     <font>
                                         <Font name="Avenir Book" size="12.0" />
                                     </font>
@@ -117,7 +125,7 @@
                                         <Insets top="5.0" />
                                     </VBox.margin>
                                 </TextField>
-                                <TextField fx:id="city" prefHeight="20.0" prefWidth="130.0" promptText="Nevyplněno" style="-fx-border-color: transparent; -fx-border-radius: 10;-fx-background-radius: 10">
+                                <TextField fx:id="city" maxHeight="27.0" minHeight="27.0" prefHeight="27.0" prefWidth="130.0" promptText="Nevyplněno" style="-fx-border-color: transparent; -fx-border-radius: 10;-fx-background-radius: 10">
                                     <font>
                                         <Font name="Avenir Book" size="12.0" />
                                     </font>
@@ -125,17 +133,22 @@
                                         <Insets top="5.0" />
                                     </VBox.margin>
                                 </TextField>
-                                <DatePicker fx:id="dateBegin" prefHeight="20.0" prefWidth="130.0" promptText="Datum přijmu" style="-fx-border-color: transparent">
+                                <DatePicker fx:id="dateBegin" maxHeight="27.0" minHeight="27.0" prefHeight="27.0" prefWidth="130.0" promptText="Datum přijmu" style="-fx-border-color: transparent">
                                     <VBox.margin>
                                         <Insets top="5.0" />
                                     </VBox.margin>
                                 </DatePicker>
-                                <ChoiceBox fx:id="pickUpOption" prefHeight="20.0" prefWidth="130.0" style="-fx-border-color: transparent">
+                                <ChoiceBox fx:id="pickUpOption" maxHeight="27.0" minHeight="27.0" prefHeight="27.0" prefWidth="130.0" style="-fx-border-color: transparent">
                                     <VBox.margin>
                                         <Insets top="5.0" />
                                     </VBox.margin>
                                 </ChoiceBox>
-                                <DatePicker fx:id="dateEnd" prefHeight="20.0" prefWidth="130.0" promptText="Datum ukončení" style="-fx-border-color: transparent">
+                        <DatePicker fx:id="datePickUp" maxHeight="27.0" minHeight="27.0" prefHeight="27.0" prefWidth="130.0" promptText="Datum vyzvednutí" style="-fx-border-color: transparent">
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </DatePicker>
+                                <DatePicker fx:id="dateEnd" maxHeight="27.0" minHeight="27.0" prefHeight="27.0" prefWidth="130.0" promptText="Datum splatnosti" style="-fx-border-color: transparent">
                                     <VBox.margin>
                                         <Insets top="5.0" />
                                     </VBox.margin>
@@ -193,25 +206,13 @@
             </children>
         </VBox>
       <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity">
-         <children>
-            <Region HBox.hgrow="ALWAYS" />
-                <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#finishTask" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: #e36f5f; -fx-background-radius: 5;" text="DOKONČENO" textFill="WHITE">
-                    <font>
-                        <Font name="Avenir Next Bold" size="12.0" />
-                    </font>
-                    <padding>
-                        <Insets left="5.0" right="5.0" />
-                    </padding>
-                </Button>
-            <Region HBox.hgrow="ALWAYS" />
-         </children>
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>
       </HBox>
       <HBox alignment="CENTER">
          <children>
-            <Button fx:id="logInButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cancelEdit" prefHeight="35.0" prefWidth="35.0" style="-fx-background-radius: 100;" textFill="WHITE">
+            <Button fx:id="darkButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cancelEdit" prefHeight="35.0" prefWidth="35.0" style="-fx-background-radius: 100;" textFill="WHITE">
                <font>
                   <Font name="Avenir Next Bold" size="12.0" />
                </font>
@@ -227,6 +228,19 @@
                </HBox.margin>
             </Button>
             <Region HBox.hgrow="ALWAYS" />
+            <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#finishTask" prefHeight="35.0" prefWidth="35.0" style="-fx-background-radius: 100; -fx-background-color: #b97272;" textFill="#b97272">
+               <font>
+                  <Font name="Avenir Next Bold" size="12.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="22.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/done.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Region HBox.hgrow="ALWAYS" />
             <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#saveEdit" prefHeight="35.0" prefWidth="35.0" style="-fx-background-radius: 100; -fx-background-color: #409988;" textFill="WHITE">
                <font>
                   <Font name="Avenir Next Bold" size="12.0" />
@@ -237,7 +251,7 @@
                <graphic>
                   <ImageView fitHeight="22.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/done.png" />
+                        <Image url="@../../images/save.png" />
                      </image>
                   </ImageView>
                </graphic>

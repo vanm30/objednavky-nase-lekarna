@@ -1,5 +1,6 @@
 package cz.naseLekarna.gui.logIn;
 
+import cz.naseLekarna.gui.Animation;
 import cz.naseLekarna.gui.application.StageController;
 import cz.naseLekarna.system.FirebaseService;
 import cz.naseLekarna.system.Storage;
@@ -49,6 +50,7 @@ public class LogInController {
     Storage storage = Storage.getStorage();
     StageController stageController = StageController.getStageController();
     FirebaseService firebaseService = new FirebaseService();
+    Animation animation = new Animation();
 
     /**
      * This method tries to log user upon given login info.
@@ -58,9 +60,10 @@ public class LogInController {
      * @throws IOException
      */
     public void logIn() throws NoSuchAlgorithmException, ExecutionException, InterruptedException, IOException {
+        String name = userName.getText().trim().toLowerCase();
         //Form check
         errorBox.getChildren().clear();
-        if (userName.getText().trim().isEmpty()) {
+        if (name.isEmpty()) {
             Label error = new Label();
             error.setText("Zadejte uživatelské jméno.");
             errorBox.getChildren().add(error);
@@ -70,8 +73,8 @@ public class LogInController {
             error.setText("Zadejte heslo.");
             errorBox.getChildren().add(error);
         }
-        if (!userName.getText().trim().isEmpty() && !password.getText().isEmpty()) {
-            Boolean result = firebaseService.validateLogin(userName.getText().trim(), password.getText());
+        if (!name.isEmpty() && !password.getText().isEmpty()) {
+            Boolean result = firebaseService.validateLogin(name, password.getText());
             //Logs in user
             if (result) {
                 //New scene

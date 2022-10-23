@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="logInBackground" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" stylesheets="@/stylesheet.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.naseLekarna.gui.logIn.LogInController">
+<VBox fx:id="logInBackground" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" stylesheets="@/stylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.naseLekarna.gui.logIn.LogInController">
     <children>
         <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -41,7 +41,7 @@
                                 <Image url="@/images/user.png" />
                             </image>
                         </ImageView>
-                        <TextField onKeyPressed="#focusPassword" fx:id="userName" prefHeight="30.0" promptText="Uživatelské jméno" style="-fx-background-color: transparent; -fx-border-color: transparent;" HBox.hgrow="ALWAYS">
+                        <TextField fx:id="userName" onKeyPressed="#focusPassword" prefHeight="30.0" promptText="Uživatelské jméno" style="-fx-background-color: transparent; -fx-border-color: transparent;" HBox.hgrow="ALWAYS">
                             <font>
                                 <Font name="Avenir Book" size="12.0" />
                             </font>
@@ -62,7 +62,7 @@
                                 <Image url="@/images/password.png" />
                             </image>
                         </ImageView>
-                        <PasswordField onAction="#logIn" fx:id="password" prefHeight="30.0" promptText="Heslo" style="-fx-background-color: transparent; -fx-border-color: transparent;" HBox.hgrow="ALWAYS">
+                        <PasswordField fx:id="password" onAction="#logIn" prefHeight="30.0" promptText="Heslo" style="-fx-background-color: transparent; -fx-border-color: transparent;" HBox.hgrow="ALWAYS">
                             <font>
                                 <Font name="Avenir Book" size="12.0" />
                             </font>
@@ -83,8 +83,11 @@
                 <Insets bottom="5.0" left="20.0" right="20.0" top="20.0" />
             </padding>
         </VBox>
-        <VBox fx:id="errorBox" alignment="TOP_LEFT" prefHeight="50.0" />
-        <Button fx:id="logInButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#logIn" prefHeight="30.0" prefWidth="100.0" style="-fx-background-radius: 5;" text="PŘIHLÁSIT SE" textFill="WHITE">
+        <VBox fx:id="errorBox" alignment="TOP_LEFT" prefHeight="50.0">
+         <VBox.margin>
+            <Insets left="20.0" />
+         </VBox.margin></VBox>
+        <Button fx:id="darkButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#logIn" prefHeight="30.0" prefWidth="100.0" style="-fx-background-radius: 5;" text="PŘIHLÁSIT SE" textFill="WHITE">
             <font>
                 <Font name="Avenir Next Bold" size="12.0" />
             </font>

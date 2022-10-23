@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="menuBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="219.0" style="-fx-background-color: #f2f2f2#f2f2f2;" stylesheets="@/stylesheet.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.naseLekarna.gui.mainMenu.MenuController">
+<VBox fx:id="menuBox" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="219.0" style="-fx-background-color: #f2f2f2#f2f2f2;" stylesheets="@/stylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.naseLekarna.gui.mainMenu.MenuController">
     <children>
         <GridPane prefHeight="183.0" VBox.vgrow="NEVER">
             <columnConstraints>
@@ -64,6 +64,18 @@
                         <Font name="Avenir Book" size="14.0" />
                     </font>
                 </Button>
+            <Button graphicTextGap="20.0" mnemonicParsing="false" onAction="#switchToCustomers" style="-fx-background-color: transparent;" text="Pacienti">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/user.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Avenir Book" size="14.0" />
+               </font>
+            </Button>
                 <Button graphicTextGap="20.0" mnemonicParsing="false" onAction="#switchToSettings" style="-fx-background-color: transparent;" text="Nastavení">
                     <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">

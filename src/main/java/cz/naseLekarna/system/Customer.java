@@ -8,7 +8,7 @@ import java.util.Objects;
  */
 public class Customer {
     private String name;
-    private Integer phoneNumber;
+    private String phoneNumber;
     private String street;
     private String city;
     private Boolean save = false;
@@ -22,11 +22,11 @@ public class Customer {
         this.name = name;
     }
 
-    public Integer getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -52,18 +52,5 @@ public class Customer {
 
     public void setSave(Boolean save) {
         this.save = save;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Customer)) return false;
-        Customer customer = (Customer) o;
-        return Objects.equals(getName(), customer.getName()) && Objects.equals(getPhoneNumber(), customer.getPhoneNumber()) && Objects.equals(getStreet(), customer.getStreet()) && Objects.equals(getCity(), customer.getCity()) && Objects.equals(getSave(), customer.getSave());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getName(), getPhoneNumber(), getStreet(), getCity(), getSave());
     }
 }

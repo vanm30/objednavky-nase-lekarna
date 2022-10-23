@@ -224,7 +224,7 @@
       </VBox>
       <HBox alignment="CENTER">
          <children>
-            <Button fx:id="logInButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToOrderInfo" prefHeight="35.0" prefWidth="35.0" style="-fx-background-radius: 100;" textFill="WHITE">
+            <Button fx:id="darkButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToOrderInfo" prefHeight="35.0" prefWidth="35.0" style="-fx-background-radius: 100;" textFill="WHITE">
                <font>
                   <Font name="Avenir Next Bold" size="12.0" />
                </font>
