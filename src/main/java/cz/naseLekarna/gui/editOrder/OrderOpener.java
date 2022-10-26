@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TouchEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import org.apache.log4j.chainsaw.Main;
 
@@ -47,8 +48,6 @@ public class OrderOpener {
     public Label orderNumber;
     @FXML
     public Label orderID;
-    @FXML
-    public ImageView warning;
 
     Storage storage = Storage.getStorage();
     FirebaseService firebaseService = new FirebaseService();

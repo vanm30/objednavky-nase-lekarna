@@ -47,7 +47,7 @@ public class EditInfoController implements Initializable {
     @FXML
     public DatePicker dateBegin;
     @FXML
-    public ChoiceBox pickUpOption;
+    public ChoiceBox<String> pickUpOption;
     @FXML
     public DatePicker dateEnd;
     public DatePicker datePickUp;
@@ -55,6 +55,8 @@ public class EditInfoController implements Initializable {
     public TextArea notes;
     @FXML
     public TextField orderNumber;
+    @FXML
+    public ChoiceBox<String> stateChoose;
 
     Storage storage = Storage.getStorage();
     FirebaseService firebaseService = new FirebaseService();
@@ -67,8 +69,13 @@ public class EditInfoController implements Initializable {
         mainController.searchButton.setVisible(false);
         mainController.searchBar.setVisible(false);
 
+        //options
         pickUpOption.getItems().add("Osobní");
         pickUpOption.getItems().add("Rozvoz");
+
+        stateChoose.getItems().add("Připraveno");
+        stateChoose.getItems().add("Objednáno");
+        stateChoose.getItems().add("Neobjednáno");
 
         if (storage.editedOrder.getOrderNumber() != null) {
             orderNumber.setText(String.valueOf(storage.editedOrder.getOrderNumber()));
@@ -90,6 +97,9 @@ public class EditInfoController implements Initializable {
         }
         if (storage.editedOrder.getOrderPickupInfo() != null) {
             pickUpOption.setValue(storage.editedOrder.getOrderPickupInfo());
+        }
+        if (storage.editedOrder.getState() != null) {
+            stateChoose.setValue(storage.editedOrder.getState());
         }
         if (storage.editedOrder.getDateEnd() != null) {
             dateEnd.setValue(storage.editedOrder.getDateEnd());
@@ -177,6 +187,7 @@ public class EditInfoController implements Initializable {
         docData.put("orderPickUpInfo", pickUpOption.getValue());
         docData.put("dateEnd", dateEnd.getValue().toString());
         docData.put("datePickUp", datePickUp.getValue().toString());
+        docData.put("state", stateChoose.getValue());
         docData.put("notes", notes.getText());
         firebaseService.updateOrder(docData);
 

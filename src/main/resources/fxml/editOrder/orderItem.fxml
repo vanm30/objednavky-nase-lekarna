@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
@@ -22,18 +23,10 @@
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
+                <RowConstraints maxHeight="10.0" minHeight="0.0" prefHeight="0.0" vgrow="NEVER" />
                 <RowConstraints vgrow="NEVER" />
-                <RowConstraints vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ImageView fx:id="warning" fitHeight="27.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
-                     <image>
-                        <Image url="@../../images/warning.png" />
-                     </image>
-                     <GridPane.margin>
-                        <Insets left="5.0" />
-                     </GridPane.margin>
-                  </ImageView>
                       <Label fx:id="orderID" prefHeight="10.0" visible="false" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER">
                           <font>
                               <Font size="10.0" />
@@ -46,64 +39,94 @@
                       </Label>
                </children>
             </GridPane>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <GridPane alignment="CENTER_LEFT">
+              <columnConstraints>
+                <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" prefWidth="10.0" />
+                <ColumnConstraints fillWidth="false" halignment="LEFT" hgrow="ALWAYS" prefWidth="10.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints fillHeight="false" vgrow="SOMETIMES" />
+                <RowConstraints fillHeight="false" vgrow="SOMETIMES" />
+              </rowConstraints>
                <children>
-                      <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
-                          <children>
-                        <GridPane alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" />
-                            <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
+                  <HBox alignment="CENTER_LEFT" GridPane.hgrow="NEVER">
+                     <children>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/user.png" />
+                           </image>
+                        </ImageView>
+                              <Label fx:id="name">
+                                  <font>
+                                      <Font name="Avenir Next Bold" size="14.0" />
+                                  </font>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                              </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.hgrow="NEVER">
+                     <children>
+                        <Pane fx:id="dateAn" style="-fx-background-radius: 100;">
                            <children>
-                              <Label text="Klient:">
-                                 <font>
-                                    <Font name="System Bold" size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label text="Vyzvednutí" GridPane.rowIndex="1">
-                                 <font>
-                                    <Font name="System Bold" size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label text="Způsob: " textAlignment="CENTER" GridPane.rowIndex="2">
-                                 <font>
-                                    <Font name="System Bold" size="14.0" />
-                                 </font>
-                              </Label>
-                                    <Label fx:id="name" GridPane.columnIndex="1">
-                                        <font>
-                                            <Font name="Avenir Next Bold" size="14.0" />
-                                        </font>
-                                    </Label>
-                                    <Label fx:id="date" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                        <font>
-                                            <Font name="Avenir Book" size="14.0" />
-                                        </font>
-                                    </Label>
-                                    <Label fx:id="orderPickUpInfo" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                        <font>
-                                            <Font name="Avenir Book" size="14.0" />
-                                        </font>
-                                    </Label>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../images/point.png" />
+                                 </image>
+                              </ImageView>
                            </children>
-                        </GridPane>
-                          </children>
-                          <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                          </padding>
-                      </VBox>
+                        </Pane>
+                              <Label fx:id="date">
+                                  <font>
+                                      <Font name="Avenir Book" size="14.0" />
+                                  </font>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                              </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" GridPane.hgrow="NEVER" GridPane.rowIndex="1">
+                     <children>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/when.png" />
+                           </image>
+                        </ImageView>
+                              <Label fx:id="orderPickUpInfo" textAlignment="CENTER">
+                                  <font>
+                                      <Font name="Avenir Book" size="14.0" />
+                                  </font>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                              </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.rowIndex="1">
+                     <children>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/state.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="state" textAlignment="CENTER">
+                           <font>
+                              <Font name="Avenir Book" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
+            </GridPane>
                 <Region prefHeight="2.0" style="-fx-background-color: grey;" />
                 <VBox fx:id="listPripravek">
                     <children>
-                        <Label alignment="CENTER" prefHeight="23.0" text="Přípravky" textFill="#5ead87">
+                        <Label alignment="CENTER" prefHeight="23.0" text="Přípravky" textFill="#409988">
                             <font>
                                 <Font name="Avenir Next Bold" size="13.0" />
                             </font>
@@ -115,7 +138,7 @@
                 </VBox>
                 <VBox fx:id="listRecept">
                     <children>
-                        <Label alignment="CENTER" prefHeight="23.0" text="Recepty" textFill="#5ead87">
+                        <Label alignment="CENTER" prefHeight="23.0" text="Recepty" textFill="#409988">
                             <font>
                                 <Font name="Avenir Next Bold" size="13.0" />
                             </font>

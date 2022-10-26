@@ -5,6 +5,7 @@ import cz.naseLekarna.gui.lists.CustomerListController;
 import cz.naseLekarna.gui.newOrder.FindCustomerController;
 import cz.naseLekarna.gui.lists.OrderListController;
 import cz.naseLekarna.system.Customer;
+import cz.naseLekarna.system.Order;
 import cz.naseLekarna.system.Storage;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
@@ -21,10 +22,7 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.ResourceBundle;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author Matěj Vaník
@@ -181,7 +179,8 @@ public class MainController implements Initializable {
 
         }else {
             if (mainStackPane.getChildren().get(0).getId() != null && mainStackPane.getChildren().get(0).getId().equals("orders") && !searchBar.getText().isEmpty()){
-                OrderListController.getOrderListController().loadOrders();
+                List<Order> list = storage.getActiveOrders();
+                OrderListController.getOrderListController().loadOrders(list);
             }
             if (mainStackPane.getChildren().get(0).getId() != null && mainStackPane.getChildren().get(0).getId().equals("findCustomers") && !searchBar.getText().isEmpty()){
                 FindCustomerController.getCustomerListController().loadCustomers();
@@ -202,7 +201,8 @@ public class MainController implements Initializable {
         }
         if (mainStackPane.getChildren().get(0).getId().equals("orders")) {
             if (searchBar.getText().isEmpty()) {
-                OrderListController.getOrderListController().loadOrders();
+                List<Order> list = storage.getActiveOrders();
+                OrderListController.getOrderListController().loadOrders(list);
             } else if (!storage.getActiveOrders().isEmpty()) {
                 ArrayList<String> names = storage.orderNames;
                 ArrayList<Integer> numbers = storage.orderNumbers;

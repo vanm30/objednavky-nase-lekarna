@@ -44,14 +44,14 @@ public class StageController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        VBox vBox = null;
+        Node node = null;
         try {
-            vBox = FXMLLoader.load(getClass().getResource("/fxml/login/logIn.fxml"));
+            node = FXMLLoader.load(getClass().getResource("/fxml/login/logIn.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
         mainStage.requestFocus();
-        mainStage.getChildren().add(vBox);
+        mainStage.getChildren().add(node);
     }
 
 }

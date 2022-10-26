@@ -15,8 +15,8 @@
          <children>
             <GridPane alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
                <columnConstraints>
-                  <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" />
-                  <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" />
+                  <ColumnConstraints hgrow="NEVER" maxWidth="1.7976931348623157E308" />
+                  <ColumnConstraints fillWidth="false" halignment="LEFT" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" />
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
@@ -46,11 +46,17 @@
                           <font>
                               <Font name="Avenir Book" size="13.0" />
                           </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
                       </Label>
                       <Label fx:id="address" GridPane.columnIndex="1" GridPane.rowIndex="2">
                           <font>
                               <Font name="Avenir Book" size="13.0" />
                           </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
                       </Label>
                </children>
             </GridPane>

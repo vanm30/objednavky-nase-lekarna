@@ -233,6 +233,14 @@
                                         <Insets top="5.0" />
                                     </VBox.margin>
                                 </Label>
+                        <Label prefHeight="29.0" text="Stav zboží">
+                           <font>
+                              <Font name="Avenir Book" size="13.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Label>
                             </children>
                         </VBox>
                         <Region HBox.hgrow="ALWAYS" />
@@ -254,6 +262,11 @@
                                         <Insets top="5.0" />
                                     </VBox.margin>
                                 </DatePicker>
+                        <ChoiceBox fx:id="stateChoose" prefHeight="29.0" prefWidth="130.0" style="-fx-border-color: transparent">
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </ChoiceBox>
                             </children>
                         </VBox>
                     </children>

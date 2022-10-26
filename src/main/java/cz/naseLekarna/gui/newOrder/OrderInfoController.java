@@ -64,6 +64,8 @@ public class OrderInfoController implements Initializable {
     public Button forgetButton;
     @FXML
     public Button searchButton;
+    @FXML
+    public ChoiceBox<String> stateChoose;
 
     Storage storage = Storage.getStorage();
     MainController mainController = MainController.getMainController();
@@ -91,8 +93,13 @@ public class OrderInfoController implements Initializable {
             name.setEditable(true);
         }
 
+        //options
         pickUpOption.getItems().add("Osobní");
         pickUpOption.getItems().add("Rozvoz");
+
+        stateChoose.getItems().add("Připraveno");
+        stateChoose.getItems().add("Objednáno");
+        stateChoose.getItems().add("Neobjednáno");
 
         if (storage.newOrder.getOrderNumber() != null) {
             orderNumber.setText(String.valueOf(storage.newOrder.getOrderNumber()));
@@ -120,6 +127,11 @@ public class OrderInfoController implements Initializable {
         } else {
             pickUpOption.setValue("Osobní");
         }
+        if (storage.newOrder.getState() != null) {
+            stateChoose.setValue(storage.newOrder.getState());
+        } else {
+            stateChoose.setValue("Neobjednáno");
+        }
     }
 
     /**
@@ -137,6 +149,7 @@ public class OrderInfoController implements Initializable {
         storage.newOrder.setDateEnd(dateEnd.getValue());
         storage.newOrder.setDatePickUp(datePickUp.getValue());
         storage.newOrder.setOrderPickupInfo(pickUpOption.getValue());
+        storage.newOrder.setState(stateChoose.getValue());
     }
 
     /**

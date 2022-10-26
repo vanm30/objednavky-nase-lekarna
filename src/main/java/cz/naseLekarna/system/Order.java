@@ -15,6 +15,7 @@ public class Order {
     private Customer customer;
     private LocalDate dateBegin;
     private String orderPickupInfo;
+    private String state;
     private LocalDate dateEnd;
     private LocalDate datePickUp;
     private String notes;
@@ -111,6 +112,14 @@ public class Order {
 
     public void setCustomerFromDb(boolean customerFromDb) {
         this.customerFromDb = customerFromDb;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }
 

@@ -92,6 +92,7 @@ public class FirebaseService {
         }
         docData.put("dateBegin", storage.newOrder.getDateBegin().toString());
         docData.put("orderPickUpInfo", storage.newOrder.getOrderPickupInfo());
+        docData.put("state",storage.newOrder.getState());
         docData.put("dateEnd", storage.newOrder.getDateEnd().toString());
         docData.put("datePickUp", storage.newOrder.getDatePickUp().toString());
         docData.put("notes", storage.newOrder.getNotes());
@@ -207,6 +208,8 @@ public class FirebaseService {
         order.setDateEnd(LOCAL_DATE((String) document.get("dateEnd")));
         order.setDatePickUp(LOCAL_DATE((String) document.get("datePickUp")));
         order.setOrderPickupInfo((String) document.get("orderPickUpInfo"));
+        order.setState((String) document.get("state"));
+        System.out.println((String) document.get("state"));
         order.setNotes((String) document.get("notes"));
         order.setOrderId(document.getId());
         ArrayList itemReceptList = (ArrayList) document.get("itemReceptList");
