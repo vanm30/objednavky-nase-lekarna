@@ -1,0 +1,66 @@
+cz/naseLekarna/gui/application/StageController.java
+ cz.naseLekarna.gui.application.StageController
+cz/naseLekarna/system/Customer.java
+ cz.naseLekarna.system.Customer
+cz/naseLekarna/gui/mainMenu/MenuController.java
+ cz.naseLekarna.gui.mainMenu.MenuController
+cz/naseLekarna/gui/mainMenu/HomeViewController.java
+ cz.naseLekarna.gui.mainMenu.HomeViewController
+cz/naseLekarna/gui/mainMenu/MainController.java
+ cz.naseLekarna.gui.mainMenu.MainController
+cz/naseLekarna/system/ItemPripravek.java
+ cz.naseLekarna.system.ItemPripravek
+cz/naseLekarna/gui/Animation.java
+ cz.naseLekarna.gui.Animation
+cz/naseLekarna/gui/application/InfoBoxController.java
+ cz.naseLekarna.gui.application.InfoBoxController
+cz/naseLekarna/gui/editOrder/EditItemsController.java
+ cz.naseLekarna.gui.editOrder.EditItemsController
+cz/naseLekarna/gui/newOrder/ItemsController.java
+ cz.naseLekarna.gui.newOrder.ItemsController
+cz/naseLekarna/system/User.java
+ cz.naseLekarna.system.User
+cz/naseLekarna/system/ItemRecept.java
+ cz.naseLekarna.system.ItemRecept
+cz/naseLekarna/system/Storage.java
+ cz.naseLekarna.system.Storage
+cz/naseLekarna/system/Validator.java
+ cz.naseLekarna.system.Validator
+cz/naseLekarna/main/Start.java
+ cz.naseLekarna.main.Start
+cz/naseLekarna/system/Logic.java
+ cz.naseLekarna.system.Logic
+cz/naseLekarna/system/Order.java
+ cz.naseLekarna.system.Order
+cz/naseLekarna/gui/newOrder/FindCustomerController.java
+ cz.naseLekarna.gui.newOrder.FindCustomerController
+cz/naseLekarna/gui/editCustomer/AddCustomerFromList.java
+ cz.naseLekarna.gui.editCustomer.AddCustomerFromList
+cz/naseLekarna/gui/editOrder/OrderOpener.java
+ cz.naseLekarna.gui.editOrder.OrderOpener
+cz/naseLekarna/gui/newOrder/OrderItemsController.java
+ cz.naseLekarna.gui.newOrder.OrderItemsController
+cz/naseLekarna/gui/newOrder/OptionalInfoController.java
+ cz.naseLekarna.gui.newOrder.OptionalInfoController
+cz/naseLekarna/gui/logIn/LogInController.java
+ cz.naseLekarna.gui.logIn.LogInController
+cz/naseLekarna/gui/newOrder/OrderInfoController.java
+ cz.naseLekarna.gui.newOrder.OrderInfoController
+cz/naseLekarna/gui/lists/OrderListController.java
+ cz.naseLekarna.gui.lists.OrderListController
+cz/naseLekarna/gui/lists/CustomerListController.java
+ cz.naseLekarna.gui.lists.CustomerListController
+cz/naseLekarna/gui/editCustomer/EditCustomerInfo.java
+ cz.naseLekarna.gui.editCustomer.EditCustomerInfo
+cz/naseLekarna/gui/mainMenu/SettingsController.java
+ cz.naseLekarna.gui.mainMenu.SettingsController
+cz/naseLekarna/gui/editOrder/EditInfoController.java
+ cz.naseLekarna.gui.editOrder.EditInfoController
+cz/naseLekarna/gui/logIn/SignInController.java
+ cz.naseLekarna.gui.logIn.SignInController
+cz/naseLekarna/system/FirebaseService.java
+ cz.naseLekarna.system.FirebaseService
+cz/naseLekarna/gui/lists/SavedCustomerController.java
+ cz.naseLekarna.gui.lists.SavedCustomerController
+cz/naseLekarna/gui/mainMenu/ChangePasswordController.java
+ cz.naseLekarna.gui.mainMenu.ChangePasswordController

@@ -41,4 +41,8 @@ public class ItemsController {
         VBox vBox = (VBox) deleteButton.getParent().getParent();
         vBox.getChildren().remove(gridPane);
     }
+
+    public void scan(ActionEvent actionEvent) {
+
+    }
 }

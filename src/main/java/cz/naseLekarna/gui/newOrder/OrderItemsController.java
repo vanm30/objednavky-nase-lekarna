@@ -17,8 +17,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import jdk.nashorn.internal.ir.IfNode;
-import org.apache.commons.text.StringEscapeUtils;
 
 import java.io.IOException;
 import java.net.URL;

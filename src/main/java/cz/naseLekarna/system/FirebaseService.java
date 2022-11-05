@@ -20,6 +20,8 @@ public class FirebaseService {
     Firestore db = FirestoreClient.getFirestore();
     Storage storage = Storage.getStorage();
 
+    final String place = "testOrders";
+
     /**
      * Method adds customer to Firebase
      *
@@ -109,7 +111,7 @@ public class FirebaseService {
         storage.activeOrders.clear();
         storage.orderNumbers.clear();
         storage.orderNames.clear();
-        CollectionReference orders = db.collection("orders");
+        CollectionReference orders = db.collection(place);
         Query query = orders.orderBy("dateEnd");
         ApiFuture<QuerySnapshot> querySnapshot = query.get();
 
@@ -124,9 +126,8 @@ public class FirebaseService {
         query.get();
     }
 
-
     public void getInfoForEdit(String id) throws ExecutionException, InterruptedException {
-        DocumentReference docRef = db.collection("orders").document(id);
+        DocumentReference docRef = db.collection(place).document(id);
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
         Order order = writeDownInfo(document);

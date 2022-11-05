@@ -1,0 +1,66 @@
+/*All buttons now have pointer cursor when hovering. Only for desktop (future implementation for desktop usage)*/
+Button{
+-fx-cursor: hand;
+}
+
+/*All buttons flash when pressing*/
+Button:pressed{
+-fx-opacity: 0.5;
+}
+
+/*All scrollpanes are transparent*/
+.scroll-pane .viewport {
+       -fx-background-color: transparent;
+}
+/*Button colors*/
+#logInBackground{
+-fx-background-color: linear-gradient(#5EAD87,#61D8DE);
+}
+
+#upperBar{
+-fx-background-color: linear-gradient(#5EAD87,#409988);
+}
+
+
+#errorBox .label{
+-fx-font-family: Avenir Book;
+-fx-text-fill: #950925;
+}
+
+#activeOrders #empty{
+-fx-font-family: Avenir Book;
+-fx-text-fill: #b97272;
+-fx-padding: 30px;
+}
+
+#customers #empty{
+-fx-font-family: Avenir Book;
+-fx-text-fill: #b97272;
+-fx-padding: 30px;
+}
+
+#activeOrders #orderInfo {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+#customers #customerInfo {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+#loginButton{
+-fx-background-color: #2F4858;
+}
+
+#darkButton{
+-fx-background-color: #2F4858;
+}
+
+#searchError{
+-fx-font-family: Avenir Book;
+-fx-text-fill: #950925;
+-fx-padding: 30px;
+-fx-border-insets: 30px;
+-fx-background-insets: 30px;
+}
+
+
