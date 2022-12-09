@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER_LEFT" stylesheets="@/stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.naseLekarna.controllers.editCustomer.AddCustomerFromList">
+   <children>
+      <Label text="Nový pacient" textFill="#409988">
+         <font>
+            <Font name="Avenir Next Bold" size="12.0" />
+         </font>
+         <VBox.margin>
+            <Insets left="20.0" top="20.0" />
+         </VBox.margin>
+      </Label>
+      <VBox alignment="TOP_CENTER" style="-fx-background-color: #d3d3d3; -fx-background-radius: 10;">
+         <children>
+            <HBox alignment="CENTER_LEFT">
+               <children>
+                  <Label text="Pacient">
+                     <font>
+                        <Font name="Avenir Book" size="13.0" />
+                     </font>
+                  </Label>
+                  <Region HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="name" prefWidth="150.0" promptText="Příjmení / Název Firmy" style="-fx-border-color: transparent; -fx-border-radius: 10;-fx-background-radius: 10">
+                     <font>
+                        <Font name="Avenir Book" size="12.0" />
+                     </font>
+                  </TextField>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT">
+               <children>
+                  <Label text="Telefon">
+                     <font>
+                        <Font name="Avenir Book" size="13.0" />
+                     </font>
+                  </Label>
+                  <Region HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="phoneNumber" prefWidth="150.0" style="-fx-border-color: transparent; -fx-border-radius: 10;-fx-background-radius: 10">
+                     <font>
+                        <Font name="Avenir Book" size="12.0" />
+                     </font>
+                  </TextField>
+               </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT">
+               <children>
+                  <Label text="Ulice">
+                     <font>
+                        <Font name="Avenir Book" size="13.0" />
+                     </font>
+                  </Label>
+                  <Region HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="street" prefWidth="150.0" promptText="Ulice" style="-fx-border-color: transparent; -fx-border-radius: 10;-fx-background-radius: 10">
+                     <font>
+                        <Font name="Avenir Book" size="12.0" />
+                     </font>
+                  </TextField>
+               </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT">
+               <children>
+                  <Label text="Obec">
+                     <font>
+                        <Font name="Avenir Book" size="13.0" />
+                     </font>
+                  </Label>
+                  <Region HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="city" prefWidth="150.0" promptText="Obec" style="-fx-border-color: transparent; -fx-border-radius: 10;-fx-background-radius: 10">
+                     <font>
+                        <Font name="Avenir Book" size="12.0" />
+                     </font>
+                  </TextField>
+               </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+         <VBox.margin>
+            <Insets left="20.0" right="20.0" />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+      <Region VBox.vgrow="ALWAYS" />
+      <VBox fx:id="errorBox" alignment="BOTTOM_LEFT" prefHeight="40.0">
+         <padding>
+            <Insets left="30.0" />
+         </padding>
+      </VBox>
+      <HBox alignment="CENTER">
+         <children>
+            <Button fx:id="darkButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#back" prefHeight="35.0" prefWidth="35.0" style="-fx-background-radius: 100;" textFill="WHITE">
+               <font>
+                  <Font name="Avenir Next Bold" size="12.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/back.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <HBox.margin>
+                  <Insets left="60.0" />
+               </HBox.margin>
+            </Button>
+            <Region HBox.hgrow="ALWAYS" />
+            <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addCustomer" prefHeight="35.0" prefWidth="35.0" style="-fx-background-radius: 100; -fx-background-color: #409988;" textFill="WHITE">
+               <font>
+                  <Font name="Avenir Next Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets left="5.0" right="5.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="22.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/done.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <HBox.margin>
+                  <Insets right="60.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+         <VBox.margin>
+            <Insets bottom="20.0" top="20.0" />
+         </VBox.margin>
+      </HBox>
+   </children>
+</VBox>

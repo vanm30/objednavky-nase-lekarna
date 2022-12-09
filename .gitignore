@@ -1,3 +1,9 @@
 .idea
-objednavky-nase-lekarna-firebase-adminsdk-0xdci-ab4bce4c9d.json
+MainDB.json
+TestDB.json
 
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-
-<?import javafx.scene.layout.StackPane?>
-<StackPane fx:controller="cz.naseLekarna.gui.application.StageController" stylesheets="@/stylesheet.css"
-           fx:id="mainStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-           prefHeight="600.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/null"
-           xmlns:fx="http://javafx.com/fxml/1"/>

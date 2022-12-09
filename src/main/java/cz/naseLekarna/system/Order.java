@@ -3,14 +3,13 @@ package cz.naseLekarna.system;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * @author Matěj Vaník
  * @created 29.11.2021
  */
 public class Order {
-    private String orderId;
+    private String orderId = null;
     public Integer orderNumber;
     private Customer customer;
     private LocalDate dateBegin;
@@ -20,8 +19,8 @@ public class Order {
     private LocalDate datePickUp;
     private String notes;
     private boolean customerFromDb;
-    public List<ItemPripravek> orderedPripravekList = new ArrayList<ItemPripravek>();
-    public List<ItemRecept> orderedReceptList = new ArrayList<ItemRecept>();
+    public List<Product> orderedProductList = new ArrayList<Product>();
+    public List<Prescription> orderedPrescriptionList = new ArrayList<Prescription>();
 
 
     //GETTERS AND SETTERS
@@ -42,20 +41,20 @@ public class Order {
         this.notes = notes;
     }
 
-    public List<ItemPripravek> getOrderedPripravekList() {
-        return orderedPripravekList;
+    public List<Product> getOrderedProductList() {
+        return orderedProductList;
     }
 
-    public void setOrderedPripravekList(List<ItemPripravek> orderedPripravekList) {
-        this.orderedPripravekList = orderedPripravekList;
+    public void setOrderedProductList(List<Product> orderedPripravekList) {
+        this.orderedProductList = orderedPripravekList;
     }
 
-    public List<ItemRecept> getOrderedReceptList() {
-        return orderedReceptList;
+    public List<Prescription> getOrderedPrescriptionList() {
+        return orderedPrescriptionList;
     }
 
-    public void setOrderedReceptList(List<ItemRecept> orderedReceptList) {
-        this.orderedReceptList = orderedReceptList;
+    public void PrescriptionList(List<Prescription> orderedReceptList) {
+        this.orderedPrescriptionList = orderedReceptList;
     }
 
     public Integer getOrderNumber() {

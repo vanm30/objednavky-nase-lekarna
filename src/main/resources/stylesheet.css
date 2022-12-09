@@ -22,9 +22,14 @@ Button:pressed{
 }
 
 
-#errorBox .label{
+#errorBox #error{
 -fx-font-family: Avenir Book;
 -fx-text-fill: #950925;
+}
+
+#errorBox #ok{
+-fx-font-family: Avenir Book;
+-fx-text-fill: #409988;
 }
 
 #activeOrders #empty{

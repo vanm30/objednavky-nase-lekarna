@@ -1,2 +1,0 @@
-cz/naseLekarna/main/TestFXOrders.java
- cz.naseLekarna.main.TestFXOrders

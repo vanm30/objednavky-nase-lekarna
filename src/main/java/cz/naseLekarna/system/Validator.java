@@ -1,7 +1,7 @@
 package cz.naseLekarna.system;
 
-import cz.naseLekarna.gui.application.InfoBoxController;
-import cz.naseLekarna.gui.application.StageController;
+import cz.naseLekarna.controllers.application.InfoBoxController;
+import cz.naseLekarna.controllers.application.StageController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -75,14 +75,19 @@ public class Validator {
         return policy.sanitize(untrustedHTML);
     }
 
-    public void displayError(ArrayList<String> mistakes) throws IOException {
-        GridPane gridPane = FXMLLoader.load(getClass().getResource("/fxml/application/infoBox.fxml"));
+    public void displayInfo(ArrayList<String> info, boolean error) throws IOException {
+        GridPane gridPane = FXMLLoader.load(getClass().getResource("/views/application/infoBox.fxml"));
         StageController.getStageController().mainStage.getChildren().add(gridPane);
-        mistakes.forEach(mistake -> {
+        info.forEach(infoPart -> {
             Label label = new Label();
             label.setWrapText(true);
             label.setPrefWidth(500);
-            label.setText(mistake);
+            label.setText(infoPart);
+            if (error) {
+                label.setId("error");
+            } else {
+                label.setId("ok");
+            }
             InfoBoxController.getInfoBoxController().errorBox.getChildren().add(label);
         });
     }

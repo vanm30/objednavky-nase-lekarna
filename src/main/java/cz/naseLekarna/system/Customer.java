@@ -1,7 +1,5 @@
 package cz.naseLekarna.system;
 
-import java.util.Objects;
-
 /**
  * @author Matěj Vaník
  * @created 29.11.2021
@@ -53,4 +51,5 @@ public class Customer {
     public void setSave(Boolean save) {
         this.save = save;
     }
+
 }

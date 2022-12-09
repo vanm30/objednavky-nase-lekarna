@@ -3,7 +3,7 @@ package cz.naseLekarna.system;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
-import cz.naseLekarna.gui.mainMenu.MainController;
+import cz.naseLekarna.controllers.mainMenu.MainController;
 
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
@@ -20,7 +20,7 @@ public class FirebaseService {
     Firestore db = FirestoreClient.getFirestore();
     Storage storage = Storage.getStorage();
 
-    final String place = "testOrders";
+    final String place = "orders";
 
     /**
      * Method adds customer to Firebase
@@ -58,8 +58,10 @@ public class FirebaseService {
      */
     public void loadCustomers() throws ExecutionException, InterruptedException {
         storage.activeCustomers.clear();
-        ApiFuture<QuerySnapshot> future = db.collection("customers").get();
-        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+        CollectionReference orders = db.collection("customers");
+        Query query = orders.orderBy("name");
+        ApiFuture<QuerySnapshot> querySnapshot = query.get();
+        List<QueryDocumentSnapshot> documents = querySnapshot.get().getDocuments();
         for (QueryDocumentSnapshot document : documents) {
             Customer customer = new Customer();
             customer.setName((String) document.get("name"));
@@ -68,7 +70,7 @@ public class FirebaseService {
             customer.setCity((String) document.get("city"));
             storage.getActiveCustomers().add(customer);
         }
-        future.get();
+        query.get();
     }
 
     /**
@@ -80,17 +82,20 @@ public class FirebaseService {
     public void addOrder() throws ExecutionException, InterruptedException {
         Map<String, Object> docData = new HashMap<>();
         docData.put("orderNumber", storage.newOrder.getOrderNumber());
-        docData.put("customer", Arrays.asList(
-                storage.newOrder.getCustomer().getName(),
-                storage.newOrder.getCustomer().getPhoneNumber(),
-                storage.newOrder.getCustomer().getStreet(),
-                storage.newOrder.getCustomer().getCity()
-        ));
-        if (!storage.newOrder.orderedPripravekList.isEmpty()) {
-            docData.put("itemPripravekList", storage.newOrder.getOrderedPripravekList());
+        docData.put("customer", new HashMap<String, Object>() {
+                    {
+                        put("name",storage.newOrder.getCustomer().getName());
+                        put("phoneNumber",storage.newOrder.getCustomer().getPhoneNumber());
+                        put("street",storage.newOrder.getCustomer().getStreet());
+                        put("city",storage.newOrder.getCustomer().getCity());
+                    }
+                }
+        );
+        if (!storage.newOrder.orderedProductList.isEmpty()) {
+            docData.put("productList", storage.newOrder.getOrderedProductList());
         }
-        if (!storage.newOrder.orderedReceptList.isEmpty()) {
-            docData.put("itemReceptList", storage.newOrder.getOrderedReceptList());
+        if (!storage.newOrder.orderedPrescriptionList.isEmpty()) {
+            docData.put("prescriptionList", storage.newOrder.getOrderedPrescriptionList());
         }
         docData.put("dateBegin", storage.newOrder.getDateBegin().toString());
         docData.put("orderPickUpInfo", storage.newOrder.getOrderPickupInfo());
@@ -118,9 +123,7 @@ public class FirebaseService {
         for (DocumentSnapshot document : querySnapshot.get().getDocuments()) {
             Order order = writeDownInfo(document);
             storage.getActiveOrders().add(order);
-            if (order.orderNumber != null){
-                storage.orderNumbers.add(order.getOrderNumber());
-            }
+            if (order.orderNumber != null) storage.orderNumbers.add(order.getOrderNumber());
             storage.orderNames.add(order.getCustomer().getName());
         }
         query.get();
@@ -194,13 +197,21 @@ public class FirebaseService {
     }
 
     public Order writeDownInfo(DocumentSnapshot document) {
-        List listCustomer = (List) document.get("customer");
+        HashMap<String, Object> customerMap = (HashMap<String, Object>) document.get("customer");
         Order order = new Order();
         Customer customer = new Customer();
-        customer.setName((String) listCustomer.get(0));
-        customer.setPhoneNumber((String) listCustomer.get(1));
-        customer.setStreet((String) listCustomer.get(2));
-        customer.setCity((String) listCustomer.get(3));
+        if (!customerMap.get("name").equals("")){
+            customer.setName((String) customerMap.get("name"));
+        } else customer.setName("");
+        if (!customerMap.get("phoneNumber").equals("")){
+            customer.setPhoneNumber((String) customerMap.get("phoneNumber"));
+        } else customer.setPhoneNumber("");
+        if (!customerMap.get("street").equals("")){
+            customer.setStreet((String) customerMap.get("street"));
+        } else customer.setStreet("");
+        if (!customerMap.get("city").equals("")){
+            customer.setCity((String) customerMap.get("city"));
+        } else customer.setCity("");
         order.setCustomer(customer);
         if (document.get("orderNumber") != null){
             order.setOrderNumber(Integer.parseInt(String.valueOf(document.get("orderNumber"))));
@@ -210,16 +221,15 @@ public class FirebaseService {
         order.setDatePickUp(LOCAL_DATE((String) document.get("datePickUp")));
         order.setOrderPickupInfo((String) document.get("orderPickUpInfo"));
         order.setState((String) document.get("state"));
-        System.out.println((String) document.get("state"));
         order.setNotes((String) document.get("notes"));
         order.setOrderId(document.getId());
-        ArrayList itemReceptList = (ArrayList) document.get("itemReceptList");
-        ArrayList itemPripravekList = (ArrayList) document.get("itemPripravekList");
+        ArrayList itemReceptList = (ArrayList) document.get("prescriptionList");
+        ArrayList itemPripravekList = (ArrayList) document.get("productList");
         if (itemReceptList != null) {
             for (int i = 0; i < itemReceptList.size(); i++) {
                 String code1 = itemReceptList.get(i).toString();
                 String code = code1.substring(code1.lastIndexOf("=") + 1);
-                order.orderedReceptList.add(new ItemRecept(code.substring(0, code.length() - 1)));
+                order.orderedPrescriptionList.add(new Prescription(code.substring(0, code.length() - 1)));
             }
         }
         if (itemPripravekList != null) {
@@ -228,7 +238,7 @@ public class FirebaseService {
                 String x = string.substring(string.lastIndexOf("=") + 1);
                 String name = x.substring(0, x.length() - 1);
                 String amount = string.substring(string.indexOf("=") + 1, string.indexOf(","));
-                order.orderedPripravekList.add(new ItemPripravek(Integer.parseInt(amount), name));
+                order.orderedProductList.add(new Product(Integer.parseInt(amount), name));
             }
         }
         return order;
@@ -241,7 +251,7 @@ public class FirebaseService {
 
         String hashedEntryPassword = Logic.getLogic().hashPassword(document.get("salt") + password);
         if (document.exists() && hashedEntryPassword.equals(document.get("password"))){
-            storage.user = new User(document.getId(), (String) document.get("username"),(ArrayList) document.get("settings"));
+            storage.user = new User(document.getId(), (String) document.get("username"),(Map<String, Object>) document.get("settings"), (String) document.get("role"));
             return true;
         } else return false;
     }
@@ -269,9 +279,12 @@ public class FirebaseService {
         docData.put("username", username);
         docData.put("password", Logic.getLogic().hashPassword(saltedPassword));
         docData.put("salt", salt);
-        docData.put("settings", Arrays.asList(
-                "0"
-        ));
+        docData.put("settings", new HashMap<String,Object>(){
+            {
+                put("autoSave",0);
+            }
+        });
+        docData.put("role","employee");
         ApiFuture<WriteResult> addedDocRef = db.collection("users").document(username).set(docData);
         addedDocRef.get();
     }
@@ -281,12 +294,9 @@ public class FirebaseService {
         writeResult.get();
     }
 
-    public void updateCustomer(Map<String, Object> docData, String oldId, String newId) throws ExecutionException, InterruptedException {
-        DocumentReference docRef = db.collection("customers").document(oldId);
-        docRef.delete();
-
-        ApiFuture<WriteResult> addedDocRef = db.collection("customers").document(newId).set(docData);
-        addedDocRef.get();
+    public void deleteCustomer(String id) throws ExecutionException, InterruptedException {
+        ApiFuture<WriteResult> writeResult = db.collection("customers").document(id).delete();
+        writeResult.get();
     }
 
     public boolean isPasswordCorrect(String passwordToCheck) throws ExecutionException, InterruptedException, NoSuchAlgorithmException {
@@ -298,7 +308,7 @@ public class FirebaseService {
         return document.exists() && hashedPasswordToCheck.equals(document.get("password"));
     }
 
-    public void updatePassword(String password) throws NoSuchAlgorithmException, ExecutionException, InterruptedException {
+    public void updatePassword(String id,String password) throws NoSuchAlgorithmException, ExecutionException, InterruptedException {
         Map<String, Object> docData = new HashMap<>();
 
         String salt = Logic.getLogic().generateSalt();
@@ -308,7 +318,7 @@ public class FirebaseService {
         docData.put("password", Logic.getLogic().hashPassword(saltedPassword));
         docData.put("salt", salt);
 
-        DocumentReference docRef = db.collection("users").document(storage.user.id);
+        DocumentReference docRef = db.collection("users").document(id);
         ApiFuture<WriteResult> writeResult = docRef.update(docData);
         writeResult.get();
     }
@@ -319,6 +329,45 @@ public class FirebaseService {
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
         return document.exists();
+    }
+
+    public ArrayList<User> getUsers() throws ExecutionException, InterruptedException {
+        CollectionReference ref = db.collection("users");
+        Query query = ref.orderBy("username");
+        ApiFuture<QuerySnapshot> querySnapshot = query.get();
+        List<QueryDocumentSnapshot> documents = querySnapshot.get().getDocuments();
+        ArrayList<User> users = new ArrayList<>();
+
+        for (QueryDocumentSnapshot document : documents) {
+            users.add(new User(document.getId(), (String) document.get("username"), (Map<String, Object>) document.get("settings"), (String) document.get("role")));
+        }
+        query.get();
+        return users;
+    }
+
+    public void deleteUser(String id) throws ExecutionException, InterruptedException {
+        ApiFuture<WriteResult> writeResult = db.collection("users").document(id).delete();
+        writeResult.get();
+    }
+
+    public void updateUser(String oldId,String newId, Map<String, Object> docData) throws ExecutionException, InterruptedException {
+        DocumentReference docRef = db.collection("users").document(oldId);
+        User user = getUser(oldId);
+        docData.put("settings",user.settings);
+        docData.put("salt",docRef.get().get().get("salt"));
+        docData.put("password",docRef.get().get().get("password"));
+        deleteUser(oldId);
+
+        ApiFuture<WriteResult> addedDocRef = db.collection("users").document(newId).set(docData);
+        addedDocRef.get();
+    }
+    public User getUser(String id) throws ExecutionException, InterruptedException {
+        DocumentReference docRef = db.collection("users").document(id);
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+        User user = new User(document.getId(), (String) document.get("username"), (Map<String, Object>) document.get("settings"), (String) document.get("role"));
+        future.get();
+        return user;
     }
 
     /**
